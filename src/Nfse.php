@@ -8,28 +8,38 @@ class Nfse extends Base
 {
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
-    public function cria(array $payload)
+    public function cria($payload)
     {
         return $this->client->send('POST', "/nfse", $payload);
     }
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
-    public function preview(array $payload)
+    public function preview($payload)
     {
         return $this->client->send('POST', "/nfse/preview", $payload);
     }
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
+     */
+    public function pdf($payload)
+    {
+        $key = self::checkKey($payload);
+        return $this->client->send('POST', "/nfse/pdf/{$key}", []);
+    }
+
+    /**
+     * @param array $payload
+     * @return \stdClass
      * @throws \Exception
      */
-    public function consulta(array $payload)
+    public function consulta($payload)
     {
         $key = self::checkKey($payload);
         return $this->client->send('GET', "/nfse/{$key}", []);
@@ -37,27 +47,27 @@ class Nfse extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
-    public function cancela(array $payload): stdClass
+    public function cancela($payload)
     {
         return $this->client->send('POST', "/nfse/cancela", $payload);
     }
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
-    public function busca(array $payload): stdClass
+    public function busca($payload)
     {
         return $this->client->send('POST', "/nfse/busca", $payload);
     }
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
-    public function backup(array $payload): stdClass
+    public function backup(array $payload)
     {
         return $this->client->send('POST', "/nfse/backup", $payload);
     }
