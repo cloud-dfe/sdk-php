@@ -2,7 +2,7 @@
 
 require_once(__DIR__ . '/../../bootstrap.php');
 
-use CloudDfe\SdkC\Softhouse;
+use CloudDfe\SdkPHP\Softhouse;
 /**
  * Operações da SOFTHOUSE
  *

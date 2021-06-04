@@ -18,7 +18,7 @@ Este método serve para inserir o certificado para o emitente ou atualizar o cer
 
 ```php
 
-use CloudDfe\SdkC\Certificado;
+use CloudDfe\SdkPHP\Certificado;
 
 try {
     $params = [
@@ -53,7 +53,7 @@ Quando for necessário pode ser consultado o certificado que está cadastrado pa
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/certificado/#!/1-3) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Certificado;
+use CloudDfe\SdkPHP\Certificado;
 
 try {
     $params = [

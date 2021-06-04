@@ -20,7 +20,7 @@ Este método é usado para GERAR uma nova NFSe.
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/nfse/#!/1-4) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Nfse;
+use CloudDfe\SdkPHP\Nfse;
 
 try {
     $params = [
@@ -95,7 +95,7 @@ Este método busca pelos documentos NFSe armazenados em nossa base de dados.
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/nfse/#!/1-6) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Nfse;
+use CloudDfe\SdkPHP\Nfse;
 
 try {
     $params = [
@@ -129,7 +129,7 @@ try {
 
 ## Consulta NFSe
 
-Este método consulta uma NFSe em nossa base de dados pela sua chave. 
+Este método consulta uma NFSe em nossa base de dados pela sua chave.
 
 *NOTA: Este método é normalmente usado em operações ASSINCRONAS, enviado após o RPS ter sido enviada para api para gerar uma NFSe.*
 
@@ -138,7 +138,7 @@ Este método consulta uma NFSe em nossa base de dados pela sua chave.
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/nfse/#!/1-1) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Nfse;
+use CloudDfe\SdkPHP\Nfse;
 
 try {
     $params = [
@@ -147,7 +147,7 @@ try {
         'options' => ['debug' => true],
     ];
     $nfse = new Nfse($params);
-    
+
     $payload = [
         'chave' => '41210222545265000108550010001010021121093113'
     ];
@@ -172,7 +172,7 @@ Este método busca por registros nas Prefeituras de acordo com alguns parametros
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/nfse/#!/1-8) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Nfse;
+use CloudDfe\SdkPHP\Nfse;
 
 try {
     $params = [
@@ -220,7 +220,7 @@ Este método solicita o cancelamento da NFSe na prefeitura.
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/nfse/#!/1-7) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Nfse;
+use CloudDfe\SdkPHP\Nfse;
 
 try {
     $params = [
@@ -255,7 +255,7 @@ Com este método será retornado o PDF da DANFSE de um documento que exista na n
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/nfse/#!/1-2) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Nfse;
+use CloudDfe\SdkPHP\Nfse;
 
 try {
     $params = [
@@ -294,7 +294,7 @@ Este método solicita o backup dos documentos relacionados com as NFSe, gerados 
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/nfse/#!/1-5) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Nfse;
+use CloudDfe\SdkPHP\Nfse;
 
 try {
     $params = [

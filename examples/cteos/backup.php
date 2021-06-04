@@ -2,7 +2,7 @@
 
 require_once(__DIR__ . '/../../bootstrap.php');
 
-use CloudDfe\SdkC\CteOS;
+use CloudDfe\SdkPHP\CteOS;
 /**
  * Este exemplo de uma chamada a API usando este SDK
  *

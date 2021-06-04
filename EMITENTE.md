@@ -18,7 +18,7 @@ Este método solicita a alteração dos dodos cadastrais do emitente, isso norma
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/emitente/#!/1-5) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Emitente;
+use CloudDfe\SdkPHP\Emitente;
 
 try {
     $params = [
@@ -81,7 +81,7 @@ Este método solicita a troca de token do emitente.
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/emitente/#!/1-3) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Emitente;
+use CloudDfe\SdkPHP\Emitente;
 
 try {
     $params = [
@@ -92,7 +92,7 @@ try {
         ]
     ];
     $emitente = new Emitente($params);
-    
+
     $resp = $emitente->token();
 
     echo "<pre>";
@@ -111,7 +111,7 @@ Este método mostra os dados atuais do emitente em nossas bases de dados.
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/emitente/) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Emitente;
+use CloudDfe\SdkPHP\Emitente;
 
 try {
     $params = [

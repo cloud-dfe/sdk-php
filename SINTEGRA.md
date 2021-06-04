@@ -11,20 +11,20 @@
 A geração do SINTEGRA (obrigação acessória), é realizada sobre os dados consistidos na base de dados do sistema do emitente, portanto se faz necessário que sejam extraidos e processados os dados do SEU sistema a fim de ser possível a geração do arquivo do SINTEGRA.
 
 - Etapa 1 - processar os dados necessários e enviar para a API os arquivos zip obtidos
-        
-- Etapa 2 - consultar a situação do processamento, caso todos os arquivos tenham sido processados com sucesso, estará autorizado a solicitar a geração do Sintegra desses dados. 
+
+- Etapa 2 - consultar a situação do processamento, caso todos os arquivos tenham sido processados com sucesso, estará autorizado a solicitar a geração do Sintegra desses dados.
 
 - Etapa 3 - solicitar a geração do arquivo SINTEGRA
 
-**NOTA: caso o emitente cadastrado possua um webhook para receber notificações, o resultado das operações será retornado por esse canal de forma automática ao término do processamento, seja com sucesso ou com alguma falha.** 
+**NOTA: caso o emitente cadastrado possua um webhook para receber notificações, o resultado das operações será retornado por esse canal de forma automática ao término do processamento, seja com sucesso ou com alguma falha.**
 
-## Envio de dados das NFe (emitidas e recebidas) 
+## Envio de dados das NFe (emitidas e recebidas)
 
 São necessários os dados das NFe emitidas e recebidas pelo emitente.
 Estes dados deverão ser extraídos, processados e colocados em arquivo no formato json, e compactado com ZIP para ser enviado para analise e processamento na API.
 
 ```php
-use CloudDfe\SdkC\Sintegra;
+use CloudDfe\SdkPHP\Sintegra;
 
 try {
     $params = [
@@ -63,7 +63,7 @@ São necessários os dados das CTe emitidos e recebidos pelo emitente.
 Estes dados deverão ser extraidos, processados e colocados em um arquivo no formato json, e compactado com ZIP para ser enviado para analise e processamento na API.
 
 ```php
-use CloudDfe\SdkC\Sintegra;
+use CloudDfe\SdkPHP\Sintegra;
 
 try {
     $params = [
@@ -92,14 +92,14 @@ try {
 } catch (\Exception $e) {
     echo $e->getMessage();
 }
-``` 
+```
 ## Envio de dados do Inventário realizado
 
 São necessários (periodicamente) os dados relativos ao inventário realizado sobre os estoques existentes, com a contagem e precificação do itens desse estoque.
 Estes dados deverão ser extraidos, processados e colocados em um arquivo no formato json, e compactado com ZIP para ser enviado para analise e processamento na API.
 
 ```php
-use CloudDfe\SdkC\Sintegra;
+use CloudDfe\SdkPHP\Sintegra;
 
 try {
     $params = [
@@ -135,7 +135,7 @@ try {
 Este método permite que seja consultada a situação do processamento dos arquivos enviados. Caso algum arquivo apresente erros o SINTEGRA não será gerado.
 
 ```php
-use CloudDfe\SdkC\Sintegra;
+use CloudDfe\SdkPHP\Sintegra;
 
 try {
     $params = [
@@ -169,7 +169,7 @@ try {
 Este método solicita a criação do arquivo SINTEGRA, como é uma operação ASSINCRINA outras soliciatações identicas subsequentes irão retornar o status desse processamento.
 
 ```php
-use CloudDfe\SdkC\Sintegra;
+use CloudDfe\SdkPHP\Sintegra;
 
 try {
     $params = [

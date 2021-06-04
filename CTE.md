@@ -14,7 +14,7 @@ Consulta o status da SEFAZ autorizadora de CTe da UF do emitente
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/cte/#!/1-2) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Cte;
+use CloudDfe\SdkPHP\Cte;
 
 try {
     $params = [
@@ -45,10 +45,10 @@ Este método pré-valida os dados de uma CTe e gera o pdf (DACTE) caso os dados 
 
 *NOTA: Este método não deve ser usado indiscriminadamente antes da geração do real do CTe, mas serve como auxilio em caso de duvidas sobre o correto preenchimento de algum campo.*
 
-*NOTA: Este método não garante que seu documento esteja correto e será autorizado pela SEFAZ, apenas indica se exitem ou não erros de estrutura nos dados fornecidos.*  
+*NOTA: Este método não garante que seu documento esteja correto e será autorizado pela SEFAZ, apenas indica se exitem ou não erros de estrutura nos dados fornecidos.*
 
 ```php
-use CloudDfe\SdkC\Cte;
+use CloudDfe\SdkPHP\Cte;
 
 try {
     $params = [
@@ -157,7 +157,7 @@ try {
         ],
         "observacao" => ""
     ];
-    
+
     //os payloads são sempre ARRAYS
     $resp = $cte->preview($paylod);
 
@@ -180,7 +180,7 @@ Este método é usado paa GERAR uma nova CTe
 
 
 ```php
-use CloudDfe\SdkC\Cte;
+use CloudDfe\SdkPHP\Cte;
 
 try {
     $params = [
@@ -308,7 +308,7 @@ Busca pelos documentos armazenados em nossa base de dados de acordo com os crit�
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/cte/#!/1-9) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Cte;
+use CloudDfe\SdkPHP\Cte;
 
 try {
     $params = [
@@ -330,7 +330,7 @@ try {
         //"cancel_inicial" => "2019-12-01", // Cancelamento
         //"cancel_final" => "2019-12-31"
     ]);
-    
+
     //os payloads são sempre ARRAYS
     echo "<pre>";
     print_r($resp);
@@ -350,7 +350,7 @@ Em caso de sucesso serão retornados os dados da CTE autorizada. Porém em caso 
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/cte/#!/1-3) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Cte;
+use CloudDfe\SdkPHP\Cte;
 
 try {
 
@@ -366,7 +366,7 @@ try {
     $payload = [
         'chave' => '41210222545265000108570010001010021121093113'
     ];
-    
+
     //os payloads são sempre ARRAYS
     $resp = $cte->consulta($payload);
 
@@ -386,7 +386,7 @@ A carta de correção é usada para corrigir algum equivoco simples que tenha oc
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/cte/#!/1-5) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Cte;
+use CloudDfe\SdkPHP\Cte;
 
 try {
     $params = [
@@ -432,7 +432,7 @@ Este método solicita o cancelamento da CTe à Sefaz autorizadora.
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/cte/#!/1-7) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Cte;
+use CloudDfe\SdkPHP\Cte;
 
 try {
     $params = [
@@ -470,7 +470,7 @@ Sempre que por algum motivo tenham sido pulados numeros de CTe, esses numeros de
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/cte/#!/1-6) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Cte;
+use CloudDfe\SdkPHP\Cte;
 
 try {
     $params = [
@@ -509,7 +509,7 @@ Com este método será retornado o PDF da DACTE de um documento que exista na no
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/cte/#!/1-8) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Cte;
+use CloudDfe\SdkPHP\Cte;
 
 try {
     $params = [
@@ -551,7 +551,7 @@ Solicita o backup dos documentos relacionados com as CTe (CTe e eventos), gerado
 
 ```php
 
-use CloudDfe\SdkC\Cte;
+use CloudDfe\SdkPHP\Cte;
 
 try {
     $params = [

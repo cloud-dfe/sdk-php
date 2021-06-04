@@ -2,8 +2,8 @@
 
 require_once(__DIR__ . '/../../bootstrap.php');
 
-use CloudDfe\SdkC\Base;
-use CloudDfe\SdkC\Mdfe;
+use CloudDfe\SdkPHP\Base;
+use CloudDfe\SdkPHP\Mdfe;
 
 try {
     $params = [

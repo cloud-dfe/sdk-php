@@ -2,8 +2,8 @@
 
 require_once(__DIR__ . '/../../bootstrap.php');
 
-use CloudDfe\SdkC\Base;
-use CloudDfe\SdkC\Nfe;
+use CloudDfe\SdkPHP\Base;
+use CloudDfe\SdkPHP\Nfe;
 
 /**
  * Este exemplo de uma chamada a API usando este SDK

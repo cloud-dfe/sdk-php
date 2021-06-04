@@ -11,7 +11,7 @@ Este SDK em PHP puro tem por objetivo simplificar a tarefa de intalação e prep
 ## Forma de instalação do SDK
 
 ```
-composer require cloud-dfe/cloud-dfe-sdk-php-curl
+composer require cloud-dfe/sdk-php
 ```
 
 ## Forma de uso
@@ -20,10 +20,10 @@ Uma vez instalado o SDK é uma tarefa muito simples invocar o seu uso, por exemp
 
 ```php
 
-use CloudDfe\SdkC\Nfe;
+use CloudDfe\SdkPHP\Nfe;
 
 try {
-    //defina os parametros basicos 
+    //defina os parametros basicos
     $params = [
         'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',
         'ambiente' => Nfe::AMBIENTE_HOMOLOGACAO,
@@ -36,7 +36,7 @@ try {
 
     //realize a operação desejada
     $resp = $nfe->status();
-    
+
     //$resp irá conter um OBJETO stdClass com o retorno da API
     echo "<pre>";
     print_r($resp);

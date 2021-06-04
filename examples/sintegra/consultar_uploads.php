@@ -2,7 +2,7 @@
 
 require_once( __DIR__ . '/../../bootstrap.php');
 
-use CloudDfe\SdkC\Sintegra;
+use CloudDfe\SdkPHP\Sintegra;
 /**
  * Este exemplo de uma chamada a API usando este SDK
  *

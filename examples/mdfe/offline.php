@@ -2,7 +2,7 @@
 
 require_once(__DIR__ . '/../../bootstrap.php');
 
-use CloudDfe\SdkC\Mdfe;
+use CloudDfe\SdkPHP\Mdfe;
 
 try {
 
