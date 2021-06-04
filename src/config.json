@@ -1,0 +1,10 @@
+{
+    "api":{
+        "1":"https:\/\/api.cloud-dfe.com.br\/v1",
+        "2":"https:\/\/hom.api.cloud-dfe.com.br\/v1"
+    },
+    "sintegra":{
+        "1":"https:\/\/sintegra.cloud-dfe.com.br\/v1",
+        "2":"http:\/\/localhost:8000\/v1"
+    }
+}
