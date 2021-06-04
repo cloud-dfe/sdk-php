@@ -2,31 +2,31 @@
 
 namespace CloudDfe\SdkPHP;
 
+use CloudDfe\SdkPHP\Client;
+
 class Sintegra
 {
     const AMBIENTE_PRODUCAO = 1;
     const AMBIENTE_HOMOLOGACAO = 2;
+
+    protected $client;
 
     /**
      * Sintegra constructor.
      * @param array $params
      * @throws \Exception
      */
-    public function __construct(array $params)
+    public function __construct($params)
     {
-        $this->client = new Client([
-            'ambiente' => !empty($params['ambiente']) ? $params['ambiente'] : self::AMBIENTE_HOMOLOGACAO,
-            'token' => $params['token'],
-            'options' => $params['options']
-        ], 'sintegra');
+        $this->client = new Client($params, 'sintegra');
     }
 
     /**
      * Send post request to uploads
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
-    public function upload(array $payload)
+    public function upload($payload)
     {
         return $this->client->sendMultpart("/upload", $payload);
     }
@@ -34,9 +34,9 @@ class Sintegra
     /**
      * Send json port request to gerar
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
-    public function gerar(array $payload)
+    public function gerar($payload)
     {
         return $this->client->send('POST', "/gerar", $payload);
     }
@@ -44,9 +44,9 @@ class Sintegra
     /**
      * Send json port request to consular
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
-    public function consultar(array $payload)
+    public function consultar($payload)
     {
         return $this->client->send('POST', "/consulta", $payload);
     }

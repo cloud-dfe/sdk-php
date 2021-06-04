@@ -10,7 +10,7 @@ class Dfe extends Base
 {
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function buscaCte($payload)
     {
@@ -19,7 +19,7 @@ class Dfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function buscaNfe($payload)
     {
@@ -28,7 +28,7 @@ class Dfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      * @throws \Exception
      */
     public function downloadNfe($payload)
@@ -39,7 +39,7 @@ class Dfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      * @throws \Exception
      */
     public function downloadCte($payload)
@@ -50,7 +50,7 @@ class Dfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function backup($payload)
     {

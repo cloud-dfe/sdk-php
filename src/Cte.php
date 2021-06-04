@@ -8,8 +8,8 @@ class Cte extends Base
 {
     /**
      * Cria uma nova CTe
-     * @param $payload
-     * @return stdClass
+     * @param array $payload
+     * @return \stdClass
      */
     public function cria($payload)
     {
@@ -19,7 +19,7 @@ class Cte extends Base
     /**
      * Prevalida dados para emissão de CTe
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function preview($payload)
     {
@@ -28,7 +28,7 @@ class Cte extends Base
 
     /**
      * Consulta status da SEFAZ
-     * @return stdClass
+     * @return \stdClass
      */
     public function status()
     {
@@ -38,7 +38,7 @@ class Cte extends Base
     /**
      * Consulta CTe pela Chave
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      * @throws \Exception
      */
     public function consulta($payload)
@@ -50,7 +50,7 @@ class Cte extends Base
     /**
      * Consulta CTes na base de dados
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function busca($payload)
     {
@@ -60,7 +60,7 @@ class Cte extends Base
     /**
      * Cancela CTe
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function cancela($payload)
     {
@@ -70,7 +70,7 @@ class Cte extends Base
     /**
      * Gera carta de correção de CTe
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function correcao($payload)
     {
@@ -80,7 +80,7 @@ class Cte extends Base
     /**
      * Inutiliza faixa de CTe
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function inutiliza($payload)
     {
@@ -90,7 +90,7 @@ class Cte extends Base
     /**
      * Solicita DACTE
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      * @throws \Exception
      */
     public function pdf($payload)
@@ -102,7 +102,7 @@ class Cte extends Base
     /**
      * Busca por backup de CTe emitidas
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function backup($payload)
     {
