@@ -17,7 +17,7 @@ class Base
      * @param array $params
      * @throws \Exception
      */
-    public function __construct(array $params)
+    public function __construct($params)
     {
         $this->client = new Client([
             'ambiente' => !empty($params['ambiente']) ? $params['ambiente'] : self::AMBIENTE_HOMOLOGACAO,
@@ -32,7 +32,7 @@ class Base
      * @return array|string|string[]
      * @throws \Exception
      */
-    protected static function checkKey(array $payload)
+    protected static function checkKey($payload)
     {
         $key = preg_replace("/[^0-9]/", "", $payload['chave']);
         if (empty($key) || strlen($key) != 44) {

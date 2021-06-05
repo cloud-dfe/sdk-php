@@ -11,7 +11,7 @@ class Certificado extends Base
      * @param array $payload
      * @return stdClass
      */
-    public function atualiza(array $payload)
+    public function atualiza($payload)
     {
         return $this->client->send('POST', "/certificado", $payload);
     }

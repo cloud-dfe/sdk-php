@@ -43,18 +43,18 @@ class HttpCurl
 
     public function __construct($config)
     {
-        $this->debug = (bool) $config['debug'];
-        $this->base_uri = (string) $config['base_uri'];
-        $this->token = (string) $config['token'];
+        $this->debug = $config['debug'];
+        $this->base_uri = $config['base_uri'];
+        $this->token = $config['token'];
 
         $this->headers = [
             "Authorization: {$this->token}",
             'Accept: application/json',
             'Content-Type: application/json',
         ];
-        $this->options = (array) $config['options'];
-        $this->timeout = (int) !empty($config['options']['timeout']) ? $config['options']['timeout'] : 60;
-        $this->http_version = (int) !empty($config['options']['http_version'])
+        $this->options = $config['options'];
+        $this->timeout = !empty($config['options']['timeout']) ? $config['options']['timeout'] : 60;
+        $this->http_version = !empty($config['options']['http_version'])
             ? $config['options']['http_version']
             : CURL_HTTP_VERSION_NONE;
         $this->port = (int) !empty($config['options']['port']) ? $config['options']['port'] : 443;
@@ -67,7 +67,7 @@ class HttpCurl
      * @param array $payload
      * @return string
      */
-    public function request(string $method, string $route, array $payload = [])
+    public function request($method, $route, $payload = [])
     {
         return $this->send($method, $route, json_encode($payload));
     }
@@ -79,9 +79,9 @@ class HttpCurl
      * @return string
      * @throws \Exception
      */
-    public function sendMultipart(string $route, array $payload = [])
+    public function sendMultipart($route, $payload = [])
     {
-        $std = (object) $payload;
+        $std = json_decode(json_encode($payload));
         $this->headers = [
             "Authorization: {$this->token}",
             'Content-Type: multipart/form-data',
@@ -102,7 +102,7 @@ class HttpCurl
      * @param array|string|null $payload
      * @return string
      */
-    protected function send(string $method, string $route, $payload = null)
+    protected function send($method, $route, $payload = null)
     {
         $oCurl = curl_init();
         curl_setopt_array($oCurl, [

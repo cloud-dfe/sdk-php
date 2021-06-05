@@ -67,7 +67,7 @@ class Nfse extends Base
      * @param array $payload
      * @return \stdClass
      */
-    public function backup(array $payload)
+    public function backup( $payload)
     {
         return $this->client->send('POST', "/nfse/backup", $payload);
     }
@@ -76,7 +76,7 @@ class Nfse extends Base
      * @param array $payload
      * @return stdClass
      */
-    public function localiza(array $payload)
+    public function localiza( $payload)
     {
         return $this->client->send('POST', "/nfse/consulta", $payload);
     }
