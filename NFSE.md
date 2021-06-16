@@ -37,18 +37,18 @@ try {
         "status" => "1",
         "data_emissao" => "2017-12-27T17:43:14-03:00",
         "tomador" => [
-            "cnpj" => "07504505000132",
+            "cnpj" => "12345678901234",
             "cpf" => null,
             "im" => null,
-            "razao_social" => "Acras Tecnologia da Informação LTDA",
+            "razao_social" => "Fake Tecnologia Ltda",
             "endereco" => [
-                "logradouro" => "Rua ABC",
+                "logradouro" => "Rua New Horizon",
                 "numero" => "16",
                 "complemento" => null,
                 "bairro" => "Jardim America",
                 "codigo_municipio" => "4119905",
                 "uf" => "PR",
-                "cep" => "81530900"
+                "cep" => "81530945"
             ]
         ],
         "servico" => [
@@ -66,10 +66,10 @@ try {
             "valor_desconto_incondicionado" => "1.00"
         ],
         "intermediario" => [
-            "cnpj" => "07504505000132",
+            "cnpj" => "12345678901234",
             "cpf" => null,
             "im" => null,
-            "razao_social" => "Acras Tecnologia da Informação LTDA"
+            "razao_social" => "Fake Tecnologia Ltda"
         ],
         "obra" => [
             "codigo" => "2222",
