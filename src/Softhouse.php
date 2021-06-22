@@ -2,14 +2,11 @@
 
 namespace CloudDfe\SdkPHP;
 
-use stdClass;
-use Exception;
-
 class Softhouse extends Base
 {
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function criaEmitente($payload)
     {
@@ -18,7 +15,7 @@ class Softhouse extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function atualizaEmitente($payload)
     {
@@ -27,7 +24,7 @@ class Softhouse extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function mostraEmitente($payload)
     {
@@ -37,7 +34,7 @@ class Softhouse extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function listaEmitentes($payload)
     {
@@ -51,13 +48,13 @@ class Softhouse extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
-     * @throws Exception
+     * @return \stdClass
+     * @throws \Exception
      */
     public function deletaEmitente($payload)
     {
         if (empty($payload) || empty($payload['cnpj'])) {
-            throw new Exception('Deve ser passado um CNPJ ou um CPF para efetuar a deleçao do emitente.');
+            throw new \Exception('Deve ser passado um CNPJ ou um CPF para efetuar a deleçao do emitente.');
         }
         $cnpj = $payload['cnpj'];
         return $this->client->send('DELETE', "/soft/emitente/$cnpj", []);

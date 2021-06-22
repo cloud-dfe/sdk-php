@@ -2,13 +2,11 @@
 
 namespace CloudDfe\SdkPHP;
 
-use stdClass;
-
 class Nfe extends Base
 {
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function cria($payload)
     {
@@ -17,7 +15,7 @@ class Nfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function preview($payload)
     {
@@ -25,7 +23,7 @@ class Nfe extends Base
     }
 
     /**
-     * @return stdClass
+     * @return \stdClass
      */
     public function status()
     {
@@ -34,7 +32,7 @@ class Nfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      * @throws \Exception
      */
     public function consulta($payload)
@@ -45,7 +43,7 @@ class Nfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function busca($payload)
     {
@@ -54,7 +52,7 @@ class Nfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function cancela($payload)
     {
@@ -63,7 +61,7 @@ class Nfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function correcao($payload)
     {
@@ -72,7 +70,7 @@ class Nfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function inutiliza($payload)
     {
@@ -81,7 +79,7 @@ class Nfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      * @throws \Exception
      */
     public function pdf($payload)
@@ -92,7 +90,7 @@ class Nfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function manifesta($payload)
     {
@@ -101,7 +99,7 @@ class Nfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function backup($payload)
     {
@@ -110,7 +108,7 @@ class Nfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      * @throws \Exception
      */
     public function download($payload)
@@ -121,10 +119,19 @@ class Nfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function recebidas($payload)
     {
         return $this->client->send('GET', "/nfe/recebidas", $payload);
+    }
+
+    /**
+     * @param array $payload
+     * @return \stdClass
+     */
+    public function interessado($payload)
+    {
+        return $this->client->send('POST', "/nfe/interessado", $payload);
     }
 }

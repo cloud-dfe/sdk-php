@@ -2,14 +2,12 @@
 
 namespace CloudDfe\SdkPHP;
 
-use stdClass;
-
 class Certificado extends Base
 {
     /**
      * Substitui o sertificado atual do emitente
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function atualiza($payload)
     {
@@ -18,7 +16,7 @@ class Certificado extends Base
 
     /**
      * Mostra dados do certificado atual do emitente
-     * @return stdClass
+     * @return \stdClass
      */
     public function mostra()
     {

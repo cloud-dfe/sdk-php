@@ -57,7 +57,7 @@ class HttpCurl
         $this->http_version = !empty($config['options']['http_version'])
             ? $config['options']['http_version']
             : CURL_HTTP_VERSION_NONE;
-        $this->port = (int) !empty($config['options']['port']) ? $config['options']['port'] : 443;
+        $this->port = (int)!empty($config['options']['port']) ? $config['options']['port'] : 443;
     }
 
     /**
@@ -91,7 +91,7 @@ class HttpCurl
             'tipo' => $std->tipo,
             'ano' => $std->ano,
             'mes' => $std->mes,
-            'arquivo'=> new \CURLFile($std->arquivo)
+            'arquivo' => new \CURLFile($std->arquivo)
         ];
         return $this->send('POST', $route, $payload);
     }

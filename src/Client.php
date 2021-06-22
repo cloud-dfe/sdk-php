@@ -2,8 +2,6 @@
 
 namespace CloudDfe\SdkPHP;
 
-use stdClass;
-
 class Client
 {
     /**
@@ -58,14 +56,14 @@ class Client
         if (empty($params['token'])) {
             throw new \Exception("O token é obrigatorio.");
         }
-        $this->ambiente = $params['ambiente'] ?? 2;
-        $this->token = $params['token'] ?? '';
-        $this->options = $params['options'] ?? [];
+        $this->ambiente = !empty($params['ambiente']) ? $params['ambiente'] : 2;
+        $this->token = !empty($params['token']) ? $params['token'] : '';
+        $this->options = !empty($params['options']) ? $params['options'] : [];
         $debug = false;
         if (!empty($params['options'])) {
             $debug = $params['options']['debug'] == true ? true : false;
         }
-        $config = json_decode(file_get_contents(__DIR__ .'/config.json'), true);
+        $config = json_decode(file_get_contents(__DIR__ . '/config.json'), true);
         $this->uri = $config[$direction][$this->ambiente];
         $this->client = new HttpCurl([
             'debug' => $debug,
@@ -78,7 +76,7 @@ class Client
     /**
      * @param string $route
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      * @throws \Exception
      */
     public function sendMultpart($route, $payload)
@@ -91,7 +89,7 @@ class Client
      * @param string $method
      * @param string $route
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function send($method, $route, $payload = [])
     {

@@ -2,8 +2,6 @@
 
 namespace CloudDfe\SdkPHP;
 
-use stdClass;
-
 class Nfse extends Base
 {
     /**
@@ -67,16 +65,16 @@ class Nfse extends Base
      * @param array $payload
      * @return \stdClass
      */
-    public function backup( $payload)
+    public function backup($payload)
     {
         return $this->client->send('POST', "/nfse/backup", $payload);
     }
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
-    public function localiza( $payload)
+    public function localiza($payload)
     {
         return $this->client->send('POST', "/nfse/consulta", $payload);
     }

@@ -2,13 +2,11 @@
 
 namespace CloudDfe\SdkPHP;
 
-use stdClass;
-
 class Mdfe extends Base
 {
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function cria($payload)
     {
@@ -17,7 +15,7 @@ class Mdfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function preview($payload)
     {
@@ -25,7 +23,7 @@ class Mdfe extends Base
     }
 
     /**
-     * @return stdClass
+     * @return \stdClass
      */
     public function status()
     {
@@ -34,7 +32,7 @@ class Mdfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      * @throws \Exception
      */
     public function consulta($payload)
@@ -45,7 +43,7 @@ class Mdfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function busca($payload)
     {
@@ -54,7 +52,7 @@ class Mdfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function cancela($payload)
     {
@@ -63,7 +61,7 @@ class Mdfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function encerra($payload)
     {
@@ -72,7 +70,7 @@ class Mdfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function condutor($payload)
     {
@@ -80,7 +78,7 @@ class Mdfe extends Base
     }
 
     /**
-     * @return stdClass
+     * @return \stdClass
      */
     public function offline()
     {
@@ -89,7 +87,7 @@ class Mdfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      * @throws \Exception
      */
     public function pdf($payload)
@@ -100,7 +98,7 @@ class Mdfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function backup($payload)
     {
@@ -109,7 +107,7 @@ class Mdfe extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function nfe($payload)
     {
@@ -117,7 +115,7 @@ class Mdfe extends Base
     }
 
     /**
-     * @return stdClass
+     * @return \stdClass
      */
     public function abertos()
     {

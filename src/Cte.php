@@ -2,8 +2,6 @@
 
 namespace CloudDfe\SdkPHP;
 
-use stdClass;
-
 class Cte extends Base
 {
     /**

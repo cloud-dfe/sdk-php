@@ -1,16 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 namespace CloudDfe\SdkPHP;
-
-use stdClass;
 
 class Emitente extends Base
 {
     /**
      *
-     * @return stdClass
+     * @return \stdClass
      */
     public function token()
     {
@@ -19,7 +15,7 @@ class Emitente extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function atualiza($payload)
     {
@@ -27,7 +23,7 @@ class Emitente extends Base
     }
 
     /**
-     * @return stdClass
+     * @return \stdClass
      */
     public function mostra()
     {

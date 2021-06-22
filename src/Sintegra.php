@@ -2,12 +2,9 @@
 
 namespace CloudDfe\SdkPHP;
 
-use CloudDfe\SdkPHP\Client;
-
 class Sintegra
 {
     const AMBIENTE_PRODUCAO = 1;
-    const AMBIENTE_HOMOLOGACAO = 2;
 
     protected $client;
 

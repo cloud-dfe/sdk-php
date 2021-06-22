@@ -1,16 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 namespace CloudDfe\SdkPHP;
-
-use stdClass;
 
 class CteOS extends Base
 {
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function cria($payload)
     {
@@ -19,7 +15,7 @@ class CteOS extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function preview($payload)
     {
@@ -27,7 +23,7 @@ class CteOS extends Base
     }
 
     /**
-     * @return stdClass
+     * @return \stdClass
      */
     public function status()
     {
@@ -36,7 +32,7 @@ class CteOS extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      * @throws \Exception
      */
     public function consulta($payload)
@@ -47,7 +43,7 @@ class CteOS extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function busca($payload)
     {
@@ -56,7 +52,7 @@ class CteOS extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function cancela($payload)
     {
@@ -65,7 +61,7 @@ class CteOS extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function correcao($payload)
     {
@@ -74,7 +70,7 @@ class CteOS extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function inutiliza($payload)
     {
@@ -83,7 +79,7 @@ class CteOS extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      * @throws \Exception
      */
     public function pdf($payload)
@@ -94,7 +90,7 @@ class CteOS extends Base
 
     /**
      * @param array $payload
-     * @return stdClass
+     * @return \stdClass
      */
     public function backup($payload)
     {
