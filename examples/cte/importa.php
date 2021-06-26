@@ -2,11 +2,13 @@
 
 require_once(__DIR__ . '/../../bootstrap.php');
 
+
 use CloudDfe\SdkPHP\Cte;
+
 /**
  * Este exemplo de uma chamada a API usando este SDK
  *
- * Este método solicita a inutilização de faixa de numeros de CTe, usado quendo por algum motivo existem numeros de CTe "PULADOS" no sistema.
+ * Importa o XML de um CTe
  */
 try {
     $params = [
@@ -23,12 +25,9 @@ try {
     $cte = new Cte($params);
 
     $payload = [
-        'numero_inicial' => '67',
-        'numero_final' => '67',
-        'serie' => '1',
-        'justificativa' => 'teste de inutilização'
+        'xml' => base64_encode(file_get_contents('/home/Downloads/41200679549135000160570260000000141828508111-procCancCTe.xml'))
     ];
-    $resp = $cte->inutiliza($payload);
+    $resp = $cte->importa($payload);
 
     echo "<pre>";
     print_r($resp);

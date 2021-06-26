@@ -10,11 +10,13 @@ use CloudDfe\SdkPHP\Emitente;
  */
 try {
     $params = [
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjU0LCJ1c3IiOjIsInRwIjoyLCJpYXQiOjE1NzQyNjAyODB9.LfnKwlWiX0oJMrmUUDXeqpLpoz38LsavRDvY_q0PXD0',
         'ambiente' => Emitente::AMBIENTE_HOMOLOGACAO,
-        //'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR-3c5V8iyITDmLoUF_SE',
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjE0MSwidXNyIjo5MywidHAiOjIsImlhdCI6MTYxMjgwOTg4MX0.JsIeapmoYc-CrtmUSapZFRD-WWtY50bivn3nzVw34eA',
         'options' => [
             'debug' => false,
+            'timeout' => 60,
+            'port' => 443,
+            'http_version' => CURL_HTTP_VERSION_NONE
         ]
     ];
     $emitente = new Emitente($params);

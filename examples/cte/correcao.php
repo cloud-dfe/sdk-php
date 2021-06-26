@@ -10,21 +10,24 @@ use CloudDfe\SdkPHP\Cte;
  */
 try {
     $params = [
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjgsInVzciI6NiwidHAiOjIsImlhdCI6MTU3MjU0NzkyOX0.lTh431ejzV13RybU9Mck2OrgQnofhsePwvZttn3kZig',
         'ambiente' => Cte::AMBIENTE_HOMOLOGACAO,
         'options' => [
             'debug' => false,
+            'timeout' => 60,
+            'port' => 443,
+            'http_version' => CURL_HTTP_VERSION_NONE
         ]
     ];
 
     $cte = new Cte($params);
 
     $payload = [
-        'chave' => '41210222545265000108550010001010031384099675',
+        'chave' => '50210613188739000110570010000000651936467924',
         'correcoes' => [
             [
                 'grupo_corrigido' => 'ide',
-                'campo_corrigido' => 'natureza_operacao',
+                'campo_corrigido' => 'natOp',
                 'valor_corrigido' => 'PRESTACAO DE SERVIÇO'
             ]
         ]

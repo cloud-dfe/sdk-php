@@ -6,18 +6,20 @@ use CloudDfe\SdkPHP\Mdfe;
 
 try {
     $params = [
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR-3c5V8iyITDmLoUF_SE',
         'ambiente' => Mdfe::AMBIENTE_HOMOLOGACAO,
         'options' => [
             'debug' => false,
+            'timeout' => 60,
+            'port' => 443,
+            'http_version' => CURL_HTTP_VERSION_NONE
         ]
     ];
     $mdfe = new Mdfe($params);
 
     $payload = [
-        'chave' => '41210222545265000108580010001010031384099675',
-        'codigo_uf' => '41',
-        'codigo_municipio' => '4145678'
+        'chave' => '41210622545265000108580010000000271900303056',
+        'codigo_municipio' => '2408003'
     ];
     $resp = $mdfe->encerra($payload);
 

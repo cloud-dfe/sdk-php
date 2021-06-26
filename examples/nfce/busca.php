@@ -6,17 +6,20 @@ use CloudDfe\SdkPHP\Nfce;
 
 try {
     $params = [
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR-3c5V8iyITDmLoUF_SE',
         'ambiente' => Nfce::AMBIENTE_HOMOLOGACAO,
         'options' => [
             'debug' => false,
+            'timeout' => 60,
+            'port' => 443,
+            'http_version' => CURL_HTTP_VERSION_NONE
         ]
     ];
     $nfce = new Nfce($params);
 
     $resp = $nfce->busca([
         "numero_inicial" => 1710,
-        "numero_final" => 101002,
+        "numero_final" => 101005,
         "serie" => 1,
         //"data_inicial" => "2019-12-01",
         //"data_final" => "2019-12-31",

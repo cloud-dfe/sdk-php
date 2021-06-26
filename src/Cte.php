@@ -5,26 +5,6 @@ namespace CloudDfe\SdkPHP;
 class Cte extends Base
 {
     /**
-     * Cria uma nova CTe
-     * @param array $payload
-     * @return \stdClass
-     */
-    public function cria($payload)
-    {
-        return $this->client->send('POST', "/cte", $payload);
-    }
-
-    /**
-     * Prevalida dados para emissão de CTe
-     * @param array $payload
-     * @return \stdClass
-     */
-    public function preview($payload)
-    {
-        return $this->client->send('POST', "/cte/preview", $payload);
-    }
-
-    /**
      * Consulta status da SEFAZ
      * @return \stdClass
      */
@@ -43,6 +23,28 @@ class Cte extends Base
     {
         $key = self::checkKey($payload);
         return $this->client->send('GET', "/cte/{$key}", []);
+    }
+
+    /**
+     * Solicita DACTE
+     * @param array $payload
+     * @return \stdClass
+     * @throws \Exception
+     */
+    public function pdf($payload)
+    {
+        $key = self::checkKey($payload);
+        return $this->client->send('GET', "/cte/pdf/{$key}", []);
+    }
+
+    /**
+     * Cria uma nova CTe
+     * @param array $payload
+     * @return \stdClass
+     */
+    public function cria($payload)
+    {
+        return $this->client->send('POST', "/cte", $payload);
     }
 
     /**
@@ -86,18 +88,6 @@ class Cte extends Base
     }
 
     /**
-     * Solicita DACTE
-     * @param array $payload
-     * @return \stdClass
-     * @throws \Exception
-     */
-    public function pdf($payload)
-    {
-        $key = self::checkKey($payload);
-        return $this->client->send('GET', "/cte/pdf/{$key}", []);
-    }
-
-    /**
      * Busca por backup de CTe emitidas
      * @param array $payload
      * @return \stdClass
@@ -105,5 +95,35 @@ class Cte extends Base
     public function backup($payload)
     {
         return $this->client->send('POST', "/cte/backup", $payload);
+    }
+
+    /**
+     * Importa o XML de um CTe
+     * @param array $payload
+     * @return \stdClass
+     */
+    public function importa($payload)
+    {
+        return $this->client->send('POST', "/cte/importa", $payload);
+    }
+
+    /**
+     * Prevalida dados para emissão de CTe
+     * @param array $payload
+     * @return \stdClass
+     */
+    public function preview($payload)
+    {
+        return $this->client->send('POST', "/cte/preview", $payload);
+    }
+
+    /**
+     * Solicita o evento de manifestação de desacordo da operação
+     * @param array $payload
+     * @return \stdClass
+     */
+    public function desacordo($payload)
+    {
+        return $this->client->send('POST', "/cte/desacordo", $payload);
     }
 }

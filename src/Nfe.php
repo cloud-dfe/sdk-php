@@ -123,7 +123,7 @@ class Nfe extends Base
      */
     public function recebidas($payload)
     {
-        return $this->client->send('GET', "/nfe/recebidas", $payload);
+        return $this->client->send('POST', "/nfe/recebidas", $payload);
     }
 
     /**
@@ -133,5 +133,14 @@ class Nfe extends Base
     public function interessado($payload)
     {
         return $this->client->send('POST', "/nfe/interessado", $payload);
+    }
+
+    /**
+     * @param array $payload
+     * @return \stdClass
+     */
+    public function importa($payload)
+    {
+        return $this->client->send('POST', "/nfe/importa", $payload);
     }
 }

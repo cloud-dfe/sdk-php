@@ -6,19 +6,23 @@ use CloudDfe\SdkPHP\Mdfe;
 
 try {
     $params = [
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR-3c5V8iyITDmLoUF_SE',
         'ambiente' => Mdfe::AMBIENTE_HOMOLOGACAO,
         'options' => [
             'debug' => false,
+            'timeout' => 60,
+            'port' => 443,
+            'http_version' => CURL_HTTP_VERSION_NONE
         ]
     ];
     $mdfe = new Mdfe($params);
 
     $paylod = [
         "tipo_operacao" => "2",
-        "numero" => "26",
+        "tipo_transporte" => null,
+        "numero" => "27",
         "serie" => "1",
-        "data_emissao" => "2020-11-25T09:21:42-00:00",
+        "data_emissao" => "2021-06-26T09:21:42-00:00",
         "uf_inicio" => "RN",
         "uf_fim" => "GO",
         "municipios_carregamento" => [
@@ -42,7 +46,7 @@ try {
                 "nome_municipio" => "Abadia de Goiás",
                 "nfes" => [
                     [
-                        "chave" => "34255501343220005109556010100010641225557671"
+                        "chave" => "41210622545265000108550010001010071485713011"
                     ]
                 ]
             ]
@@ -67,24 +71,15 @@ try {
                 "tipo_rodado" => "01",
                 "tipo_carroceria" => "00",
                 "uf" => "MT",
-                "proprietario" => [
-                    "cnpj" => "15555270000224",
-                    "rntrc" => "33838121",
-                    "nome" => "TESTES TRANSPORTES LTDA",
-                    "inscricao_estadual" => "ISENTO",
-                    "uf" => "MT",
-                    "tipo" => "0"
-                ],
                 "condutores" => [
                     [
                         "nome" => "JOAO TESTE",
-                        "cpf" => "12456547872"
+                        "cpf" => "01234567890"
                     ]
                 ]
             ],
             "reboque" => []
-        ],
-        "tipo_transporte" => "2"
+        ]
     ];
     $resp = $mdfe->cria($paylod);
 

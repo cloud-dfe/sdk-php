@@ -64,4 +64,13 @@ class Nfce extends Base
     {
         return $this->client->send('POST', "/nfce/backup", $payload);
     }
+
+    /**
+     * @param array $payload
+     * @return \stdClass
+     */
+    public function importa($payload)
+    {
+        return $this->client->send('POST', "/nfce/importa", $payload);
+    }
 }

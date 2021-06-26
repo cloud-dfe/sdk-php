@@ -78,4 +78,13 @@ class Nfse extends Base
     {
         return $this->client->send('POST', "/nfse/consulta", $payload);
     }
+
+    /**
+     * @param array $payload
+     * @return \stdClass
+     */
+    public function info($payload)
+    {
+        return $this->client->send('GET', "/nfse/info/{$payload['ibge']}", []);
+    }
 }

@@ -2,11 +2,17 @@
 
 require_once(__DIR__ . '/../../bootstrap.php');
 
+
 use CloudDfe\SdkPHP\CteOS;
 
+/**
+ * Este exemplo de uma chamada a API usando este SDK
+ *
+ * Importa o XML de um CTe
+ */
 try {
     $params = [
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjEyOCwidXNyIjoyLCJ0cCI6MiwiaWF0IjoxNjI0NDgwMDA3fQ.r2H33r0hjWl9jmD97UTgJz_n2QargK0lpJ_vciz_0xY',
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjgsInVzciI6NiwidHAiOjIsImlhdCI6MTU3MjU0NzkyOX0.lTh431ejzV13RybU9Mck2OrgQnofhsePwvZttn3kZig',
         'ambiente' => CteOS::AMBIENTE_HOMOLOGACAO,
         'options' => [
             'debug' => false,
@@ -15,9 +21,13 @@ try {
             'http_version' => CURL_HTTP_VERSION_NONE
         ]
     ];
+
     $cte = new CteOS($params);
 
-    $resp = $cte->status();
+    $payload = [
+        'xml' => base64_encode(file_get_contents('/home/50191213188739000110570010000012151581978542.xml'))
+    ];
+    $resp = $cte->importa($payload);
 
     echo "<pre>";
     print_r($resp);

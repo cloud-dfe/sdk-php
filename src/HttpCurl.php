@@ -106,7 +106,7 @@ class HttpCurl
     {
         $oCurl = curl_init();
         curl_setopt_array($oCurl, [
-            CURLOPT_URL => "{$this->base_uri}{$route}",
+            CURLOPT_URL => "{$this->base_uri}{$route}?XDEBUG_SESSION_START=11224",
             CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',

@@ -6,17 +6,20 @@ use CloudDfe\SdkPHP\CteOS;
 
 try {
     $params = [
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjEyOCwidXNyIjoyLCJ0cCI6MiwiaWF0IjoxNjI0NDgwMDA3fQ.r2H33r0hjWl9jmD97UTgJz_n2QargK0lpJ_vciz_0xY',
         'ambiente' => CteOS::AMBIENTE_HOMOLOGACAO,
         'options' => [
             'debug' => false,
+            'timeout' => 60,
+            'port' => 443,
+            'http_version' => CURL_HTTP_VERSION_NONE
         ]
     ];
     $cte = new CteOS($params);
 
     $paylod = [
         "cfop" => "5353",
-        "natureza_operacao" => "PRESTACAO DE SERVIÇO",
+        "natureza_operacao" => "PRESTACAO DE SERVICO",
         "numero" => "64",
         "serie" => "1",
         "data_emissao" => "2020-11-24T03:00:00-03:00",
@@ -26,10 +29,10 @@ try {
         "uf_envio" => "RN",
         "tipo_servico" => "6",
         "codigo_municipio_inicio" => "2408003",
-        "nome_municipio_inicio" => "Mossoró",
+        "nome_municipio_inicio" => "Mossoro",
         "uf_inicio" => "RN",
         "codigo_municipio_fim" => "2408003",
-        "nome_municipio_fim" => "Mossoró",
+        "nome_municipio_fim" => "Mossoro",
         "uf_fim" => "RN",
         "valores" => [
             "servico" => "0.00",
@@ -39,11 +42,11 @@ try {
         ],
         "imposto" => [
             "icms" => [
-                "situacao_tributaria" => "20",
+                "situacao_tributaria" => "99",
                 "valor_base_calculo" => "0.00",
                 "aliquota" => "12.00",
                 "valor" => "0.00",
-                "reducao_base_calculo" => "50.00"
+                "aliquota_reducao_base_calculo" => "50.00"
             ],
             "federais" => [
                 "valor_pis" => "0.00",
@@ -58,9 +61,9 @@ try {
             "numero_registro_estadual" => "0203351712510203351712515"
         ],
         "tomador" => [
-            "indicador_inscricao_estadual" => "1",
-            "cnpj" => "15495526000128",
-            "inscricao_estadual" => "212055510",
+            "indicador_inscricao_estadual" => "9",
+            "cpf" => "01234567890",
+            "inscricao_estadual" => null,
             "nome" => "EMPRESA MODELO",
             "razao_social" => "EMPRESA MODELO",
             "telefone" => "8499995555",
@@ -69,7 +72,7 @@ try {
                 "numero" => "444",
                 "bairro" => "CENTRO",
                 "codigo_municipio" => "2408003",
-                "nome_municipio" => "Mossoró",
+                "nome_municipio" => "Mossoro",
                 "cep" => "59603330",
                 "uf" => "RN",
                 "codigo_pais" => "1058",

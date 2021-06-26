@@ -14,18 +14,16 @@ use CloudDfe\SdkPHP\Nfe;
  */
 try {
     $params = [
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR-3c5V8iyITDmLoUF_SE',
         'ambiente' => Nfe::AMBIENTE_HOMOLOGACAO,
         'options' => [
             'debug' => false,
+            'timeout' => 60,
+            'port' => 443,
+            'http_version' => CURL_HTTP_VERSION_NONE
         ]
     ];
     $nfe = new Nfe($params);
-
-
-    //informar o período desejado de backup
-
-
     $paylod = [
         "natureza_operacao" => "VENDA DENTRO DO ESTADO",
         "serie" => "1",
@@ -88,9 +86,9 @@ try {
                         "aliquota" => "0.00",
                         "aliquota_final" => "0.00",
                         "valor" => "0.00",
-                        "margem_valor_adicionado_st" => "0.00",
-                        "reducao_base_calculo_st" => "0.00",
-                        "base_calculo_st" => "0.00",
+                        "aliquota_margem_valor_adicionado_st" => "0.00",
+                        "aliquota_reducao_base_calculo_st" => "0.00",
+                        "aliquota_base_calculo_st" => "0.00",
                         "aliquota_st" => "0.00",
                         "valor_st" => "0.00"
                     ],
@@ -117,16 +115,6 @@ try {
                 "informacoes_adicionais_item" => "Valor aproximado tributos R$: 9,43 (4,20%) Fonte: IBPT"
             ]
         ],
-        "icms_base_calculo" => 0,
-        "icms_valor_total" => 0,
-        "valor_produtos" => 224.5,
-        "valor_frete" => 0,
-        "valor_seguro" => 0,
-        "valor_desconto" => 0,
-        "valor_pis" => 3.7,
-        "valor_cofins" => 17.06,
-        "valor_outras_despesas" => 0,
-        "valor_total" => 224.5,
         "frete" => [
             "modalidade_frete" => "0",
             "volumes" => [

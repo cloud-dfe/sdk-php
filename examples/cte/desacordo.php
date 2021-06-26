@@ -2,11 +2,13 @@
 
 require_once(__DIR__ . '/../../bootstrap.php');
 
+
 use CloudDfe\SdkPHP\Cte;
+
 /**
  * Este exemplo de uma chamada a API usando este SDK
  *
- * Este método solicita a inutilização de faixa de numeros de CTe, usado quendo por algum motivo existem numeros de CTe "PULADOS" no sistema.
+ * Solicita o evento de manifestação de desacordo da operação
  */
 try {
     $params = [
@@ -23,12 +25,10 @@ try {
     $cte = new Cte($params);
 
     $payload = [
-        'numero_inicial' => '67',
-        'numero_final' => '67',
-        'serie' => '1',
-        'justificativa' => 'teste de inutilização'
+        'chave' => '50210613188739000110570010000000641214766139',
+        'justificativa' => 'nao contratei esse servico'
     ];
-    $resp = $cte->inutiliza($payload);
+    $resp = $cte->desacordo($payload);
 
     echo "<pre>";
     print_r($resp);

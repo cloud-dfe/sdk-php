@@ -3,13 +3,20 @@
 require_once(__DIR__ . '/../../bootstrap.php');
 
 use CloudDfe\SdkPHP\Cte;
-
+/**
+ * Este exemplo de uma chamada a API usando este SDK
+ *
+ * Este método envia os dados para a criação da pre-visualização de um CTe
+ */
 try {
     $params = [
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjgsInVzciI6NiwidHAiOjIsImlhdCI6MTU3MjU0NzkyOX0.lTh431ejzV13RybU9Mck2OrgQnofhsePwvZttn3kZig',
         'ambiente' => Cte::AMBIENTE_HOMOLOGACAO,
         'options' => [
             'debug' => false,
+            'timeout' => 60,
+            'port' => 443,
+            'http_version' => CURL_HTTP_VERSION_NONE
         ]
     ];
 
@@ -20,7 +27,7 @@ try {
         "natureza_operacao" => "PRESTACAO DE SERVIÇO",
         "numero" => "64",
         "serie" => "1",
-        "data_emissao" => "2020-11-24T03:00:00-03:00",
+        "data_emissao" => "2021-06-22T03:00:00-03:00",
         "tipo_operacao" => "0",
         "codigo_municipio_envio" => "2408003",
         "nome_municipio_envio" => "MOSSORO",
@@ -70,7 +77,7 @@ try {
                 "valor_base_calculo" => "0.00",
                 "aliquota" => "12.00",
                 "valor" => "0.00",
-                "reducao_base_calculo" => "50.00"
+                "aliquota_reducao_base_calculo" => "50.00"
             ]
         ],
         "nfes" => [
@@ -82,8 +89,8 @@ try {
             "rntrc" => "02033517"
         ],
         "destinatario" => [
-            "cnpj" => "15495526000128",
-            "inscricao_estadual" => "212055510",
+            "cpf" => "01234567890",
+            "inscricao_estadual" => null,
             "nome" => "EMPRESA MODELO",
             "telefone" => "8499995555",
             "endereco" => [
