@@ -1,19 +1,19 @@
 <?php
 
-require_once(__DIR__ . '/../../bootstrap.php');
+require_once(__DIR__. '/../../bootstrap.php');
 
-use CloudDfe\SdkPHP\Certificado;
+use CloudDfe\SdkPHP\Mdfe;
 
 /**
  * Este exemplo de uma chamada a API usando este SDK
  *
- * Este método atualiza o certificado do emitente, enviando o novo certificado para substituir o anterior
- * vencido ou a vencer
+ * Este método consulta o status da SEFAZ de NFe
+ *
  */
 try {
     $params = [
         'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR-3c5V8iyITDmLoUF_SE',
-        'ambiente' => Certificado::AMBIENTE_HOMOLOGACAO,
+        'ambiente' => Mdfe::AMBIENTE_HOMOLOGACAO,
         'options' => [
             'debug' => false,
             'timeout' => 60,
@@ -21,16 +21,17 @@ try {
             'http_version' => CURL_HTTP_VERSION_NONE
         ]
     ];
-    $certificado = new Certificado($params);
+    $nfe = new Mdfe($params);
+
     $payload = [
-        'certificado' => base64_encode(file_get_contents('expired_certificate.pfx')),
-        'senha' => 'associacao'
+        'xml' => base64_encode(file_get_contents('/home/Downloads/41200879549135000160580260000004061987672979-mdfe.xml'))
     ];
-    //os payloads são sempre ARRAYS
-    $resp = $certificado->atualiza($payload);
+    $resp = $nfe->importa($payload);
+
     echo "<pre>";
     print_r($resp);
     echo "</pre>";
+
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

@@ -29,7 +29,7 @@ class Nfse extends Base
     public function pdf($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send('POST', "/nfse/pdf/{$key}", []);
+        return $this->client->send('GET', "/nfse/pdf/{$key}", []);
     }
 
     /**
@@ -86,5 +86,14 @@ class Nfse extends Base
     public function info($payload)
     {
         return $this->client->send('GET', "/nfse/info/{$payload['ibge']}", []);
+    }
+
+    /**
+     * @param array $payload
+     * @return \stdClass
+     */
+    public function conflito($payload)
+    {
+        return $this->client->send('POST', "/nfse/conflito", $payload);
     }
 }

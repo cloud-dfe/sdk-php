@@ -19,9 +19,7 @@ try {
             'http_version' => CURL_HTTP_VERSION_NONE
         ]
     ];
-
     $cte = new Cte($params);
-
     $payload = [
         'chave' => '50210613188739000110570010000000651936467924',
         'correcoes' => [
@@ -33,11 +31,9 @@ try {
         ]
     ];
     $resp = $cte->correcao($payload);
-
     echo "<pre>";
     print_r($resp);
     echo "</pre>";
-
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

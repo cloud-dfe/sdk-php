@@ -13,7 +13,7 @@ use CloudDfe\SdkPHP\Nfse;
  */
 try {
     $params = [
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjEyNywidXNyIjoyLCJ0cCI6MiwiaWF0IjoxNjI0NDU5MDc4fQ.z5ncohVvXwQJpflWDuLrq4_81kglHTuiGeZcKFxeN6Y',
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjEyNSwidXNyIjoyLCJ0cCI6MiwiaWF0IjoxNjIzOTQwNjg5fQ.Ag3y6wTmiCFb9LExLcc57WfUnP34kQM8jj2Vx91DZL8',
         'ambiente' => Nfse::AMBIENTE_HOMOLOGACAO,
         'options' => [
             'debug' => false,

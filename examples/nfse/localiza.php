@@ -13,10 +13,13 @@ use CloudDfe\SdkPHP\Nfse;
  */
 try {
     $params = [
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjEyNSwidXNyIjoyLCJ0cCI6MiwiaWF0IjoxNjIzOTQwNjg5fQ.Ag3y6wTmiCFb9LExLcc57WfUnP34kQM8jj2Vx91DZL8',
         'ambiente' => Nfse::AMBIENTE_HOMOLOGACAO,
         'options' => [
             'debug' => false,
+            'timeout' => 60,
+            'port' => 443,
+            'http_version' => CURL_HTTP_VERSION_NONE
         ]
     ];
     $nfse = new Nfse($params);
@@ -33,9 +36,9 @@ try {
         "nfse_numero" => null,
         "nfse_numero_inicial" => null,
         "nfse_numero_final" => null,
-        "rps_numero" => null,
-        "rps_serie" => null,
-        "rps_tipo" => null,
+        "rps_numero" => "15",
+        "rps_serie" => "0",
+        "rps_tipo" => "1",
         "pagina" => "1"
     ];
     $resp = $nfse->localiza($payload);

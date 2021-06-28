@@ -19,15 +19,11 @@ try {
             'http_version' => CURL_HTTP_VERSION_NONE
         ]
     ];
-
     $certificado = new Certificado($params);
-
     $resp = $certificado->mostra();
-
     echo "<pre>";
     print_r($resp);
     echo "</pre>";
-
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

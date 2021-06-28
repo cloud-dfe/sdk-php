@@ -11,25 +11,28 @@ use CloudDfe\SdkPHP\Nfse;
  */
 try {
     $params = [
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjEyNSwidXNyIjoyLCJ0cCI6MiwiaWF0IjoxNjIzOTQwNjg5fQ.Ag3y6wTmiCFb9LExLcc57WfUnP34kQM8jj2Vx91DZL8',
         'ambiente' => Nfse::AMBIENTE_HOMOLOGACAO,
         'options' => [
             'debug' => false,
+            'timeout' => 60,
+            'port' => 443,
+            'http_version' => CURL_HTTP_VERSION_NONE
         ]
     ];
     $nfse = new Nfse($params);
 
     //dados para busca de NFSe
     $payload = [
-        "numero_rps_inicial" => 1210,
-        "numero_rps_final" => 1210,
-        "serie_rps" => 1,
-        "numero_nfse_inicial" => 1210,
-        "numero_nfse_final" => 1210,
-        "data_inicial" => "2019-12-01", // Autorização
-        "data_final" => "2019-12-31",
-        "cancel_inicial" => "2019-12-01", // Cancelamento
-        "cancel_final" => "2019-12-31"
+        "numero_rps_inicial" => 15,
+        "numero_rps_final" => 15,
+        "serie_rps" => "0",
+        //"numero_nfse_inicial" => 1210,
+        //"numero_nfse_final" => 1210,
+        //"data_inicial" => "2019-12-01", // Autorização
+        //"data_final" => "2019-12-31",
+        //"cancel_inicial" => "2019-12-01", // Cancelamento
+        //"cancel_final" => "2019-12-31"
     ];
     $resp = $nfse->busca($payload);
 

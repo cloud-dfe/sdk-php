@@ -7,10 +7,10 @@ use CloudDfe\SdkPHP\Nfse;
 /**
  * Este exemplo de uma chamada a API usando este SDK
  *
- * Este método solicita a criação de uma NFSe, pode ser retornado sucesso com os dados da NFSe emitida ou erros
- * no caso de erros o registro dessa NFSe será deletado e assim que os erros forem corrigidos uma nova NFSe poderá ser criada
+ * Este método recupera o backup da NFe emitidas para o período informado
  *
- * NOTA: os dados necessários variam de acordo com o provedor de cada prefeitura
+ * NOTA: os backup tem a finalidade de garantir mais uma camada de segurança na guarda dos documentos para a softhouse.
+ * NOTA: os backups são gerados no primeiro domingo de cada mês, e não estarão disponíveis até serem gerados.
  */
 try {
     $params = [
@@ -23,8 +23,7 @@ try {
             'http_version' => CURL_HTTP_VERSION_NONE
         ]
     ];
-    $nfse = new Nfse($params);
-    //dados do RPS para emissão da NFSe
+    $nfe = new Nfse($params);
     $paylod = [
         "numero" => "1",
         "serie" => "0",
@@ -71,28 +70,12 @@ try {
             "art" => "1111"
         ]
     ];
-    $resp = $nfse->cria($paylod);
+    $resp = $nfe->preview($paylod);
+
     echo "<pre>";
     print_r($resp);
     echo "</pre>";
-    if ($resp->sucesso) {
-        if ($resp->codigo == 5023) {
-            /**
-             * Existem alguns provedores assincronos, necesse cenario a api
-             * sempre ira devolver o codigo 5023, após esse retorno
-             * é necessario buscar a NFSe pela chave de acesso
-             */
-            $payload = [
-                'chave' => $resp->chave
-            ];
-            $resp = $nfse->consulta($payload);
-            if ($resp->sucesso) {
-                // autorizado
-            }
-        } else {
-            // autorizado
-        }
-    }
+
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

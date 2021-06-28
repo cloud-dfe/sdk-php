@@ -121,4 +121,13 @@ class Mdfe extends Base
     {
         return $this->client->send('GET', "/mdfe/abertos", []);
     }
+
+    /**
+     * @param array $payload
+     * @return \stdClass
+     */
+    public function importa($payload)
+    {
+        return $this->client->send('POST', "/mdfe/importa", $payload);
+    }
 }

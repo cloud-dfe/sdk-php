@@ -7,9 +7,10 @@ use CloudDfe\SdkPHP\Nfse;
 /**
  * Este exemplo de uma chamada a API usando este SDK
  *
- * Este método recupera a representação da NFSe em PDF
+ * Este método solicita o cancelamento de uma NFSe
  *
- * VIDE https://doc.cloud-dfe.com.br/v1/nfse/#!/1-2
+ * NOTA: alguns provedores não possuem forma de cancelamento por webservice, nesses casos o cancelamento deverá ser
+ * feito pela interface web provida pela prefeitura
  */
 try {
     $params = [
@@ -24,11 +25,11 @@ try {
     ];
     $nfse = new Nfse($params);
 
-    //indicar a chave da NFSe
     $payload = [
-        'chave' => '35210669184612000188901080000000151508136464'
+        "chave" => "50191213188739000110650010000012151581978542",
+        "xml" => base64_encode(file_get_contents("/home/Downloads/nfse.xml"))
     ];
-    $resp = $nfse->pdf($payload);
+    $resp = $nfse->conflito($payload);
 
     echo "<pre>";
     print_r($resp);

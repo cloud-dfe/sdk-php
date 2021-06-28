@@ -21,19 +21,14 @@ try {
             'http_version' => CURL_HTTP_VERSION_NONE
         ]
     ];
-
     $cte = new Cte($params);
     $payload = [
         'chave' => '50210613188739000110570010000000641214766139'
     ];
-
-    //os payloads são sempre ARRAYS
     $resp = $cte->consulta($payload);
-
     echo "<pre>";
     print_r($resp);
     echo "</pre>";
-
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

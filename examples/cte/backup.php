@@ -23,20 +23,16 @@ try {
             'http_version' => CURL_HTTP_VERSION_NONE
         ]
     ];
-
     $cte = new Cte($params);
-
     $payload = [
         'ano' => '2021',
         'mes' => '2'
     ];
     //os payloads são sempre ARRAYS
     $resp = $cte->backup($payload);
-
     echo "<pre>";
     print_r($resp);
     echo "</pre>";
-
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

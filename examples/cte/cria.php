@@ -19,9 +19,7 @@ try {
             'http_version' => CURL_HTTP_VERSION_NONE
         ]
     ];
-
     $cte = new Cte($params);
-
     $paylod = [
         "cfop" => "5932",
         "natureza_operacao" => "PRESTACAO DE SERVIÇO",
@@ -120,11 +118,27 @@ try {
     ];
     //os payloads são sempre ARRAYS
     $resp = $cte->cria($paylod);
-
     echo "<pre>";
     print_r($resp);
     echo "</pre>";
-
+    if ($resp->sucesso) {
+        if ($resp->codigo == 5023) {
+            /**
+             * Em alguns casos a SEFAZ pode demorar mais do que esperado pela api
+             * para processar o lote, devido a trafego na rede ou sobrecarga de processamento
+             * então nesse caso quando vir codigo 5023 é necessario buscar o CTe pela chave de acesso
+             */
+            $payload = [
+                'chave' => $resp->chave
+            ];
+            $resp = $cte->consulta($payload);
+            if ($resp->sucesso) {
+                // autorizado
+            }
+        } else {
+            // autorizado
+        }
+    }
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

@@ -25,7 +25,7 @@ try {
     $cte = new Cte($params);
 
     $payload = [
-        'xml' => base64_encode(file_get_contents('/home/Downloads/41200679549135000160570260000000141828508111-procCancCTe.xml'))
+        'xml' => base64_encode(file_get_contents('/home/Downloads/41200627954257000139570260000000121705491695-procCTe.xml'))
     ];
     $resp = $cte->importa($payload);
 

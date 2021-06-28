@@ -20,9 +20,7 @@ try {
             'http_version' => CURL_HTTP_VERSION_NONE
         ]
     ];
-
     $cte = new Cte($params);
-
     $resp = $cte->busca([
         "numero_inicial" => 1214,
         "numero_final" => 101002,
@@ -32,11 +30,9 @@ try {
         //"cancel_inicial" => "2019-12-01", // Cancelamento
         //"cancel_final" => "2019-12-31"
     ]);
-    //os payloads são sempre ARRAYS
     echo "<pre>";
     print_r($resp);
     echo "</pre>";
-
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

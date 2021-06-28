@@ -24,7 +24,7 @@ try {
     $nfe = new Nfce($params);
 
     $payload = [
-        'xml' => base64_encode(file_get_contents('/home/Downloads/35210615773448000115550550000049551000046896.xml'))
+        'xml' => base64_encode(file_get_contents('/home/Downloads/41210622545265000108650270000005099339657660-procNFe (2).xml'))
     ];
     $resp = $nfe->importa($payload);
 
