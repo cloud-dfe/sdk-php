@@ -289,7 +289,7 @@ Este método solicita o backup dos documentos relacionados com as NFSe, gerados 
 
 *NOTA: este é um EXTRA fornecido pela CloudDFe, o formado do backup bem como a data de sua criação não serão ajustados a necessidades especificas de nenhum cliente.*
 
-*NOTA: os backups são processados de forma automática no primeiro domingo de cada mês, portanto somente estão disponíveis apóes estada data.*
+*NOTA: os backups são processados de forma automática no primeiro domingo de cada mês, portanto somente estão disponíveis após estada data.*
 
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/nfse/#!/1-5) para poder enviar essa chamada.
 

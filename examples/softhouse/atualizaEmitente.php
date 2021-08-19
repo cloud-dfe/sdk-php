@@ -35,7 +35,6 @@ try {
         "senha_prefeitura" => null,
         "client_id_prefeitura" => null,
         "client_secret_prefeitura" => null,
-        "aliquota_simples" => null,
         "telefone" => '46998895532',
         "email" => 'empresa@teste.com',
         "rua" => 'TESTE',
