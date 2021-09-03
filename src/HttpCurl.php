@@ -125,16 +125,9 @@ class HttpCurl
         $resp = curl_exec($oCurl);
         $this->error['message'] = curl_error($oCurl);
         $this->error['code'] = curl_errno($oCurl);
-        $httpcode = curl_getinfo($oCurl, CURLINFO_HTTP_CODE);
         curl_close($oCurl);
         if (!empty($this->error['message'])) {
             throw new \Exception("Falha de comunicação! [{$this->error['code']}] {$this->error['message']}", 500);
-        }
-        if ($httpcode != 200) {
-            if (intval($httpcode) == 0) {
-                $httpcode = 52;
-            }
-            throw new \Exception("Falha de comunicação! [{$httpcode}] {$resp}", 500);
         }
         return $resp;
     }
