@@ -49,5 +49,10 @@
         "phpcs": "vendor/bin/phpcs --standard=psr2 src",
         "phpstan": "vendor/bin/phpstan analyse src/ --level 1"
     },
+    "extra": {
+        "branch-alias": {
+            "v0.2": "v0.2-dev"
+        }
+    },
     "minimum-stability": "stable"
 }
