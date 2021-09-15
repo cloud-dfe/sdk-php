@@ -165,16 +165,46 @@ try {
              * para processar o lote, devido a trafego na rede ou sobrecarga de processamento
              * então nesse caso quando vir codigo 5023 é necessario buscar a NFe pela chave de acesso
              */
-            $payload = [
-                'chave' => $resp->chave
-            ];
-            $resp = $nfe->consulta($payload);
-            if ($resp->sucesso) {
-                // autorizado
+            $tentativa = 1;
+            while ($tentativa <= 5) {
+                sleep(10);
+                $payload = [
+                    'chave' => $resp->chave
+                ];
+                $resp = $nfe->consulta($payload);
+                if ($resp->sucesso) {
+                    // autorizado
+                    break;
+                } else {
+                    // rejeição
+                    var_dump($resp);
+                    break;
+                }
+                $tentativa++;
             }
         } else {
             // autorizado
         }
+    } else if (in_array($resp->codigo, [5001, 5002])) {
+        // erro nos campos
+        var_dump($resp->erros);
+    } else if ($resp->codigo >= 7000) {
+        // erro de timout ou de conexão
+        var_dump($resp);
+        $payload = [
+            'chave' => $resp->chave
+        ];
+        // recomendamos fazer a consulta pela chave para sincronizar o documento
+        $resp = $nfe->consulta($payload);
+        if ($resp->sucesso) {
+            // autorizado
+        } else {
+            // rejeição
+            var_dump($resp);
+        }
+    } else {
+        // rejeição
+        var_dump($resp);
     }
 } catch (\Exception $e) {
     echo $e->getMessage();
