@@ -128,21 +128,24 @@ try {
              * para processar o lote, devido a trafego na rede ou sobrecarga de processamento
              * então nesse caso quando vir codigo 5023 é necessario buscar o CTe pela chave de acesso
              */
+            sleep(5);
             $tentativa = 1;
             while ($tentativa <= 5) {
-                sleep(10);
                 $payload = [
                     'chave' => $resp->chave
                 ];
                 $resp = $cte->consulta($payload);
-                if ($resp->sucesso) {
-                    // autorizado
-                    break;
-                } else {
-                    // rejeição
-                    var_dump($resp);
-                    break;
+                if ($resp->codigo != 5023) {
+                    if ($resp->sucesso) {
+                        // autorizado
+                        break;
+                    } else {
+                        // rejeição
+                        var_dump($resp);
+                        break;
+                    }
                 }
+                sleep(5);
                 $tentativa++;
             }
         } else {

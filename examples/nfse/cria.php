@@ -82,21 +82,24 @@ try {
              * sempre ira devolver o codigo 5023, após esse retorno
              * é necessario buscar a NFSe pela chave de acesso
              */
+            sleep(5);
             $tentativa = 1;
             while ($tentativa <= 5) {
-                sleep(10);
                 $payload = [
                     'chave' => $resp->chave
                 ];
                 $resp = $nfse->consulta($payload);
-                if ($resp->sucesso) {
-                    // autorizado
-                    break;
-                } else {
-                    // rejeição
-                    var_dump($resp);
-                    break;
+                if ($resp->codigo != 5023) {
+                    if ($resp->sucesso) {
+                        // autorizado
+                        break;
+                    } else {
+                        // rejeição
+                        var_dump($resp);
+                        break;
+                    }
                 }
+                sleep(5);
                 $tentativa++;
             }
         } else {
