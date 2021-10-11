@@ -159,6 +159,7 @@ try {
     print_r($resp);
     echo "</pre>";
     if ($resp->sucesso) {
+        $chave = $resp->chave;
         if ($resp->codigo == 5023) {
             /**
              * Em alguns casos a SEFAZ pode demorar mais do que esperado pela api
@@ -169,12 +170,13 @@ try {
             $tentativa = 1;
             while ($tentativa <= 5) {
                 $payload = [
-                    'chave' => $resp->chave
+                    'chave' => $chave
                 ];
                 $resp = $nfe->consulta($payload);
                 if ($resp->codigo != 5023) {
                     if ($resp->sucesso) {
                         // autorizado
+                        var_dump($resp);
                         break;
                     } else {
                         // rejeição
@@ -187,20 +189,24 @@ try {
             }
         } else {
             // autorizado
+            var_dump($resp);
         }
     } else if (in_array($resp->codigo, [5001, 5002])) {
         // erro nos campos
         var_dump($resp->erros);
-    } else if ($resp->codigo >= 7000) {
-        // erro de timout ou de conexão
+    } else if ($resp->codigo == 5008 or $resp->codigo >= 7000) {
+        $chave = $resp->chave;
+        // >= 7000 erro de timout ou de conexão
+        // 5008 documento já criado
         var_dump($resp);
         $payload = [
-            'chave' => $resp->chave
+            'chave' => $chave
         ];
         // recomendamos fazer a consulta pela chave para sincronizar o documento
         $resp = $nfe->consulta($payload);
         if ($resp->sucesso) {
             // autorizado
+            var_dump($resp);
         } else {
             // rejeição
             var_dump($resp);
