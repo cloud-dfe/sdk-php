@@ -100,6 +100,18 @@ Solicita o backup dos documentos relacionados com as NFe (NFe e eventos), gerado
 
 Busca as chaves de acesso das notas que foram emitidas contra o CNPJ do emitente
 
+
+## Consulta de Cadastro de Contribuinte
+
+Busca os dados de um contribuinte pelo CNPJ ou CPF ou IE
+**NOTA: Alguns estados não dispõe desse recurso**
+**NOTA: use com parcimônia pois poderá ser bloqueado pela SEFAZ caso hajam muitas consultas.**
+
+## Comprovante de Entrega
+
+Solicita o evento de comprovante de entrega (Canhoto eletrônico) ou o seu cancelamento
+
+
 É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/nfce/#!/1-12) para poder enviar essa chamada.
 
 [VIDE EXEMPLO](https://github.com/cloud-dfe/clouddfe-sdk-php-curl/blob/master/examples/nfce/preview.php)
