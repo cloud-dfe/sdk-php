@@ -143,4 +143,22 @@ class Nfe extends Base
     {
         return $this->client->send('POST', "/nfe/importa", $payload);
     }
+
+    /**
+     * @param array $payload
+     * @return \stdClass
+     */
+    public function comprovante($payload)
+    {
+        return $this->client->send('POST', "/nfe/comprovante", $payload);
+    }
+
+    /**
+     * @param array $payload
+     * @return \stdClass
+     */
+    public function cadastro($payload)
+    {
+        return $this->client->send('POST', "/nfe/cadastro", $payload);
+    }
 }
