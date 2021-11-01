@@ -47,6 +47,17 @@ class Dfe extends Base
     /**
      * @param array $payload
      * @return \stdClass
+     * @throws \Exception
+     */
+    public function eventos($payload)
+    {
+        $key = self::checkKey($payload);
+        return $this->client->send('GET', "/dfe/eventos/{$key}", []);
+    }
+
+    /**
+     * @param array $payload
+     * @return \stdClass
      */
     public function backup($payload)
     {

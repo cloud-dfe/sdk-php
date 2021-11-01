@@ -4,6 +4,11 @@ require_once(__DIR__ . '/../../bootstrap.php');
 
 use CloudDfe\SdkPHP\Mdfe;
 
+/**
+ * Este exemplo de uma chamada a API usando este SDK
+ *
+ * Este método cria uma mdfe
+ */
 try {
     $params = [
         'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR-3c5V8iyITDmLoUF_SE',

@@ -7,7 +7,7 @@ use CloudDfe\SdkPHP\Cte;
 /**
  * Este exemplo de uma chamada a API usando este SDK
  *
- * Este método envia os dados para a criação de um novo CTe
+ * Este método cria uma cte
  */
 try {
     $params = [
