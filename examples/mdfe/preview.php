@@ -24,7 +24,7 @@ try {
         ]
     ];
     $nfe = new Mdfe($params);
-    $paylod = [
+    $payload = [
         "tipo_operacao" => "2",
         "tipo_transporte" => null,
         "numero" => "27",
@@ -88,7 +88,7 @@ try {
             "reboque" => []
         ]
     ];
-    $resp = $nfe->preview($paylod);
+    $resp = $nfe->preview($payload);
 
     echo "<pre>";
     print_r($resp);

@@ -21,7 +21,7 @@ try {
         ]
     ];
     $cte = new Cte($params);
-    $paylod = [
+    $payload = [
         "cfop" => "5932",
         "natureza_operacao" => "PRESTACAO DE SERVIÇO",
         "numero" => "66",
@@ -118,7 +118,7 @@ try {
         "observacao" => ""
     ];
     //os payloads são sempre ARRAYS
-    $resp = $cte->cria($paylod);
+    $resp = $cte->cria($payload);
     echo "<pre>";
     print_r($resp);
     echo "</pre>";

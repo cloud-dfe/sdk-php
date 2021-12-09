@@ -22,7 +22,7 @@ try {
     ];
     $nfce = new Nfce($params);
 
-    $paylod = [
+    $payload = [
         "natureza_operacao" => "VENDA DENTRO DO ESTADO",
         "serie" => "1",
         "numero" => "101008",
@@ -107,7 +107,7 @@ try {
             ]
         ]
     ];
-    $resp = $nfce->cria($paylod);
+    $resp = $nfce->cria($payload);
 
     echo "<pre>";
     print_r($resp);

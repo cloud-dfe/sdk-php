@@ -61,7 +61,7 @@ try {
 
     $cte = new Cte($params);
 
-    $paylod = [
+    $payload = [
         "cfop" => "5353",
         "natureza_operacao" => "PRESTACAO DE SERVIÇO",
         "numero" => "64",
@@ -159,7 +159,7 @@ try {
     ];
 
     //os payloads são sempre ARRAYS
-    $resp = $cte->preview($paylod);
+    $resp = $cte->preview($payload);
 
     echo "<pre>";
     print_r($resp);
@@ -193,7 +193,7 @@ try {
 
     $cte = new Cte($params);
 
-    $paylod = [
+    $payload = [
         "cfop" => "5353",
         "natureza_operacao" => "PRESTACAO DE SERVIÇO",
         "numero" => "64",
@@ -290,7 +290,7 @@ try {
         "observacao" => ""
     ];
     //os payloads são sempre ARRAYS
-    $resp = $cte->cria($paylod);
+    $resp = $cte->cria($payload);
 
     echo "<pre>";
     print_r($resp);

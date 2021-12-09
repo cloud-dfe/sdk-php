@@ -24,7 +24,7 @@ try {
         ]
     ];
     $nfe = new Nfe($params);
-    $paylod = [
+    $payload = [
         "natureza_operacao" => "VENDA DENTRO DO ESTADO",
         "serie" => "1",
         "numero" => "101003",
@@ -153,7 +153,7 @@ try {
             ]
         ]
     ];
-    $resp = $nfe->preview($paylod);
+    $resp = $nfe->preview($payload);
 
     echo "<pre>";
     print_r($resp);

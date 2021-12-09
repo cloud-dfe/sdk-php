@@ -24,7 +24,7 @@ try {
         ]
     ];
     $nfe = new Nfse($params);
-    $paylod = [
+    $payload = [
         "numero" => "1",
         "serie" => "0",
         "tipo" => "1",
@@ -70,7 +70,7 @@ try {
             "art" => "1111"
         ]
     ];
-    $resp = $nfe->preview($paylod);
+    $resp = $nfe->preview($payload);
 
     echo "<pre>";
     print_r($resp);

@@ -22,7 +22,7 @@ try {
     ];
     $cte = new CteOS($params);
 
-    $paylod = [
+    $payload = [
         "cfop" => "5353",
         "natureza_operacao" => "PRESTACAO DE SERVICO",
         "numero" => "64",
@@ -93,7 +93,7 @@ try {
         ],
         "observacao" => ""
     ];
-    $resp = $cte->cria($paylod);
+    $resp = $cte->cria($payload);
 
     echo "<pre>";
     print_r($resp);

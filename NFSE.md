@@ -30,7 +30,7 @@ try {
     ];
     $nfse = new Nfse($params);
     //dados do RPS para geração da NFSe
-    $paylod = [
+    $payload = [
         "numero" => "1",
         "serie" => "0",
         "tipo" => "1",
@@ -77,7 +77,7 @@ try {
         ]
     ];
     //os payloads são sempre ARRAYS
-    $resp = $nfse->cria($paylod);
+    $resp = $nfse->cria($payload);
 
     echo "<pre>";
     print_r($resp); //imprime o objeto $resp em tela

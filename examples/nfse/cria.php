@@ -25,7 +25,7 @@ try {
     ];
     $nfse = new Nfse($params);
     //dados do RPS para emissão da NFSe
-    $paylod = [
+    $payload = [
         "numero" => "1",
         "serie" => "0",
         "tipo" => "1",
@@ -71,7 +71,7 @@ try {
             "art" => "1111"
         ]
     ];
-    $resp = $nfse->cria($paylod);
+    $resp = $nfse->cria($payload);
     echo "<pre>";
     print_r($resp);
     echo "</pre>";

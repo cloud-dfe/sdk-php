@@ -22,7 +22,7 @@ try {
     ];
     $nfe = new Nfe($params);
     //informar o período desejado de backup
-    $paylod = [
+    $payload = [
         "natureza_operacao" => "VENDA DENTRO DO ESTADO",
         "serie" => "1",
         "numero" => "101007",
@@ -157,7 +157,7 @@ try {
             ]
         ]
     ];
-    $resp = $nfe->cria($paylod);
+    $resp = $nfe->cria($payload);
     echo "<pre>";
     print_r($resp);
     echo "</pre>";
