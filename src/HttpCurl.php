@@ -113,7 +113,7 @@ class HttpCurl
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_HEADER => false,
             CURLOPT_CONNECTTIMEOUT => $this->timeout,
-            CURLOPT_TIMEOUT => $this->timeout + 20,
+            CURLOPT_TIMEOUT => $this->timeout + 50,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_SSL_VERIFYHOST => 2,
             CURLOPT_SSL_VERIFYPEER => 2,
