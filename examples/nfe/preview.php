@@ -38,7 +38,13 @@ try {
         "intermediario" => [
             "indicador" => "0"
         ],
-        "notas_referenciadas" => [],
+        "notas_referenciadas" => [
+            [
+                "nfe" => [
+                    "chave" => "50191213188739000110550010000012151581978542"
+                ]
+            ]
+        ],
         "destinatario" => [
             "cpf" => "01234567890",
             "nome" => "EMPRESA MODELO",
