@@ -24,7 +24,6 @@ try {
         ]
     ];
     $nfe = new Nfe($params);
-    //informar o período desejado de backup
     $resp = $nfe->consulta([
         'chave' => '41210422545265000108550010001021041779848390'
     ]);

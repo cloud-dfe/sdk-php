@@ -24,7 +24,6 @@ try {
         ]
     ];
     $nfe = new Nfe($params);
-    //informar o período desejado de backup
     $payload = [
         'chave' => '41210622545265000108550010001010051788162670',
         'justificativa' => 'teste de correcao'

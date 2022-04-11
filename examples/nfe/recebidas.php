@@ -23,7 +23,6 @@ try {
         ]
     ];
     $nfe = new Nfe($params);
-    //informar o período desejado de backup
     $payload = [
         'ultimo_nsu' => '0',
         'numero_nsu' => null,
