@@ -19,6 +19,15 @@ class Base
      */
     public function __construct($params)
     {
+        $options = [
+            'debug' => false,
+            'timeout' => 60,
+            'port' => 443,
+            'http_version' => CURL_HTTP_VERSION_NONE
+        ];
+        if (empty($params['options'])) {
+            $params['options'] = $options;
+        }
         $this->client = new Client([
             'ambiente' => !empty($params['ambiente']) ? $params['ambiente'] : self::AMBIENTE_HOMOLOGACAO,
             'token' => $params['token'],
