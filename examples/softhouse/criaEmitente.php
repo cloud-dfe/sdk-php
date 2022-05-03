@@ -59,7 +59,11 @@ try {
             "mdfe" => true,
             "cte" => true,
             "cteos" => true,
-            "bpe" => true
+            "bpe" => true,
+            "dfe_nfe" => true,
+            "dfe_cte" => true,
+            "sintegra" => true,
+            "gnre" => true
         ]
     ];
     $resp = $softhouse->criaEmitente($payload);
