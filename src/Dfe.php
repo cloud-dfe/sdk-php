@@ -36,6 +36,26 @@ class Dfe extends Base
     /**
      * @param array $payload
      * @return \stdClass
+     */
+    public function buscaNfse($payload)
+    {
+        return $this->client->send('POST', "/dfe/nfse", $payload);
+    }
+
+    /**
+     * @param array $payload
+     * @return \stdClass
+     * @throws \Exception
+     */
+    public function downloadNfse($payload)
+    {
+        $key = self::checkKey($payload);
+        return $this->client->send('GET', "/dfe/nfse/{$key}", []);
+    }
+
+    /**
+     * @param array $payload
+     * @return \stdClass
      * @throws \Exception
      */
     public function downloadCte($payload)
