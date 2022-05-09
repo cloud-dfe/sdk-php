@@ -54,7 +54,7 @@ try {
                         "tipo" => "11"
                     ]
                 ],
-                "contrribuinte_destinatario" => [
+                "contribuinte_destinatario" => [
                     "cnpj" => null,
                     "cpf" => null,
                     "ie" => null,
