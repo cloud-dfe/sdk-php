@@ -11,7 +11,7 @@ use CloudDfe\SdkPHP\Dfe;
 try {
     $params = [
         'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjEyOCwidXNyIjoyLCJ0cCI6MiwiaWF0IjoxNjI0NDgwMDA3fQ.r2H33r0hjWl9jmD97UTgJz_n2QargK0lpJ_vciz_0xY',
-        'ambiente' => Dfe::AMBIENTE_HOMOLOGACAO,
+        'ambiente' => Dfe::AMBIENTE_PRODUCAO,
         'options' => [
             'debug' => false,
             'timeout' => 60,
@@ -29,6 +29,12 @@ try {
     echo "<pre>";
     print_r($resp);
     echo "</pre>";
+
+    // exemplo de implementação
+    if ($resp->sucesso) {
+        $xml = base64_decode($resp->doc->xml);
+        $pdf = base64_decode($resp->doc->pdf);
+    }
 
 } catch (\Exception $e) {
     echo $e->getMessage();

@@ -14,7 +14,7 @@ use CloudDfe\SdkPHP\Dfe;
 try {
     $params = [
         'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjEyOCwidXNyIjoyLCJ0cCI6MiwiaWF0IjoxNjI0NDgwMDA3fQ.r2H33r0hjWl9jmD97UTgJz_n2QargK0lpJ_vciz_0xY',
-        'ambiente' => Dfe::AMBIENTE_HOMOLOGACAO,
+        'ambiente' => Dfe::AMBIENTE_PRODUCAO,
         'options' => [
             'debug' => false,
             'timeout' => 60,
