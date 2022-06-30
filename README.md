@@ -29,6 +29,10 @@ try {
         'ambiente' => Nfe::AMBIENTE_HOMOLOGACAO,
         'options' => [
             'debug' => false,
+            'timeout' => 60,
+            'port' => 443,
+            'http_version' => CURL_HTTP_VERSION_NONE,
+            'contingencia' => false
         ]
     ];
     //instancie a classe para a operação desejada
