@@ -17,7 +17,7 @@ use CloudDfe\SdkPHP\Nfe;
  */
 try {
     $params = [
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjEyOCwidXNyIjoiOCIsInRwIjoyLCJpYXQiOjE1ODU2OTg4NTR9.3fKfDCeiQM78AecAZy6gtcMvYFsWYHjvQXqRd8pAAzA',
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIaUzI1NiJ9.eyJlbXAiOjEyOCwidXNasihuaasdhashiduadODU2OTg4NTR9.3fKfDCeiQM78AecAZy6gtcMvbYFsWYHjvQXqRd8pAAzA',
         'ambiente' => Nfe::AMBIENTE_PRODUCAO,
         'options' => [
             'debug' => false,
