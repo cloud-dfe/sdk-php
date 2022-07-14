@@ -24,7 +24,7 @@ try {
     $softhouse = new Softhouse($params);
 
     $payload = [
-        'cnpj' => '25447784000121'
+        'doc' => '25447784000121' // CPF ou CNPJ
     ];
     $resp = $softhouse->deletaEmitente($payload);
 
