@@ -25,7 +25,7 @@ try {
     $softhouse = new Softhouse($params);
 
     $payload = [
-        'cnpj '=> '25447784000121'
+        'doc' => '25447784000121' // CPF ou CNPJ
     ];
     //os payloads são sempre ARRAYS
     $resp = $softhouse->mostraEmitente($payload);

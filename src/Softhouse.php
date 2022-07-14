@@ -28,8 +28,11 @@ class Softhouse extends Base
      */
     public function mostraEmitente($payload)
     {
-        $cnpj = $payload['cnpj'];
-        return $this->client->send('GET', "/soft/emitente/$cnpj");
+        if (empty($payload) || empty($payload['doc'])) {
+            throw new \Exception('Deve ser passado um CNPJ ou um CPF para efetuar a deleçao do emitente.');
+        }
+        $doc = $payload['doc'];
+        return $this->client->send('GET', "/soft/emitente/$doc");
     }
 
     /**
