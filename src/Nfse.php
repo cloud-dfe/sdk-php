@@ -96,4 +96,9 @@ class Nfse extends Base
     {
         return $this->client->send('POST', "/nfse/conflito", $payload);
     }
+
+    public function offline()
+    {
+        return $this->client->send('GET', "/nfse/offline", []);
+    }
 }
