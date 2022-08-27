@@ -56,7 +56,7 @@ try {
                         "valor" => "0.00",
                         "aliquota_margem_valor_adicionado_st" => "0.00",
                         "aliquota_reducao_base_calculo_st" => "0.00",
-                        "aliquota_base_calculo_st" => "0.00",
+                        "valor_base_calculo_st" => "0.00",
                         "aliquota_st" => "0.00",
                         "valor_st" => "0.00"
                     ],
