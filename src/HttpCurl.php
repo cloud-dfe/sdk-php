@@ -115,6 +115,8 @@ class HttpCurl
             CURLOPT_CONNECTTIMEOUT => $this->timeout,
             CURLOPT_TIMEOUT => $this->timeout + 50,
             CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_POSTREDIR => true,
+            CURL_REDIR_POST_ALL => true,
             CURLOPT_SSL_VERIFYHOST => 0,
             CURLOPT_SSL_VERIFYPEER => 0,
             CURLOPT_HTTP_VERSION => $this->http_version,

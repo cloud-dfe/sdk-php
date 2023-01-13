@@ -1,8 +1,8 @@
 {
     "api":{
-        "1":"https:\/\/api.cloud-dfe.com.br\/v1",
-        "2":"https:\/\/hom.api.cloud-dfe.com.br\/v1",
-        "svc":"https:\/\/svc.api.cloud-dfe.com.br\/v1"
+        "1":"https:\/\/api.integranotas.com.br\/v1",
+        "2":"https:\/\/hom.api.integranotas.com.br\/v1",
+        "svc":"https:\/\/api.cloud-dfe.com.br\/v1"
     },
     "sintegra":{
         "1":"https:\/\/sintegra.cloud-dfe.com.br\/v1",
