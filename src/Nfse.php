@@ -56,6 +56,15 @@ class Nfse extends Base
      * @param array $payload
      * @return \stdClass
      */
+    public function substitui($payload)
+    {
+        return $this->client->send('POST', "/substitui", $payload);
+    }
+
+    /**
+     * @param array $payload
+     * @return \stdClass
+     */
     public function busca($payload)
     {
         return $this->client->send('POST', "/nfse/busca", $payload);
@@ -100,5 +109,16 @@ class Nfse extends Base
     public function offline()
     {
         return $this->client->send('GET', "/nfse/offline", []);
+    }
+
+    /**
+     * @param array $payload
+     * @return \stdClass
+     * @throws \Exception
+     */
+    public function resolve($payload)
+    {
+        $key = self::checkKey($payload);
+        return $this->client->send('GET', "/nfse/resolve/{$key}", []);
     }
 }

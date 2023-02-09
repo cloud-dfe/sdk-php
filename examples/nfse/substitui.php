@@ -7,8 +7,7 @@ use CloudDfe\SdkPHP\Nfse;
 /**
  * Este exemplo de uma chamada a API usando este SDK
  *
- * Este método solicita a criação de uma NFSe, pode ser retornado sucesso com os dados da NFSe emitida ou erros
- * no caso de erros o registro dessa NFSe será deletado e assim que os erros forem corrigidos uma nova NFSe poderá ser criada
+ * Faz o cancelamento da nota passada no campo chave e substitui por uma nova nota fiscal na prefeitura, cancelado a nota original na API.
  *
  * NOTA: os dados necessários variam de acordo com o provedor de cada prefeitura
  */
@@ -26,6 +25,9 @@ try {
     $nfse = new Nfse($params);
     //dados do RPS para emissão da NFSe
     $payload = [
+        "chave" => "35210669184612000188901080000000151508136464",
+        "codigo_cancelamento" => "2",
+        "motivo_cancelamento" => "nota emitida com valor errado",
         "numero" => "1",
         "serie" => "0",
         "tipo" => "1",
@@ -71,67 +73,12 @@ try {
             "art" => "1111"
         ]
     ];
-    $resp = $nfse->cria($payload);
+    $resp = $nfse->substitui($payload);
+
     echo "<pre>";
     print_r($resp);
     echo "</pre>";
-    if ($resp->sucesso) {
-        $chave = $resp->chave;
-        if ($resp->codigo == 5023) {
-            /**
-             * Existem alguns provedores assincronos, necesse cenario a api
-             * sempre ira devolver o codigo 5023, após esse retorno
-             * é necessario buscar a NFSe pela chave de acesso
-             */
-            sleep(60);
-            $tentativa = 1;
-            while ($tentativa <= 5) {
-                $payload = [
-                    'chave' => $chave
-                ];
-                $resp = $nfse->consulta($payload);
-                if ($resp->codigo != 5023) {
-                    if ($resp->sucesso) {
-                        // autorizado
-                        var_dump($resp);
-                        break;
-                    } else {
-                        // rejeição
-                        var_dump($resp);
-                        break;
-                    }
-                }
-                sleep(5);
-                $tentativa++;
-            }
-        } else {
-            // autorizado
-            var_dump($resp);
-        }
-    } else if (in_array($resp->codigo, [5001, 5002])) {
-        // erro nos campos
-        var_dump($resp->erros);
-    } else if ($resp->codigo == 5008 or $resp->codigo >= 7000) {
-        $chave = $resp->chave;
-        // >= 7000 erro de timout ou de conexão
-        // 5008 documento já criado
-        var_dump($resp);
-        $payload = [
-            'chave' => $chave
-        ];
-        // recomendamos fazer a consulta pela chave para sincronizar o documento
-        $resp = $nfse->consulta($payload);
-        if ($resp->sucesso) {
-            // autorizado
-            var_dump($resp);
-        } else {
-            // rejeição
-            var_dump($resp);
-        }
-    } else {
-        // rejeição
-        var_dump($resp);
-    }
+
 } catch (\Exception $e) {
     echo $e->getMessage();
 }
