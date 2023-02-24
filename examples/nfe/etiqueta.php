@@ -7,7 +7,7 @@ use CloudDfe\SdkPHP\Nfe;
 /**
  * Este exemplo de uma chamada a API usando este SDK
  *
- * Este método retorna o PDF da nota fiscal
+ * Este método retorna o PDF etiqueta da nota fiscal
  */
 try {
     $params = [
@@ -24,7 +24,7 @@ try {
     $payload = [
         'chave' => '41210422545265000108550010001021041779848390'
     ];
-    $resp = $nfe->pdf($payload);
+    $resp = $nfe->etiqueta($payload);
 
     echo "<pre>";
     print_r($resp);

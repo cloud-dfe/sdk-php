@@ -91,6 +91,17 @@ class Nfe extends Base
     /**
      * @param array $payload
      * @return \stdClass
+     * @throws \Exception
+     */
+    public function etiqueta($payload)
+    {
+        $key = self::checkKey($payload);
+        return $this->client->send('GET', "/nfe/pdf/etiqueta/{$key}", []);
+    }
+
+    /**
+     * @param array $payload
+     * @return \stdClass
      */
     public function manifesta($payload)
     {
