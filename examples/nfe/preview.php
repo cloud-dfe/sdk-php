@@ -31,7 +31,6 @@ try {
         "data_emissao" => "2021-02-09T17:00:00-03:00",
         "data_entrada_saida" => "2021-02-09T17:00:00-03:00",
         "tipo_operacao" => "1",
-        "local_destino" => "1",
         "finalidade_emissao" => "1",
         "consumidor_final" => "1",
         "presenca_comprador" => "9",
