@@ -116,7 +116,7 @@ try {
         "origem" => "0",
         "inclui_no_total" => "1",
         "imposto" => [
-            "valor_total_tributos" => 9.43,
+            "valor_aproximado_tributos" => 9.43,
             "icms" => [
                 "situacao_tributaria" => "102",
                 "aliquota_credito_simples" => "0",
