@@ -24,10 +24,11 @@ try {
     $payload = [
         "xml" => base64_encode(file_get_contents('/home/Downloads/41200627954257000139570260000000121705491695-procCTe.xml')),
         "usuario" => "login",
-        "senha" => "senha"
+        "senha" => "senha",
+        "chave" => ""
     ];
     //os payloads são sempre ARRAYS
-    $resp = $averbacao->portoSeguroXML($payload);
+    $resp = $averbacao->portoSeguro($payload);
     echo "<pre>";
     print_r($resp);
     echo "</pre>";

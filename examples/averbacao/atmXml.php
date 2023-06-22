@@ -25,10 +25,11 @@ try {
         "xml" => base64_encode(file_get_contents('/home/Downloads/41200627954257000139570260000000121705491695-procCTe.xml')),
         "usuario" => "login",
         "senha" => "senha",
-        "codigo" => "codigo"
+        "codigo" => "codigo",
+        "chave" => ""
     ];
     //os payloads são sempre ARRAYS
-    $resp = $averbacao->atmXML($payload);
+    $resp = $averbacao->atm($payload);
     echo "<pre>";
     print_r($resp);
     echo "</pre>";

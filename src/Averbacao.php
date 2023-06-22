@@ -8,18 +8,7 @@ class Averbacao extends Base
      * @param array $payload
      * @return \stdClass
      */
-    public function atmChave($payload)
-    {
-        $key = self::checkKey($payload);
-        unset($payload['chave']);
-        return $this->client->send('POST', "/averbacao/atm/{$key}", $payload);
-    }
-
-    /**
-     * @param array $payload
-     * @return \stdClass
-     */
-    public function atmXML($payload)
+    public function atm($payload)
     {
         return $this->client->send('POST', "/averbacao/atm", $payload);
     }
@@ -28,18 +17,7 @@ class Averbacao extends Base
      * @param array $payload
      * @return \stdClass
      */
-    public function eltChave($payload)
-    {
-        $key = self::checkKey($payload);
-        unset($payload['chave']);
-        return $this->client->send('POST', "/averbacao/elt/{$key}", $payload);
-    }
-
-    /**
-     * @param array $payload
-     * @return \stdClass
-     */
-    public function eltXML($payload)
+    public function elt($payload)
     {
         return $this->client->send('POST', "/averbacao/elt", $payload);
     }
@@ -48,18 +26,7 @@ class Averbacao extends Base
      * @param array $payload
      * @return \stdClass
      */
-    public function portoSeguroChave($payload)
-    {
-        $key = self::checkKey($payload);
-        unset($payload['chave']);
-        return $this->client->send('POST', "/averbacao/portoseguro/{$key}", $payload);
-    }
-
-    /**
-     * @param array $payload
-     * @return \stdClass
-     */
-    public function portoSeguroXML($payload)
+    public function portoSeguro($payload)
     {
         return $this->client->send('POST', "/averbacao/portoseguro", $payload);
     }
