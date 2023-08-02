@@ -65,8 +65,8 @@ class Client
         }
         $config = json_decode(file_get_contents(__DIR__ . '/config.json'), true);
         $this->uri = $config[$direction][$this->ambiente];
-        if (!empty($params['options']['contingencia']) && $this->ambiente == 1 && $direction == 'api') {
-            $this->uri = $config[$direction]['svc'];
+        if (!empty($params['options']['url'])) {
+            $this->uri = $params['options']['url'];
         }
         $this->client = new HttpCurl([
             'debug' => $debug,
