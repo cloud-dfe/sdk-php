@@ -211,8 +211,10 @@ try {
         // recomendamos fazer a consulta pela chave para sincronizar o documento
         $resp = $nfe->consulta($payload);
         if ($resp->sucesso) {
-            // autorizado
-            var_dump($resp);
+            if ($resp->codigo == 5023) {
+                // autorizado
+                var_dump($resp);
+            }
         } else {
             // rejeição
             var_dump($resp);
