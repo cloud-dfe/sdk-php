@@ -58,7 +58,7 @@ class Nfse extends Base
      */
     public function substitui($payload)
     {
-        return $this->client->send('POST', "/substitui", $payload);
+        return $this->client->send('POST', "/nfse/substitui", $payload);
     }
 
     /**

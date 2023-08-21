@@ -20,7 +20,7 @@ try {
     $payload = [
         'chave' => '41210622545265000108650010001010071119056471',
         'chave_referenciada' => '41210622545265000108650010001010081409791910',
-        'justificativa' => 'teste de sibstituicao'
+        'justificativa' => 'teste de substituicao'
     ];
     $resp = $nfce->substitui($payload);
 
