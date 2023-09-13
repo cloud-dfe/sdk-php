@@ -98,7 +98,55 @@ try {
     echo "<pre>";
     print_r($resp);
     echo "</pre>";
-
+    if ($resp->sucesso) {
+        $chave = $resp->chave;
+        sleep(5);
+        $tentativa = 1;
+        while ($tentativa <= 5) {
+            $payload = [
+                'chave' => $chave
+            ];
+            $resp = $cte->consulta($payload);
+            if ($resp->codigo != 5023) {
+                if ($resp->sucesso) {
+                    // autorizado
+                    var_dump($resp);
+                    break;
+                } else {
+                    // rejeição
+                    var_dump($resp);
+                    break;
+                }
+            }
+            sleep(5);
+            $tentativa++;
+        }
+    } else if (in_array($resp->codigo, [5001, 5002])) {
+        // erro nos campos
+        var_dump($resp->erros);
+    } else if ($resp->codigo == 5008 or $resp->codigo >= 7000) {
+        $chave = $resp->chave;
+        // >= 7000 erro de timout ou de conexão
+        // 5008 documento já criado
+        var_dump($resp);
+        $payload = [
+            'chave' => $chave
+        ];
+        // recomendamos fazer a consulta pela chave para sincronizar o documento
+        $resp = $cte->consulta($payload);
+        if ($resp->sucesso) {
+            if ($resp->codigo == 5023) {
+                // autorizado
+                var_dump($resp);
+            }
+        } else {
+            // rejeição
+            var_dump($resp);
+        }
+    } else {
+        // rejeição
+        var_dump($resp);
+    }
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

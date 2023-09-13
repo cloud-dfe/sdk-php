@@ -77,36 +77,26 @@ try {
     echo "</pre>";
     if ($resp->sucesso) {
         $chave = $resp->chave;
-        if ($resp->codigo == 5023) {
-            /**
-             * Existem alguns provedores assincronos, necesse cenario a api
-             * sempre ira devolver o codigo 5023, após esse retorno
-             * é necessario buscar a NFSe pela chave de acesso
-             */
-            sleep(60);
-            $tentativa = 1;
-            while ($tentativa <= 5) {
-                $payload = [
-                    'chave' => $chave
-                ];
-                $resp = $nfse->consulta($payload);
-                if ($resp->codigo != 5023) {
-                    if ($resp->sucesso) {
-                        // autorizado
-                        var_dump($resp);
-                        break;
-                    } else {
-                        // rejeição
-                        var_dump($resp);
-                        break;
-                    }
+        sleep(60);
+        $tentativa = 1;
+        while ($tentativa <= 5) {
+            $payload = [
+                'chave' => $chave
+            ];
+            $resp = $nfse->consulta($payload);
+            if ($resp->codigo != 5023) {
+                if ($resp->sucesso) {
+                    // autorizado
+                    var_dump($resp);
+                    break;
+                } else {
+                    // rejeição
+                    var_dump($resp);
+                    break;
                 }
-                sleep(5);
-                $tentativa++;
             }
-        } else {
-            // autorizado
-            var_dump($resp);
+            sleep(5);
+            $tentativa++;
         }
     } else if (in_array($resp->codigo, [5001, 5002])) {
         // erro nos campos
