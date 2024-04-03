@@ -77,7 +77,7 @@ try {
     echo "</pre>";
     if ($resp->sucesso) {
         $chave = $resp->chave;
-        sleep(60);
+        sleep(15);
         $tentativa = 1;
         while ($tentativa <= 5) {
             $payload = [
