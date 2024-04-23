@@ -17,6 +17,9 @@ use CloudDfe\SdkPHP\Webhook;
  * 5 - a assinatura expirou (quando a assinatura tiver sido feita a mais de 5 minutos atras)
  */
 try {
+    // exemplo de como capturar o body de uma requisição POST
+    $body = json_decode(file_get_contents('php://input'));
+
     // token da softhouse do ambiente sendo usado (lembre-se existem dois token um para homologação e outro para produção e são diferentes)
     $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjAsInVzciI6NSwidHAiOjEsImlhdCI6MXXXXTA0MDcxMH0.lYCXEOltGRmxfjq2SPiPOUNpyg-oVoJt0ws2tGFTbLE';
     // payload do webhook em JSON (https://doc.cloud-dfe.com.br/webhook)
