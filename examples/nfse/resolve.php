@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../../bootstrap.php');
+require_once(__DIR__ . "/../../bootstrap.php");
 
 use CloudDfe\SdkPHP\Nfse;
 
@@ -13,19 +13,19 @@ use CloudDfe\SdkPHP\Nfse;
  */
 try {
     $params = [
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjEyNSwidXNyIjoyLCJ0cCI6MiwiaWF0IjoxNjIzOTQwNjg5fQ.Ag3y6wTmiCFb9LExLcc57WfUnP34kQM8jj2Vx91DZL8',
-        'ambiente' => Nfse::AMBIENTE_HOMOLOGACAO,
-        'options' => [
-            'debug' => false,
-            'timeout' => 60,
-            'port' => 443,
-            'http_version' => CURL_HTTP_VERSION_NONE
+        "token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOiJ0b2tlbl9leGVtcGxvIiwidXNyIjoidGsiLCJ0cCI6InRrIn0.Tva_viCMCeG3nkRYmi_RcJ6BtSzui60kdzIsuq5X-sQ",
+        "ambiente" => Nfse::AMBIENTE_HOMOLOGACAO,
+        "options" => [
+            "debug" => false,
+            "timeout" => 60,
+            "port" => 443,
+            "http_version" => CURL_HTTP_VERSION_NONE
         ]
     ];
     $nfse = new Nfse($params);
 
     $payload = [
-        'chave' => '35210669184612000188901080000000151508136464'
+        "chave" => "50000000000000000000000000000000000000000000"
     ];
     $resp = $nfse->resolve($payload);
 

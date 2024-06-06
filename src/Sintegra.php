@@ -15,7 +15,7 @@ class Sintegra
      */
     public function __construct($params)
     {
-        $this->client = new Client($params, 'sintegra');
+        $this->client = new Client($params, "sintegra");
     }
 
     /**
@@ -35,7 +35,7 @@ class Sintegra
      */
     public function gerar($payload)
     {
-        return $this->client->send('POST', "/gerar", $payload);
+        return $this->client->send("POST", "/gerar", $payload);
     }
 
     /**
@@ -45,6 +45,6 @@ class Sintegra
      */
     public function consultar($payload)
     {
-        return $this->client->send('POST', "/consulta", $payload);
+        return $this->client->send("POST", "/consulta", $payload);
     }
 }

@@ -10,7 +10,7 @@ class Dfe extends Base
      */
     public function buscaCte($payload)
     {
-        return $this->client->send('POST', "/dfe/cte", $payload);
+        return $this->client->send("POST", "/dfe/cte", $payload);
     }
 
     /**
@@ -19,7 +19,7 @@ class Dfe extends Base
      */
     public function buscaNfe($payload)
     {
-        return $this->client->send('POST', "/dfe/nfe", $payload);
+        return $this->client->send("POST", "/dfe/nfe", $payload);
     }
 
     /**
@@ -30,7 +30,7 @@ class Dfe extends Base
     public function downloadNfe($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send('GET', "/dfe/nfe/{$key}", []);
+        return $this->client->send("GET", "/dfe/nfe/{$key}", []);
     }
 
     /**
@@ -39,7 +39,7 @@ class Dfe extends Base
      */
     public function buscaNfse($payload)
     {
-        return $this->client->send('POST', "/dfe/nfse", $payload);
+        return $this->client->send("POST", "/dfe/nfse", $payload);
     }
 
     /**
@@ -50,7 +50,7 @@ class Dfe extends Base
     public function downloadNfse($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send('GET', "/dfe/nfse/{$key}", []);
+        return $this->client->send("GET", "/dfe/nfse/{$key}", []);
     }
 
     /**
@@ -61,7 +61,7 @@ class Dfe extends Base
     public function downloadCte($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send('GET', "/dfe/cte/{$key}", []);
+        return $this->client->send("GET", "/dfe/cte/{$key}", []);
     }
 
     /**
@@ -72,7 +72,7 @@ class Dfe extends Base
     public function eventos($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send('GET', "/dfe/eventos/{$key}", []);
+        return $this->client->send("GET", "/dfe/eventos/{$key}", []);
     }
 
     /**
@@ -81,6 +81,6 @@ class Dfe extends Base
      */
     public function backup($payload)
     {
-        return $this->client->send('POST', "/dfe/backup", $payload);
+        return $this->client->send("POST", "/dfe/backup", $payload);
     }
 }

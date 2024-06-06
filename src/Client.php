@@ -11,21 +11,21 @@ class Client
     /**
      * @var string
      */
-    protected $token = '';
+    protected $token = "";
     /**
      * @var array
      * [
-     *    'debug' => false,
-     *    'timeout' => 10,
-     *    'http_version' => '1.1',
-     *    'port' => 443
+     *    "debug" => false,
+     *    "timeout" => 10,
+     *    "http_version" => "1.1",
+     *    "port" => 443
      * ]
      */
     protected $options = [];
     /**
      * @var string
      */
-    protected $uri = '';
+    protected $uri = "";
     /**
      * @var array
      */
@@ -44,35 +44,35 @@ class Client
      * @param string $direction
      * @throws \Exception
      */
-    public function __construct($params = [], $direction = 'api')
+    public function __construct($params = [], $direction = "api")
     {
         $this->params = $params;
         if (empty($params)) {
             throw new \Exception("Devem ser passados os parametros básicos.");
         }
-        if (!in_array($params['ambiente'], [self::AMBIENTE_PRODUCAO, self::AMBIENTE_HOMOLOGACAO])) {
+        if (!in_array($params["ambiente"], [self::AMBIENTE_PRODUCAO, self::AMBIENTE_HOMOLOGACAO])) {
             throw new \Exception("O ambiente de ser 1-produção ou 2-homologação.");
         }
-        if (empty($params['token'])) {
+        if (empty($params["token"])) {
             throw new \Exception("O token é obrigatorio.");
         }
-        $this->ambiente = !empty($params['ambiente']) ? $params['ambiente'] : 2;
-        $this->token = !empty($params['token']) ? $params['token'] : '';
-        $this->options = !empty($params['options']) ? $params['options'] : [];
+        $this->ambiente = !empty($params["ambiente"]) ? $params["ambiente"] : 2;
+        $this->token = !empty($params["token"]) ? $params["token"] : "";
+        $this->options = !empty($params["options"]) ? $params["options"] : [];
         $debug = false;
-        if (!empty($params['options'])) {
-            $debug = $params['options']['debug'] == true ? true : false;
+        if (!empty($params["options"])) {
+            $debug = $params["options"]["debug"] == true ? true : false;
         }
-        $config = json_decode(file_get_contents(__DIR__ . '/config.json'), true);
+        $config = json_decode(file_get_contents(__DIR__ . "/config.json"), true);
         $this->uri = $config[$direction][$this->ambiente];
-        if (!empty($params['options']['url'])) {
-            $this->uri = $params['options']['url'];
+        if (!empty($params["options"]["url"])) {
+            $this->uri = $params["options"]["url"];
         }
         $this->client = new HttpCurl([
-            'debug' => $debug,
-            'base_uri' => $this->uri,
-            'token' => $this->token,
-            'options' => $this->options
+            "debug" => $debug,
+            "base_uri" => $this->uri,
+            "token" => $this->token,
+            "options" => $this->options
         ]);
     }
 

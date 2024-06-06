@@ -11,7 +11,7 @@ class Certificado extends Base
      */
     public function atualiza($payload)
     {
-        return $this->client->send('POST', "/certificado", $payload);
+        return $this->client->send("POST", "/certificado", $payload);
     }
 
     /**
@@ -20,6 +20,6 @@ class Certificado extends Base
      */
     public function mostra()
     {
-        return $this->client->send('GET', '/certificado', []);
+        return $this->client->send("GET", "/certificado", []);
     }
 }

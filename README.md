@@ -1,6 +1,6 @@
-# SDK em PHP puro para API CloudDFe
+# SDK em PHP para API Integra Notas
 
-Este SDK em PHP puro tem por objetivo simplificar a tarefa de intalação e preparação do seu sistema para uso da nossa API, removendo parte da complexidade subjacente ao uso da mesma.
+Este SDK visa simplificar a integração do seu sistema com a nossa API, oferecendo classes com funções pré-definidas para acessar as rotas da API. Isso elimina a necessidade de desenvolver uma aplicação para se comunicar diretamente com a nossa API, tornando o processo mais eficiente e direto.
 
 *NOTA: usa apenas o cURL diretamente sem usar pacotes de terceiros.*
 
@@ -16,31 +16,31 @@ composer require cloud-dfe/sdk-php
 
 ## Forma de uso
 
-Uma vez instalado o SDK é uma tarefa muito simples invocar o seu uso, por exemplo:
-
 ```php
 
 use CloudDfe\SdkPHP\Nfe;
 
 try {
-    //defina os parametros basicos
+    // DEFINIÇÕES DOS PARAMETROS BASICOS
     $params = [
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',
-        'ambiente' => Nfe::AMBIENTE_HOMOLOGACAO,
-        'options' => [
-            'debug' => false,
-            'timeout' => 60,
-            'port' => 443,
-            'http_version' => CURL_HTTP_VERSION_NONE
+        "token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOiJ0b2tlbl9leGVtcGxvIiwidXNyIjoidGsiLCJ0cCI6InRrIn0.Tva_viCMCeG3nkRYmi_RcJ6BtSzui60kdzIsuq5X-sQ",
+        "ambiente" => Nfe::AMBIENTE_HOMOLOGACAO,
+        "options" => [
+            "debug" => false,
+            "timeout" => 60,
+            "port" => 443,
+            "http_version" => CURL_HTTP_VERSION_NONE
         ]
     ];
-    //instancie a classe para a operação desejada
+
+    // INSTANCIE A CLASSE PARA A OPERAÇÃO DESEJADA
+
     $nfe = new Nfe($params);
 
-    //realize a operação desejada
     $resp = $nfe->status();
 
-    //$resp irá conter um OBJETO stdClass com o retorno da API
+    // resp RETORNA O OBJETO DE RETORNO DA API
+
     echo "<pre>";
     print_r($resp);
     echo "</pre>";
@@ -48,33 +48,40 @@ try {
 } catch (\Exception $e) {
     echo $e->getMessage();
 }
+
 ```
 
-Para saber os detalhes referentes ao dados de envio e os retornos consulte nossa documentação [CloudDocs](https://doc.cloud-dfe.com.br/).
+### Sobre dados de envio e retornos
 
-E veja alguns detalhes na pasta dos [EXEMPLOS](https://github.com/cloud-dfe/clouddfe-sdk-php-curl/tree/master/examples).
+Para saber os detalhes referente ao dados de envio e os retornos consulte nossa documentação [IntegraNotas Documentação](https://integranotas.com.br/doc).
 
-[Operações da SOFTHOUSE](SOFTHOUSE.md)
+### Veja alguns exemplos de consumi de nossa API nos link abaixo:
 
-[Operações com cadastro do EMITENTE](EMITENTE.md)
+[Pasta de Exemplos](https://github.com/cloud-dfe/sdk-php/tree/master/examples)
 
-[Operações com os CERTIFICADOS](CERTIFICADO.md)
+[Averbação](https://github.com/cloud-dfe/sdk-php/tree/master/examples/averbacao)
 
-[Operações com NFE](NFE.md)
+[Certificado Digital](https://github.com/cloud-dfe/sdk-php/tree/master/examples/certificado)
 
-[Operações com NFCE](NFCE.md)
+[CT-e](https://github.com/cloud-dfe/sdk-php/tree/master/examples/cte)
 
-[Operações com NFSE](NFSE.md)
+[CT-e OS](https://github.com/cloud-dfe/sdk-php/tree/master/examples/cteos)
 
-[Operações com CTE](CTE.md)
+[DF-e](https://github.com/cloud-dfe/sdk-php/tree/master/examples/dfe)
 
-[Operações com CTEOS](CTEOS.md)
+[Emitente](https://github.com/cloud-dfe/sdk-php/tree/master/examples/emitente)
 
-[Operações com MDFE](MDFE.md)
+[GNR-e](https://github.com/cloud-dfe/sdk-php/tree/master/examples/gnre)
 
-[Operações com DFE](DFE.md)
+[MDF-e](https://github.com/cloud-dfe/sdk-php/tree/master/examples/mdfe)
 
-[Operações com SINTEGRA](SINTEGRA.md)
+[NFC-e](https://github.com/cloud-dfe/sdk-php/tree/master/examples/nfce)
+
+[NF-e](https://github.com/cloud-dfe/sdk-php/tree/master/examples/nfe)
+
+[NFS-e](https://github.com/cloud-dfe/sdk-php/tree/master/examples/nfse)
+
+[Softhouse](https://github.com/cloud-dfe/sdk-php/tree/master/examples/softhouse)
 
 [ico-version]: https://img.shields.io/packagist/v/cloud-dfe/sdk-php.svg?style=flat-square
 [link-packagist]: https://packagist.org/packages/cloud-dfe/sdk-php

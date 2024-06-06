@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../../bootstrap.php');
+require_once(__DIR__ . "/../../bootstrap.php");
 
 use CloudDfe\SdkPHP\Gnre;
 
@@ -11,13 +11,13 @@ use CloudDfe\SdkPHP\Gnre;
  */
 try {
     $params = [
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjgsInVzciI6NiwidHAiOjIsImlhdCI6MTU3MjU0NzkyOX0.lTh431ejzV13RybU9Mck2OrgQnofhsePwvZttn3kZig',
-        'ambiente' => Gnre::AMBIENTE_HOMOLOGACAO,
-        'options' => [
-            'debug' => false,
-            'timeout' => 60,
-            'port' => 443,
-            'http_version' => CURL_HTTP_VERSION_NONE
+        "token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOiJ0b2tlbl9leGVtcGxvIiwidXNyIjoidGsiLCJ0cCI6InRrIn0.Tva_viCMCeG3nkRYmi_RcJ6BtSzui60kdzIsuq5X-sQ",
+        "ambiente" => Gnre::AMBIENTE_HOMOLOGACAO,
+        "options" => [
+            "debug" => false,
+            "timeout" => 60,
+            "port" => 443,
+            "http_version" => CURL_HTTP_VERSION_NONE
         ]
     ];
     $gnre = new Gnre($params);
@@ -87,7 +87,7 @@ try {
             $tentativa = 1;
             while ($tentativa <= 5) {
                 $payload = [
-                    'chave' => $chave
+                    "chave" => $chave
                 ];
                 $resp = $gnre->consulta($payload);
                 if ($resp->codigo != 5023) {
@@ -117,7 +117,7 @@ try {
         // 5008 documento já criado
         var_dump($resp);
         $payload = [
-            'chave' => $chave
+            "chave" => $chave
         ];
         // recomendamos fazer a consulta pela chave para sincronizar o documento
         $resp = $gnre->consulta($payload);

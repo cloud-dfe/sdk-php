@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../../bootstrap.php');
+require_once(__DIR__ . "/../../bootstrap.php");
 
 use CloudDfe\SdkPHP\Webhook;
 
@@ -18,16 +18,16 @@ use CloudDfe\SdkPHP\Webhook;
  */
 try {
     // exemplo de como capturar o body de uma requisição POST
-    $body = json_decode(file_get_contents('php://input'));
+    $body = json_decode(file_get_contents("php://input"));
 
     // token da softhouse do ambiente sendo usado (lembre-se existem dois token um para homologação e outro para produção e são diferentes)
-    $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjAsInVzciI6NSwidHAiOjEsImlhdCI6MXXXXTA0MDcxMH0.lYCXEOltGRmxfjq2SPiPOUNpyg-oVoJt0ws2tGFTbLE';
+    $token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOiJ0b2tlbl9leGVtcGxvIiwidXNyIjoidGsiLCJ0cCI6InRrIn0.Tva_viCMCeG3nkRYmi_RcJ6BtSzui60kdzIsuq5X-sQ";
     // payload do webhook em JSON (https://doc.cloud-dfe.com.br/webhook)
-    $payload = '{
+    $payload = "{
         "origem": "TESTE",
-        "cnpj_cpf": "28586684000174",
+        "cnpj_cpf": "12345678000123",
         "signature": "tBQrTEui9FxaU7AdFbqPaveg3tBPZ1RjKj3Ytn15fm10/AYIztE6ST+YvLuLu6ea8PUrefX4SpxcT1K8LK40fQ=="
-    }';
+    }";
     return Webhook::isValid($token, $payload);
 } catch (\Exception $e) {
     echo $e->getMessage();

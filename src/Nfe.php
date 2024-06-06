@@ -10,7 +10,7 @@ class Nfe extends Base
      */
     public function cria($payload)
     {
-        return $this->client->send('POST', "/nfe", $payload);
+        return $this->client->send("POST", "/nfe", $payload);
     }
 
     /**
@@ -19,7 +19,7 @@ class Nfe extends Base
      */
     public function preview($payload)
     {
-        return $this->client->send('POST', "/nfe/preview", $payload);
+        return $this->client->send("POST", "/nfe/preview", $payload);
     }
 
     /**
@@ -27,7 +27,7 @@ class Nfe extends Base
      */
     public function status()
     {
-        return $this->client->send('GET', '/nfe/status', []);
+        return $this->client->send("GET", "/nfe/status", []);
     }
 
     /**
@@ -38,7 +38,7 @@ class Nfe extends Base
     public function consulta($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send('GET', "/nfe/{$key}", []);
+        return $this->client->send("GET", "/nfe/{$key}", []);
     }
 
     /**
@@ -47,7 +47,7 @@ class Nfe extends Base
      */
     public function busca($payload)
     {
-        return $this->client->send('POST', "/nfe/busca", $payload);
+        return $this->client->send("POST", "/nfe/busca", $payload);
     }
 
     /**
@@ -56,7 +56,7 @@ class Nfe extends Base
      */
     public function cancela($payload)
     {
-        return $this->client->send('POST', "/nfe/cancela", $payload);
+        return $this->client->send("POST", "/nfe/cancela", $payload);
     }
 
     /**
@@ -65,7 +65,7 @@ class Nfe extends Base
      */
     public function correcao($payload)
     {
-        return $this->client->send('POST', "/nfe/correcao", $payload);
+        return $this->client->send("POST", "/nfe/correcao", $payload);
     }
 
     /**
@@ -74,7 +74,7 @@ class Nfe extends Base
      */
     public function inutiliza($payload)
     {
-        return $this->client->send('POST', "/nfe/inutiliza", $payload);
+        return $this->client->send("POST", "/nfe/inutiliza", $payload);
     }
 
     /**
@@ -85,7 +85,7 @@ class Nfe extends Base
     public function pdf($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send('GET', "/nfe/pdf/{$key}", []);
+        return $this->client->send("GET", "/nfe/pdf/{$key}", []);
     }
 
     /**
@@ -96,7 +96,7 @@ class Nfe extends Base
     public function etiqueta($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send('GET', "/nfe/pdf/etiqueta/{$key}", []);
+        return $this->client->send("GET", "/nfe/pdf/etiqueta/{$key}", []);
     }
 
     /**
@@ -105,7 +105,7 @@ class Nfe extends Base
      */
     public function manifesta($payload)
     {
-        return $this->client->send('POST', "/nfe/manifesta", $payload);
+        return $this->client->send("POST", "/nfe/manifesta", $payload);
     }
 
     /**
@@ -114,7 +114,7 @@ class Nfe extends Base
      */
     public function backup($payload)
     {
-        return $this->client->send('POST', "/nfe/backup", $payload);
+        return $this->client->send("POST", "/nfe/backup", $payload);
     }
 
     /**
@@ -125,7 +125,7 @@ class Nfe extends Base
     public function download($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send('GET', "/nfe/download/{$key}", []);
+        return $this->client->send("GET", "/nfe/download/{$key}", []);
     }
 
     /**
@@ -134,7 +134,7 @@ class Nfe extends Base
      */
     public function recebidas($payload)
     {
-        return $this->client->send('POST', "/nfe/recebidas", $payload);
+        return $this->client->send("POST", "/nfe/recebidas", $payload);
     }
 
     /**
@@ -143,7 +143,7 @@ class Nfe extends Base
      */
     public function interessado($payload)
     {
-        return $this->client->send('POST', "/nfe/interessado", $payload);
+        return $this->client->send("POST", "/nfe/interessado", $payload);
     }
 
     /**
@@ -152,7 +152,7 @@ class Nfe extends Base
      */
     public function importa($payload)
     {
-        return $this->client->send('POST', "/nfe/importa", $payload);
+        return $this->client->send("POST", "/nfe/importa", $payload);
     }
 
     /**
@@ -161,7 +161,7 @@ class Nfe extends Base
      */
     public function comprovante($payload)
     {
-        return $this->client->send('POST', "/nfe/comprovante", $payload);
+        return $this->client->send("POST", "/nfe/comprovante", $payload);
     }
 
     /**
@@ -170,6 +170,6 @@ class Nfe extends Base
      */
     public function cadastro($payload)
     {
-        return $this->client->send('POST', "/nfe/cadastro", $payload);
+        return $this->client->send("POST", "/nfe/cadastro", $payload);
     }
 }

@@ -13,7 +13,7 @@ class Gnre extends Base
     public function consulta($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send('GET', "/gnre/{$key}", []);
+        return $this->client->send("GET", "/gnre/{$key}", []);
     }
 
     /**
@@ -23,7 +23,7 @@ class Gnre extends Base
      */
     public function cria($payload)
     {
-        return $this->client->send('POST', "/gnre", $payload);
+        return $this->client->send("POST", "/gnre", $payload);
     }
 
     /**
@@ -33,6 +33,6 @@ class Gnre extends Base
      */
     public function configUf($payload)
     {
-        return $this->client->send('POST', "/gnre/configuf", $payload);
+        return $this->client->send("POST", "/gnre/configuf", $payload);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../../bootstrap.php');
+require_once(__DIR__ . "/../../bootstrap.php");
 
 use CloudDfe\SdkPHP\Softhouse;
 
@@ -13,19 +13,19 @@ use CloudDfe\SdkPHP\Softhouse;
  */
 try {
     $params = [
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',
-        'ambiente' => Softhouse::AMBIENTE_HOMOLOGACAO,
-        'options' => [
-            'debug' => false,
-            'timeout' => 60,
-            'port' => 443,
-            'http_version' => CURL_HTTP_VERSION_NONE
+        "token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOiJ0b2tlbl9leGVtcGxvIiwidXNyIjoidGsiLCJ0cCI6InRrIn0.Tva_viCMCeG3nkRYmi_RcJ6BtSzui60kdzIsuq5X-sQ",
+        "ambiente" => Softhouse::AMBIENTE_HOMOLOGACAO,
+        "options" => [
+            "debug" => false,
+            "timeout" => 60,
+            "port" => 443,
+            "http_version" => CURL_HTTP_VERSION_NONE
         ]
     ];
     $softhouse = new Softhouse($params);
 
     $payload = [
-        'status' => 'ativos' //ativos ou inativos
+        "status" => "ativos" //ativos ou inativos
     ];
     $resp = $softhouse->listaEmitentes($payload);
 

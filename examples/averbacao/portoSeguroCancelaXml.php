@@ -2,12 +2,17 @@
 
 require_once(__DIR__ . "/../../bootstrap.php");
 
-use CloudDfe\SdkPHP\CteOS;
+use CloudDfe\SdkPHP\Averbacao;
 
+/**
+ * Este exemplo de uma chamada a API usando este SDK
+ *
+ * Este método averbação na Porto Seguro usando um xml de documento
+ */
 try {
     $params = [
         "token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOiJ0b2tlbl9leGVtcGxvIiwidXNyIjoidGsiLCJ0cCI6InRrIn0.Tva_viCMCeG3nkRYmi_RcJ6BtSzui60kdzIsuq5X-sQ",
-        "ambiente" => CteOS::AMBIENTE_HOMOLOGACAO,
+        "ambiente" => Averbacao::AMBIENTE_HOMOLOGACAO,
         "options" => [
             "debug" => false,
             "timeout" => 60,
@@ -15,19 +20,18 @@ try {
             "http_version" => CURL_HTTP_VERSION_NONE
         ]
     ];
-    $cte = new CteOS($params);
-
-
+    $averbacao = new Averbacao($params);
     $payload = [
-        "chave" => "50000000000000000000000000000000000000000000",
-        "justificativa" => "teste de cancelamento"
+        "xml" => base64_encode(file_get_contents("caminho_do_arquivo.xml")),
+        "usuario" => "login",
+        "senha" => "senha",
+        "chave" => "50000000000000000000000000000000000000000000"
     ];
-    $resp = $cte->cancela($payload);
-
+    //os payloads são sempre ARRAYS
+    $resp = $averbacao->portoSeguroCancela($payload);
     echo "<pre>";
     print_r($resp);
     echo "</pre>";
-
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

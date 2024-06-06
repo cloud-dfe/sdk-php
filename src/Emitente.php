@@ -10,7 +10,7 @@ class Emitente extends Base
      */
     public function token()
     {
-        return $this->client->send('GET', '/emitente/token', []);
+        return $this->client->send("GET", "/emitente/token", []);
     }
 
     /**
@@ -19,7 +19,7 @@ class Emitente extends Base
      */
     public function atualiza($payload)
     {
-        return $this->client->send('PUT', "/emitente", $payload);
+        return $this->client->send("PUT", "/emitente", $payload);
     }
 
     /**
@@ -27,6 +27,6 @@ class Emitente extends Base
      */
     public function mostra()
     {
-        return $this->client->send('GET', "/emitente", []);
+        return $this->client->send("GET", "/emitente", []);
     }
 }

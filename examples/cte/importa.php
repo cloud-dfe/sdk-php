@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../../bootstrap.php');
+require_once(__DIR__ . "/../../bootstrap.php");
 
 
 use CloudDfe\SdkPHP\Cte;
@@ -12,20 +12,20 @@ use CloudDfe\SdkPHP\Cte;
  */
 try {
     $params = [
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjgsInVzciI6NiwidHAiOjIsImlhdCI6MTU3MjU0NzkyOX0.lTh431ejzV13RybU9Mck2OrgQnofhsePwvZttn3kZig',
-        'ambiente' => Cte::AMBIENTE_HOMOLOGACAO,
-        'options' => [
-            'debug' => false,
-            'timeout' => 60,
-            'port' => 443,
-            'http_version' => CURL_HTTP_VERSION_NONE
+        "token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOiJ0b2tlbl9leGVtcGxvIiwidXNyIjoidGsiLCJ0cCI6InRrIn0.Tva_viCMCeG3nkRYmi_RcJ6BtSzui60kdzIsuq5X-sQ",
+        "ambiente" => Cte::AMBIENTE_HOMOLOGACAO,
+        "options" => [
+            "debug" => false,
+            "timeout" => 60,
+            "port" => 443,
+            "http_version" => CURL_HTTP_VERSION_NONE
         ]
     ];
 
     $cte = new Cte($params);
 
     $payload = [
-        'xml' => base64_encode(file_get_contents('/home/Downloads/41200627954257000139570260000000121705491695-procCTe.xml'))
+        "xml" => base64_encode(file_get_contents("caminho_do_arquivo.xml"))
     ];
     $resp = $cte->importa($payload);
 

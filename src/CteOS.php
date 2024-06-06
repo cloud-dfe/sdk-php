@@ -9,7 +9,7 @@ class CteOS extends Base
      */
     public function status()
     {
-        return $this->client->send('GET', '/cteos/status', []);
+        return $this->client->send("GET", "/cteos/status", []);
     }
 
     /**
@@ -20,7 +20,7 @@ class CteOS extends Base
     public function consulta($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send('GET', "/cteos/{$key}", []);
+        return $this->client->send("GET", "/cteos/{$key}", []);
     }
 
     /**
@@ -31,7 +31,7 @@ class CteOS extends Base
     public function pdf($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send('GET', "/cteos/pdf/{$key}", []);
+        return $this->client->send("GET", "/cteos/pdf/{$key}", []);
     }
 
     /**
@@ -40,7 +40,7 @@ class CteOS extends Base
      */
     public function cria($payload)
     {
-        return $this->client->send('POST', "/cteos", $payload);
+        return $this->client->send("POST", "/cteos", $payload);
     }
 
     /**
@@ -49,7 +49,7 @@ class CteOS extends Base
      */
     public function busca($payload)
     {
-        return $this->client->send('POST', "/cteos/busca", $payload);
+        return $this->client->send("POST", "/cteos/busca", $payload);
     }
 
     /**
@@ -58,7 +58,7 @@ class CteOS extends Base
      */
     public function cancela($payload)
     {
-        return $this->client->send('POST', "/cteos/cancela", $payload);
+        return $this->client->send("POST", "/cteos/cancela", $payload);
     }
 
     /**
@@ -67,7 +67,7 @@ class CteOS extends Base
      */
     public function correcao($payload)
     {
-        return $this->client->send('POST', "/cteos/correcao", $payload);
+        return $this->client->send("POST", "/cteos/correcao", $payload);
     }
 
     /**
@@ -76,7 +76,7 @@ class CteOS extends Base
      */
     public function inutiliza($payload)
     {
-        return $this->client->send('POST', "/cteos/inutiliza", $payload);
+        return $this->client->send("POST", "/cteos/inutiliza", $payload);
     }
 
     /**
@@ -86,7 +86,7 @@ class CteOS extends Base
      */
     public function backup($payload)
     {
-        return $this->client->send('POST', "/cteos/backup", $payload);
+        return $this->client->send("POST", "/cteos/backup", $payload);
     }
 
     /**
@@ -96,7 +96,7 @@ class CteOS extends Base
      */
     public function importa($payload)
     {
-        return $this->client->send('POST', "/cteos/importa", $payload);
+        return $this->client->send("POST", "/cteos/importa", $payload);
     }
 
     /**
@@ -106,7 +106,7 @@ class CteOS extends Base
      */
     public function preview($payload)
     {
-        return $this->client->send('POST', "/cteos/preview", $payload);
+        return $this->client->send("POST", "/cteos/preview", $payload);
     }
 
     /**
@@ -116,6 +116,6 @@ class CteOS extends Base
      */
     public function desacordo($payload)
     {
-        return $this->client->send('POST', "/cteos/desacordo", $payload);
+        return $this->client->send("POST", "/cteos/desacordo", $payload);
     }
 }

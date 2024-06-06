@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../../bootstrap.php');
+require_once(__DIR__ . "/../../bootstrap.php");
 
 use CloudDfe\SdkPHP\Nfe;
 
@@ -11,13 +11,13 @@ use CloudDfe\SdkPHP\Nfe;
  */
 try {
     $params = [
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR-3c5V8iyITDmLoUF_SE',
-        'ambiente' => Nfe::AMBIENTE_HOMOLOGACAO,
-        'options' => [
-            'debug' => false,
-            'timeout' => 60,
-            'port' => 443,
-            'http_version' => CURL_HTTP_VERSION_NONE
+        "token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOiJ0b2tlbl9leGVtcGxvIiwidXNyIjoidGsiLCJ0cCI6InRrIn0.Tva_viCMCeG3nkRYmi_RcJ6BtSzui60kdzIsuq5X-sQ",
+        "ambiente" => Nfe::AMBIENTE_HOMOLOGACAO,
+        "options" => [
+            "debug" => false,
+            "timeout" => 60,
+            "port" => 443,
+            "http_version" => CURL_HTTP_VERSION_NONE
         ]
     ];
     $nfe = new Nfe($params);
@@ -37,7 +37,7 @@ try {
         "notas_referenciadas" => [
             [
                 "nfe" => [
-                    "chave" => "50191213188739000110550010000012151581978542"
+                    "chave" => "50000000000000000000000000000000000000000000"
                 ]
             ]
         ],
@@ -157,7 +157,7 @@ try {
         "informacoes_adicionais_item" => "Valor aproximado tributos R$: 9,43 (4,20%) Fonte: IBPT"
     ];
     foreach ($listaItens as $item) {
-        $payload['itens'][] = $item;
+        $payload["itens"][] = $item;
     }
 
     $resp = $nfe->cria($payload);
@@ -170,7 +170,7 @@ try {
         $tentativa = 1;
         while ($tentativa <= 5) {
             $payload = [
-                'chave' => $chave
+                "chave" => $chave
             ];
             $resp = $nfe->consulta($payload);
             if ($resp->codigo != 5023) {
@@ -196,7 +196,7 @@ try {
         // 5008 documento já criado
         var_dump($resp);
         $payload = [
-            'chave' => $chave
+            "chave" => $chave
         ];
         // recomendamos fazer a consulta pela chave para sincronizar o documento
         $resp = $nfe->consulta($payload);

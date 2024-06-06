@@ -10,7 +10,7 @@ class Mdfe extends Base
      */
     public function cria($payload)
     {
-        return $this->client->send('POST', "/mdfe", $payload);
+        return $this->client->send("POST", "/mdfe", $payload);
     }
 
     /**
@@ -19,7 +19,7 @@ class Mdfe extends Base
      */
     public function preview($payload)
     {
-        return $this->client->send('POST', "/mdfe/preview", $payload);
+        return $this->client->send("POST", "/mdfe/preview", $payload);
     }
 
     /**
@@ -27,7 +27,7 @@ class Mdfe extends Base
      */
     public function status()
     {
-        return $this->client->send('GET', '/mdfe/status', []);
+        return $this->client->send("GET", "/mdfe/status", []);
     }
 
     /**
@@ -38,7 +38,7 @@ class Mdfe extends Base
     public function consulta($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send('GET', "/mdfe/{$key}", []);
+        return $this->client->send("GET", "/mdfe/{$key}", []);
     }
 
     /**
@@ -47,7 +47,7 @@ class Mdfe extends Base
      */
     public function busca($payload)
     {
-        return $this->client->send('POST', "/mdfe/busca", $payload);
+        return $this->client->send("POST", "/mdfe/busca", $payload);
     }
 
     /**
@@ -56,7 +56,7 @@ class Mdfe extends Base
      */
     public function cancela($payload)
     {
-        return $this->client->send('POST', "/mdfe/cancela", $payload);
+        return $this->client->send("POST", "/mdfe/cancela", $payload);
     }
 
     /**
@@ -65,7 +65,7 @@ class Mdfe extends Base
      */
     public function encerra($payload)
     {
-        return $this->client->send('POST', "/mdfe/encerra", $payload);
+        return $this->client->send("POST", "/mdfe/encerra", $payload);
     }
 
     /**
@@ -74,7 +74,7 @@ class Mdfe extends Base
      */
     public function condutor($payload)
     {
-        return $this->client->send('POST', "/mdfe/condutor", $payload);
+        return $this->client->send("POST", "/mdfe/condutor", $payload);
     }
 
     /**
@@ -82,7 +82,7 @@ class Mdfe extends Base
      */
     public function offline()
     {
-        return $this->client->send('GET', "/mdfe/offline", []);
+        return $this->client->send("GET", "/mdfe/offline", []);
     }
 
     /**
@@ -93,7 +93,7 @@ class Mdfe extends Base
     public function pdf($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send('GET', "/mdfe/pdf/{$key}", []);
+        return $this->client->send("GET", "/mdfe/pdf/{$key}", []);
     }
 
     /**
@@ -102,7 +102,7 @@ class Mdfe extends Base
      */
     public function backup($payload)
     {
-        return $this->client->send('POST', "/mdfe/backup", $payload);
+        return $this->client->send("POST", "/mdfe/backup", $payload);
     }
 
     /**
@@ -111,7 +111,7 @@ class Mdfe extends Base
      */
     public function nfe($payload)
     {
-        return $this->client->send('POST', "/mdfe/nfe", $payload);
+        return $this->client->send("POST", "/mdfe/nfe", $payload);
     }
 
     /**
@@ -119,7 +119,7 @@ class Mdfe extends Base
      */
     public function abertos()
     {
-        return $this->client->send('GET', "/mdfe/abertos", []);
+        return $this->client->send("GET", "/mdfe/abertos", []);
     }
 
     /**
@@ -128,6 +128,6 @@ class Mdfe extends Base
      */
     public function importa($payload)
     {
-        return $this->client->send('POST', "/mdfe/importa", $payload);
+        return $this->client->send("POST", "/mdfe/importa", $payload);
     }
 }

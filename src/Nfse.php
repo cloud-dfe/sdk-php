@@ -10,7 +10,7 @@ class Nfse extends Base
      */
     public function cria($payload)
     {
-        return $this->client->send('POST', "/nfse", $payload);
+        return $this->client->send("POST", "/nfse", $payload);
     }
 
     /**
@@ -19,7 +19,7 @@ class Nfse extends Base
      */
     public function preview($payload)
     {
-        return $this->client->send('POST', "/nfse/preview", $payload);
+        return $this->client->send("POST", "/nfse/preview", $payload);
     }
 
     /**
@@ -29,7 +29,7 @@ class Nfse extends Base
     public function pdf($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send('GET', "/nfse/pdf/{$key}", []);
+        return $this->client->send("GET", "/nfse/pdf/{$key}", []);
     }
 
     /**
@@ -40,7 +40,7 @@ class Nfse extends Base
     public function consulta($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send('GET', "/nfse/{$key}", []);
+        return $this->client->send("GET", "/nfse/{$key}", []);
     }
 
     /**
@@ -49,7 +49,7 @@ class Nfse extends Base
      */
     public function cancela($payload)
     {
-        return $this->client->send('POST', "/nfse/cancela", $payload);
+        return $this->client->send("POST", "/nfse/cancela", $payload);
     }
 
     /**
@@ -58,7 +58,7 @@ class Nfse extends Base
      */
     public function substitui($payload)
     {
-        return $this->client->send('POST', "/nfse/substitui", $payload);
+        return $this->client->send("POST", "/nfse/substitui", $payload);
     }
 
     /**
@@ -67,7 +67,7 @@ class Nfse extends Base
      */
     public function busca($payload)
     {
-        return $this->client->send('POST', "/nfse/busca", $payload);
+        return $this->client->send("POST", "/nfse/busca", $payload);
     }
 
     /**
@@ -76,7 +76,7 @@ class Nfse extends Base
      */
     public function backup($payload)
     {
-        return $this->client->send('POST', "/nfse/backup", $payload);
+        return $this->client->send("POST", "/nfse/backup", $payload);
     }
 
     /**
@@ -85,7 +85,7 @@ class Nfse extends Base
      */
     public function localiza($payload)
     {
-        return $this->client->send('POST', "/nfse/consulta", $payload);
+        return $this->client->send("POST", "/nfse/consulta", $payload);
     }
 
     /**
@@ -94,7 +94,7 @@ class Nfse extends Base
      */
     public function info($payload)
     {
-        return $this->client->send('GET', "/nfse/info/{$payload['ibge']}", []);
+        return $this->client->send("GET", "/nfse/info/{$payload["ibge"]}", []);
     }
 
     /**
@@ -103,12 +103,12 @@ class Nfse extends Base
      */
     public function conflito($payload)
     {
-        return $this->client->send('POST', "/nfse/conflito", $payload);
+        return $this->client->send("POST", "/nfse/conflito", $payload);
     }
 
     public function offline()
     {
-        return $this->client->send('GET', "/nfse/offline", []);
+        return $this->client->send("GET", "/nfse/offline", []);
     }
 
     /**
@@ -119,6 +119,6 @@ class Nfse extends Base
     public function resolve($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send('GET', "/nfse/resolve/{$key}", []);
+        return $this->client->send("GET", "/nfse/resolve/{$key}", []);
     }
 }

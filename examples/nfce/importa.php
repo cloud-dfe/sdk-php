@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__. '/../../bootstrap.php');
+require_once(__DIR__. "/../../bootstrap.php");
 
 use CloudDfe\SdkPHP\Nfce;
 
@@ -12,19 +12,19 @@ use CloudDfe\SdkPHP\Nfce;
  */
 try {
     $params = [
-        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR-3c5V8iyITDmLoUF_SE',
-        'ambiente' => Nfce::AMBIENTE_HOMOLOGACAO,
-        'options' => [
-            'debug' => false,
-            'timeout' => 60,
-            'port' => 443,
-            'http_version' => CURL_HTTP_VERSION_NONE
+        "token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOiJ0b2tlbl9leGVtcGxvIiwidXNyIjoidGsiLCJ0cCI6InRrIn0.Tva_viCMCeG3nkRYmi_RcJ6BtSzui60kdzIsuq5X-sQ",
+        "ambiente" => Nfce::AMBIENTE_HOMOLOGACAO,
+        "options" => [
+            "debug" => false,
+            "timeout" => 60,
+            "port" => 443,
+            "http_version" => CURL_HTTP_VERSION_NONE
         ]
     ];
     $nfe = new Nfce($params);
 
     $payload = [
-        'xml' => base64_encode(file_get_contents('/home/Downloads/41210622545265000108650270000005099339657660-procNFe (2).xml'))
+        "xml" => base64_encode(file_get_contents("caminho_do_arquivo.xml"))
     ];
     $resp = $nfe->importa($payload);
 

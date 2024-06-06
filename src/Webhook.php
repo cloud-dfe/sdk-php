@@ -13,7 +13,7 @@ class Webhook
      */
     public static function isValid($token, $payload)
     {
-        $cipher = 'AES-128-CBC';
+        $cipher = "AES-128-CBC";
         $std = json_decode($payload);
         if (empty($std)) {
             throw new \Exception("Payload incorreto.");
@@ -30,14 +30,14 @@ class Webhook
         $hmac = substr($c, $ivlen, $sha2len = 32);
         $ciphertext_raw = substr($c, $ivlen + $sha2len);
         $original_time = (float) openssl_decrypt($ciphertext_raw, $cipher, "{$token}", OPENSSL_RAW_DATA, $iv);
-        $calcmac = hash_hmac('sha256', $ciphertext_raw, "{$token}", true);
+        $calcmac = hash_hmac("sha256", $ciphertext_raw, "{$token}", true);
         if (hash_equals($hmac, $calcmac)) {
             $dif = (time() - $original_time); //diferença em segundos
             if ($dif < 300) {
                 return true;
             }
-            throw new \Exception('Assinatura Expirou !!');
+            throw new \Exception("Assinatura Expirou !!");
         }
-        throw new \Exception('Token ou assinatura incorreta.');
+        throw new \Exception("Token ou assinatura incorreta.");
     }
 }

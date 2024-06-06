@@ -10,7 +10,7 @@ class Cte extends Base
      */
     public function status()
     {
-        return $this->client->send('GET', '/cte/status', []);
+        return $this->client->send("GET", "/cte/status", []);
     }
 
     /**
@@ -22,7 +22,7 @@ class Cte extends Base
     public function consulta($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send('GET', "/cte/{$key}", []);
+        return $this->client->send("GET", "/cte/{$key}", []);
     }
 
     /**
@@ -34,7 +34,7 @@ class Cte extends Base
     public function pdf($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send('GET', "/cte/pdf/{$key}", []);
+        return $this->client->send("GET", "/cte/pdf/{$key}", []);
     }
 
     /**
@@ -44,7 +44,7 @@ class Cte extends Base
      */
     public function cria($payload)
     {
-        return $this->client->send('POST', "/cte", $payload);
+        return $this->client->send("POST", "/cte", $payload);
     }
 
     /**
@@ -54,7 +54,7 @@ class Cte extends Base
      */
     public function busca($payload)
     {
-        return $this->client->send('POST', "/cte/busca", $payload);
+        return $this->client->send("POST", "/cte/busca", $payload);
     }
 
     /**
@@ -64,7 +64,7 @@ class Cte extends Base
      */
     public function cancela($payload)
     {
-        return $this->client->send('POST', "/cte/cancela", $payload);
+        return $this->client->send("POST", "/cte/cancela", $payload);
     }
 
     /**
@@ -74,7 +74,7 @@ class Cte extends Base
      */
     public function correcao($payload)
     {
-        return $this->client->send('POST', "/cte/correcao", $payload);
+        return $this->client->send("POST", "/cte/correcao", $payload);
     }
 
     /**
@@ -84,7 +84,7 @@ class Cte extends Base
      */
     public function inutiliza($payload)
     {
-        return $this->client->send('POST', "/cte/inutiliza", $payload);
+        return $this->client->send("POST", "/cte/inutiliza", $payload);
     }
 
     /**
@@ -94,7 +94,7 @@ class Cte extends Base
      */
     public function backup($payload)
     {
-        return $this->client->send('POST', "/cte/backup", $payload);
+        return $this->client->send("POST", "/cte/backup", $payload);
     }
 
     /**
@@ -104,7 +104,7 @@ class Cte extends Base
      */
     public function importa($payload)
     {
-        return $this->client->send('POST', "/cte/importa", $payload);
+        return $this->client->send("POST", "/cte/importa", $payload);
     }
 
     /**
@@ -114,7 +114,7 @@ class Cte extends Base
      */
     public function preview($payload)
     {
-        return $this->client->send('POST', "/cte/preview", $payload);
+        return $this->client->send("POST", "/cte/preview", $payload);
     }
 
     /**
@@ -124,6 +124,6 @@ class Cte extends Base
      */
     public function desacordo($payload)
     {
-        return $this->client->send('POST', "/cte/desacordo", $payload);
+        return $this->client->send("POST", "/cte/desacordo", $payload);
     }
 }

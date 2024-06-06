@@ -15,7 +15,7 @@ class HttpCurl
     /**
      * @var string
      */
-    protected $base_uri = '';
+    protected $base_uri = "";
     /**
      * @var array
      */
@@ -35,7 +35,7 @@ class HttpCurl
     /**
      * @var array
      */
-    protected $error = ['code' => null, 'message' => null];
+    protected $error = ["code" => null, "message" => null];
     /**
      * @var string
      */
@@ -43,21 +43,21 @@ class HttpCurl
 
     public function __construct($config)
     {
-        $this->debug = $config['debug'];
-        $this->base_uri = $config['base_uri'];
-        $this->token = $config['token'];
+        $this->debug = $config["debug"];
+        $this->base_uri = $config["base_uri"];
+        $this->token = $config["token"];
 
         $this->headers = [
             "Authorization: {$this->token}",
-            'Accept: application/json',
-            'Content-Type: application/json',
+            "Accept: application/json",
+            "Content-Type: application/json",
         ];
-        $this->options = $config['options'];
-        $this->timeout = !empty($config['options']['timeout']) ? $config['options']['timeout'] : 60;
-        $this->http_version = !empty($config['options']['http_version'])
-            ? $config['options']['http_version']
+        $this->options = $config["options"];
+        $this->timeout = !empty($config["options"]["timeout"]) ? $config["options"]["timeout"] : 60;
+        $this->http_version = !empty($config["options"]["http_version"])
+            ? $config["options"]["http_version"]
             : CURL_HTTP_VERSION_NONE;
-        $this->port = (int)!empty($config['options']['port']) ? $config['options']['port'] : 443;
+        $this->port = (int)!empty($config["options"]["port"]) ? $config["options"]["port"] : 443;
     }
 
     /**
@@ -84,16 +84,16 @@ class HttpCurl
         $std = json_decode(json_encode($payload));
         $this->headers = [
             "Authorization: {$this->token}",
-            'Content-Type: multipart/form-data',
-            'Accept: application/json'
+            "Content-Type: multipart/form-data",
+            "Accept: application/json"
         ];
         $payload = [
-            'tipo' => $std->tipo,
-            'ano' => $std->ano,
-            'mes' => $std->mes,
-            'arquivo' => new \CURLFile($std->arquivo)
+            "tipo" => $std->tipo,
+            "ano" => $std->ano,
+            "mes" => $std->mes,
+            "arquivo" => new \CURLFile($std->arquivo)
         ];
-        return $this->send('POST', $route, $payload);
+        return $this->send("POST", $route, $payload);
     }
 
     /**
@@ -109,7 +109,7 @@ class HttpCurl
             CURLOPT_URL => "{$this->base_uri}{$route}",
             CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
+            CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_HEADER => false,
             CURLOPT_CONNECTTIMEOUT => $this->timeout,
@@ -124,11 +124,11 @@ class HttpCurl
             CURLOPT_HTTPHEADER => $this->headers
         ]);
         $resp = curl_exec($oCurl);
-        $this->error['message'] = curl_error($oCurl);
-        $this->error['code'] = curl_errno($oCurl);
+        $this->error["message"] = curl_error($oCurl);
+        $this->error["code"] = curl_errno($oCurl);
         curl_close($oCurl);
-        if (!empty($this->error['message'])) {
-            throw new \Exception("Falha de comunicação! [{$this->error['code']}] {$this->error['message']}", 500);
+        if (!empty($this->error["message"])) {
+            throw new \Exception("Falha de comunicação! [{$this->error["code"]}] {$this->error["message"]}", 500);
         }
         return $resp;
     }
