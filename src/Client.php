@@ -9,6 +9,15 @@ class Client
      */
     protected $ambiente = 2;
     /**
+     * @var array
+     */
+    protected $url = [
+        'api' => [
+            '1' => 'https://api.integranotas.com.br/v1',
+            '2' => 'https://hom-api.integranotas.com.br/v1'
+        ]
+    ];
+    /**
      * @var string
      */
     protected $token = "";
@@ -63,8 +72,7 @@ class Client
         if (!empty($params["options"])) {
             $debug = $params["options"]["debug"] == true ? true : false;
         }
-        $config = json_decode(file_get_contents(__DIR__ . "/config.json"), true);
-        $this->uri = $config[$direction][$this->ambiente];
+        $this->uri = $this->url[$direction][$this->ambiente];
         if (!empty($params["options"]["url"])) {
             $this->uri = $params["options"]["url"];
         }
