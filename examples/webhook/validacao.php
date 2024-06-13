@@ -23,11 +23,11 @@ try {
     // token da softhouse do ambiente sendo usado (lembre-se existem dois token um para homologação e outro para produção e são diferentes)
     $token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOiJ0b2tlbl9leGVtcGxvIiwidXNyIjoidGsiLCJ0cCI6InRrIn0.Tva_viCMCeG3nkRYmi_RcJ6BtSzui60kdzIsuq5X-sQ";
     // payload do webhook em JSON (https://doc.cloud-dfe.com.br/webhook)
-    $payload = "{
+    $payload = '{
         "origem": "TESTE",
         "cnpj_cpf": "12345678000123",
         "signature": "tBQrTEui9FxaU7AdFbqPaveg3tBPZ1RjKj3Ytn15fm10/AYIztE6ST+YvLuLu6ea8PUrefX4SpxcT1K8LK40fQ=="
-    }";
+    }';
     return Webhook::isValid($token, $payload);
 } catch (\Exception $e) {
     echo $e->getMessage();

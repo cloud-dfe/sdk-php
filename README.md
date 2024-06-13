@@ -59,6 +59,8 @@ Para saber os detalhes referente ao dados de envio e os retornos consulte nossa 
 
 [Pasta de Exemplos](https://github.com/cloud-dfe/sdk-php/tree/master/examples)
 
+[Utilitários](https://github.com/cloud-dfe/sdk-php/tree/master/examples/util)
+
 [Averbação](https://github.com/cloud-dfe/sdk-php/tree/master/examples/averbacao)
 
 [Certificado Digital](https://github.com/cloud-dfe/sdk-php/tree/master/examples/certificado)
