@@ -79,6 +79,8 @@ Para saber os detalhes referente ao dados de envio e os retornos consulte nossa 
 
 [NFC-e](https://github.com/cloud-dfe/sdk-php/tree/master/examples/nfce)
 
+[NFCom](https://github.com/cloud-dfe/sdk-php/tree/master/examples/nfcom)
+
 [NF-e](https://github.com/cloud-dfe/sdk-php/tree/master/examples/nfe)
 
 [NFS-e](https://github.com/cloud-dfe/sdk-php/tree/master/examples/nfse)
