@@ -1,19 +1,13 @@
 <?php
 
-require_once(__DIR__. "/../../bootstrap.php");
+require_once(__DIR__ . "/../../bootstrap.php");
 
-use CloudDfe\SdkPHP\Nfce;
+use CloudDfe\SdkPHP\Nfcom;
 
-/**
- * Este exemplo de uma chamada a API usando este SDK
- *
- * Este método consulta o status da SEFAZ de NFe
- *
- */
 try {
     $params = [
         "token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOiJ0b2tlbl9leGVtcGxvIiwidXNyIjoidGsiLCJ0cCI6InRrIn0.Tva_viCMCeG3nkRYmi_RcJ6BtSzui60kdzIsuq5X-sQ",
-        "ambiente" => Nfce::AMBIENTE_HOMOLOGACAO,
+        "ambiente" => Nfcom::AMBIENTE_HOMOLOGACAO,
         "options" => [
             "debug" => false,
             "timeout" => 60,
@@ -21,12 +15,11 @@ try {
             "http_version" => CURL_HTTP_VERSION_NONE
         ]
     ];
-    $nfce = new Nfce($params);
+    $nfcom = new Nfcom($params);
 
-    $payload = [
-        "xml" => base64_encode(file_get_contents("caminho_do_arquivo.xml"))
-    ];
-    $resp = $nfce->importa($payload);
+    $resp = $nfcom->consulta([
+        "chave" => "50000000000000000000000000000000000000000000"
+    ]);
 
     echo "<pre>";
     print_r($resp);
