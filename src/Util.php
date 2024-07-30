@@ -19,8 +19,8 @@ class Util
      */
     public static function decode($data)
     {
-        $decoded = base64_decode($data);
-        $gz = gzdecode($decoded);
+        $decoded = @base64_decode($data);
+        $gz = @gzdecode($decoded);
         if ($gz !== false) {
             return $gz;
         }
