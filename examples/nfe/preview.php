@@ -157,7 +157,7 @@ try {
         "valor_frete" => 0,
         "valor_seguro" => 0,
         "valor_outras_despesas" => 0,
-        "informacoes_adicionais_item" => "Valor aproximado tributos R$: 9,43 (4,20%) Fonte: IBPT"
+        "informacoes_adicionais" => "Valor aproximado tributos R$: 9,43 (4,20%) Fonte: IBPT"
     ];
     foreach ($listaItens as $item) {
         $payload["itens"][] = $item;
