@@ -46,18 +46,22 @@ try {
             ]
         ],
         "servico" => [
-            "codigo_tributacao_municipio" => "10500",
-            "discriminacao" => "Exemplo Serviço",
             "codigo_municipio" => "4119905",
-            "valor_servicos" => "1.00",
-            "valor_pis" => "1.00",
-            "valor_cofins" => "1.00",
-            "valor_inss" => "1.00",
-            "valor_ir" => "1.00",
-            "valor_csll" => "1.00",
-            "valor_outras" => "1.00",
-            "valor_aliquota" => "1.00",
-            "valor_desconto_incondicionado" => "1.00"
+            "itens" => [
+                [
+                    "codigo_tributacao_municipio" => "10500",
+                    "discriminacao" => "Exemplo Serviço",
+                    "valor_servicos" => "1.00",
+                    "valor_pis" => "1.00",
+                    "valor_cofins" => "1.00",
+                    "valor_inss" => "1.00",
+                    "valor_ir" => "1.00",
+                    "valor_csll" => "1.00",
+                    "valor_outras" => "1.00",
+                    "valor_aliquota" => "1.00",
+                    "valor_desconto_incondicionado" => "1.00"
+                ]
+            ]
         ],
         "intermediario" => [
             "cnpj" => "12345678901234",
