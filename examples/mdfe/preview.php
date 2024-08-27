@@ -85,7 +85,7 @@ try {
                     ]
                 ]
             ],
-            "reboque" => []
+            "reboques" => []
         ]
     ];
     $resp = $nfe->preview($payload);

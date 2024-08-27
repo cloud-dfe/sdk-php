@@ -83,7 +83,7 @@ try {
                     ]
                 ]
             ],
-            "reboque" => []
+            "reboques" => []
         ]
     ];
     $resp = $mdfe->cria($payload);
