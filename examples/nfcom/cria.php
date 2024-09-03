@@ -10,6 +10,16 @@ use CloudDfe\SdkPHP\Nfcom;
  * Este método cria uma nfcom
  */
 try {
+
+    // Variaveis para definição de configurações iniciais para o uso da SDK
+    // Token: Token do emitente (distribuído pela CloudDFe se baseando no ambiente: homologação/produção)
+    // Ambiente: Ambiente do qual o serviço vai ser executado (homologação/produção)
+    // Options: Opções para configuração da chamada da SDK
+    // Debug: Habilita ou desabilita mensagens de debug (Por enquando sem efeito)
+    // Timeout: Tempo de espera para a execução da chamada
+    // Port: Porta de comunicação
+    // Http_version: Versão do HTTP (Especifico para a comunicação utilizando PHP)
+
     $params = [
         "token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOiJ0b2tlbl9leGVtcGxvIiwidXNyIjoidGsiLCJ0cCI6InRrIn0.Tva_viCMCeG3nkRYmi_RcJ6BtSzui60kdzIsuq5X-sQ",
         "ambiente" => Nfcom::AMBIENTE_HOMOLOGACAO,
@@ -21,6 +31,10 @@ try {
         ]
     ];
     $nfcom = new Nfcom($params);
+
+    // Payload: Informações que serão enviadas para a API da CloudDFe
+
+    // OBS: Não utilize o payload de exemplo abaixo, ele é apenas um exemplo. Consulte a documentação para construir o payload para sua aplicação.
 
     $payload = [
         "numero" => "3",
@@ -51,7 +65,7 @@ try {
                 "telefone" => null,
                 "email" => null
             ]
-            ],
+        ],
         "assinante" => [
             "codigo" => "123",
             "tipo" => "3",
@@ -74,30 +88,30 @@ try {
     // carrega os itens
     $listaItens[] = [
         "numero_item" => "1",
-            "codigo_produto" => "123",
-            "descricao" => "LP 1MB",
-            "codigo_classificacao" => "0400401",
-            "cfop" => "5301",
-            "unidade_medida" => "1",
-            "quantidade" => "1",
-            "valor_unitario" => "10.00",
-            "valor_desconto" => "0",
-            "valor_outras_despesas" => "0",
-            "valor_bruto" => "10.00",
-            "indicador_devolucao" => "0",
-            "informacoes_adicionais" => "teste",
-            "imposto" => [
-                "icms" => [
-                    "situacao_tributaria" => "00",
-                    "valor_base_calculo" => "10.00",
-                    "aliquota" => "18.00",
-                    "valor" => "1.80"
-                ],
-                "fcp" => [
-                    "aliquota" => null,
-                    "valor" => null
-                ]
+        "codigo_produto" => "123",
+        "descricao" => "LP 1MB",
+        "codigo_classificacao" => "0400401",
+        "cfop" => "5301",
+        "unidade_medida" => "1",
+        "quantidade" => "1",
+        "valor_unitario" => "10.00",
+        "valor_desconto" => "0",
+        "valor_outras_despesas" => "0",
+        "valor_bruto" => "10.00",
+        "indicador_devolucao" => "0",
+        "informacoes_adicionais" => "teste",
+        "imposto" => [
+            "icms" => [
+                "situacao_tributaria" => "00",
+                "valor_base_calculo" => "10.00",
+                "aliquota" => "18.00",
+                "valor" => "1.80"
+            ],
+            "fcp" => [
+                "aliquota" => null,
+                "valor" => null
             ]
+        ]
     ];
     foreach ($listaItens as $item) {
         $payload["itens"][] = $item;
@@ -156,7 +170,9 @@ try {
         // rejeição
         var_dump($resp);
     }
-
 } catch (\Exception $e) {
+
+    // Em caso de erros será lançado uma exceção com a mensagem de erro
+
     echo $e->getMessage();
 }

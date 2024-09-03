@@ -10,7 +10,20 @@ use CloudDfe\SdkPHP\Cte;
  *
  * Solicita o evento de manifestação de desacordo da operação
  */
+
+// Este exemplo de uma chamada a API usando este SDK
+
 try {
+
+    // Variaveis para definição de configurações iniciais para o uso da SDK
+    // Token: Token do emitente (distribuído pela CloudDFe se baseando no ambiente: homologação/produção)
+    // Ambiente: Ambiente do qual o serviço vai ser executado (homologação/produção)
+    // Options: Opções para configuração da chamada da SDK
+    // Debug: Habilita ou desabilita mensagens de debug (Por enquando sem efeito)
+    // Timeout: Tempo de espera para a execução da chamada
+    // Port: Porta de comunicação
+    // Http_version: Versão do HTTP (Especifico para a comunicação utilizando PHP)
+
     $params = [
         "token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOiJ0b2tlbl9leGVtcGxvIiwidXNyIjoidGsiLCJ0cCI6InRrIn0.Tva_viCMCeG3nkRYmi_RcJ6BtSzui60kdzIsuq5X-sQ",
         "ambiente" => Cte::AMBIENTE_HOMOLOGACAO,
@@ -22,18 +35,31 @@ try {
         ]
     ];
 
+    // Instanciamento da classe Cte
+
     $cte = new Cte($params);
+
+    // Payload: Informações que serão enviadas para a API da CloudDFe
+
+    // OBS: Não utilize o payload de exemplo abaixo, ele é apenas um exemplo. Consulte a documentação para construir o payload para sua aplicação.
 
     $payload = [
         "chave" => "50000000000000000000000000000000000000000000",
         "justificativa" => "nao contratei esse servico"
     ];
+
+    // Chamada para a função de desacordo de CTe
+
     $resp = $cte->desacordo($payload);
+
+    // Visualização do retorno
 
     echo "<pre>";
     print_r($resp);
     echo "</pre>";
-
 } catch (\Exception $e) {
+
+    // Em caso de erro será apresentado na tela a mensagem de erro
+
     echo $e->getMessage();
 }
