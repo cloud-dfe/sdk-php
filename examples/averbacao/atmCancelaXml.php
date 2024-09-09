@@ -10,7 +10,7 @@ try {
 
     // Variaveis para definição de configurações iniciais para o uso da SDK
     // Token: Token do emitente (distribuído pela CloudDFe se baseando no ambiente: homologação/produção)
-    // Ambiente: Ambiente do qual o serviço vai ser executado (homologação/produção)
+    // Ambiente: Ambiente do qual o serviço vai ser executado (1- Produção / 2- Homologação)
     // Options: Opções para configuração da chamada da SDK
     // Debug: Habilita ou desabilita mensagens de debug (Por enquando sem efeito)
     // Timeout: Tempo de espera para a execução da chamada
@@ -19,7 +19,7 @@ try {
 
     $params = [
         "token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOiJ0b2tlbl9leGVtcGxvIiwidXNyIjoidGsiLCJ0cCI6InRrIn0.Tva_viCMCeG3nkRYmi_RcJ6BtSzui60kdzIsuq5X-sQ",
-        "ambiente" => Averbacao::AMBIENTE_HOMOLOGACAO,
+        "ambiente" => 2, // IMPORTANTE: 1 - Produção / 2 - Homologação
         "options" => [
             "debug" => false,
             "timeout" => 60,

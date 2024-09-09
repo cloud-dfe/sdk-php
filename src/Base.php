@@ -9,9 +9,6 @@ class Base
      */
     protected $client;
 
-    const AMBIENTE_PRODUCAO = 1;
-    const AMBIENTE_HOMOLOGACAO = 2;
-
     /**
      * Base constructor.
      * @param array $params
@@ -29,7 +26,7 @@ class Base
             $params["options"] = $options;
         }
         $this->client = new Client([
-            "ambiente" => !empty($params["ambiente"]) ? $params["ambiente"] : self::AMBIENTE_HOMOLOGACAO,
+            "ambiente" => !empty($params["ambiente"]) ? $params["ambiente"] : 2,
             "token" => $params["token"],
             "options" => $params["options"]
         ], "api");
