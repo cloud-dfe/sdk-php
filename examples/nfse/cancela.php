@@ -42,7 +42,8 @@ try {
 
     $payload = [
         "chave" => "50000000000000000000000000000000000000000000",
-        "justificativa" => "teste de cancelamento"
+        "codigo_cancelamento" => 1,
+        "motivo_cancelamento" => "teste de cancelamento",
     ];
     $resp = $nfse->cancela($payload);
 
