@@ -44,6 +44,9 @@ class Client
      */
     protected $client;
 
+    const AMBIENTE_PRODUCAO = 1;
+    const AMBIENTE_HOMOLOGACAO = 2;
+
     /**
      * Client constructor.
      * @param array $params
@@ -56,7 +59,7 @@ class Client
         if (empty($params)) {
             throw new \Exception("Devem ser passados os parametros básicos.");
         }
-        if (!in_array($params["ambiente"], [1, 2])) {
+        if (!in_array($params["ambiente"], [1, 2, self::AMBIENTE_PRODUCAO, self::AMBIENTE_HOMOLOGACAO])) {
             throw new \Exception("O ambiente deve ser 1-produção ou 2-homologação.");
         }
         if (empty($params["token"])) {

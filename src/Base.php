@@ -9,6 +9,9 @@ class Base
      */
     protected $client;
 
+    const AMBIENTE_PRODUCAO = 1;
+    const AMBIENTE_HOMOLOGACAO = 2;
+
     /**
      * Base constructor.
      * @param array $params
