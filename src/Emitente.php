@@ -4,27 +4,25 @@ namespace CloudDfe\SdkPHP;
 
 class Emitente extends Base
 {
-    /**
-     *
-     * @return \stdClass
-     */
+    // @param array $payload
+    // @return \stdClass
+    // @throws \Exception
     public function token()
     {
         return $this->client->send("GET", "/emitente/token", []);
     }
 
-    /**
-     * @param array $payload
-     * @return \stdClass
-     */
+    // @param array $payload
+    // @return \stdClass
+    // @throws \Exception
     public function atualiza($payload)
     {
         return $this->client->send("PUT", "/emitente", $payload);
     }
 
-    /**
-     * @return \stdClass
-     */
+    // @param array $payload
+    // @return \stdClass
+    // @throws \Exception
     public function mostra()
     {
         return $this->client->send("GET", "/emitente", []);

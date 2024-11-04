@@ -25,7 +25,7 @@ class Sintegra
      */
     public function upload($payload)
     {
-        return $this->client->sendMultpart("/upload", $payload);
+        return $this->client->sendMultipart("/upload", $payload);
     }
 
     /**

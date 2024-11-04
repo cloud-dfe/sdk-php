@@ -4,20 +4,16 @@ namespace CloudDfe\SdkPHP;
 
 class Certificado extends Base
 {
-    /**
-     * Substitui o sertificado atual do emitente
-     * @param array $payload
-     * @return \stdClass
-     */
+    // @param array $payload
+    // @return \stdClass
+    // @throws \Exception
     public function atualiza($payload)
     {
         return $this->client->send("POST", "/certificado", $payload);
     }
 
-    /**
-     * Mostra dados do certificado atual do emitente
-     * @return \stdClass
-     */
+    // @return \stdClass
+    // @throws \Exception
     public function mostra()
     {
         return $this->client->send("GET", "/certificado", []);

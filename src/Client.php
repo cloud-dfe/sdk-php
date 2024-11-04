@@ -4,58 +4,36 @@ namespace CloudDfe\SdkPHP;
 
 class Client
 {
-    /**
-     * @var int
-     */
-    protected $ambiente = 2;
-    /**
-     * @var array
-     */
-    protected $url = [
+    const URLS = [
         'api' => [
             '1' => 'https://api.integranotas.com.br/v1',
             '2' => 'https://hom-api.integranotas.com.br/v1'
         ]
     ];
-    /**
-     * @var string
-     */
-    protected $token = "";
-    /**
-     * @var array
-     * [
-     *    "debug" => false,
-     *    "timeout" => 10,
-     *    "http_version" => "1.1",
-     *    "port" => 443
-     * ]
-     */
-    protected $options = [];
-    /**
-     * @var string
-     */
-    protected $uri = "";
-    /**
-     * @var array
-     */
-    protected $params = [];
-    /**
-     * @var HttpCurl
-     */
-    protected $client;
 
     const AMBIENTE_PRODUCAO = 1;
     const AMBIENTE_HOMOLOGACAO = 2;
 
-    /**
-     * Client constructor.
-     * @param array $params
-     * @param string $direction
-     * @throws \Exception
-     */
-    public function __construct($params = [], $direction = "api")
+    // @var int
+    protected $ambiente;
+    // @var string
+    protected $token;
+
+    // @var int
+    protected $timeout;
+    // @var int
+    protected $port;
+    // @var int
+    protected $http_version;
+
+    // @var bool
+    protected $debug;
+
+    // @var Service
+    protected $services;
+
+    public function __construct($params = [])
     {
-        $this->params = $params;
         if (empty($params)) {
             throw new \Exception("Devem ser passados os parametros básicos.");
         }
@@ -65,45 +43,52 @@ class Client
         if (empty($params["token"])) {
             throw new \Exception("O token é obrigatorio.");
         }
-        $this->ambiente = !empty($params["ambiente"]) ? $params["ambiente"] : 2;
-        $this->token = !empty($params["token"]) ? $params["token"] : "";
-        $this->options = !empty($params["options"]) ? $params["options"] : [];
-        $debug = false;
         if (!empty($params["options"])) {
-            $debug = $params["options"]["debug"] == true ? true : false;
+            $this->timeout = $params["options"]["timeout"] ?? $this->timeout;
+            $this->port = $params["options"]["port"] ?? $this->port;
+            $this->http_version = $params["options"]["http_version"] ?? $this->http_version;
+            $this->debug = $params["options"]["debug"] ?? $this->debug;
         }
-        $this->uri = $this->url[$direction][$this->ambiente];
-        if (!empty($params["options"]["url"])) {
-            $this->uri = $params["options"]["url"];
-        }
-        $this->client = new HttpCurl([
-            "debug" => $debug,
-            "base_uri" => $this->uri,
-            "token" => $this->token,
-            "options" => $this->options
-        ]);
+
+        $this->ambiente = !empty($params["ambiente"]) ? $params["ambiente"] : 2;
+        $this->token = $params["token"] ?? $this->token;
+
+        $this->timeout = $params["timeout"] ?? $this->timeout;
+        $this->port = $params["port"] ?? $this->port;
+        $this->http_version = $params["http_version"] ?? $this->http_version;
+        $this->debug = $params["debug"] ?? $this->debug;
+
+        $config = [
+            "base_uri" => self::URLS["api"][$this->ambiente],
+            "timeout" => $this->timeout,
+            "port" => $this->port,
+            "http_version" => $this->http_version,
+            "debug" => $this->debug
+        ];
+
+        $this->services = new Services($config);
     }
 
-    /**
-     * @param string $route
-     * @param array $payload
-     * @return \stdClass
-     * @throws \Exception
-     */
-    public function sendMultpart($route, $payload)
-    {
-        return json_decode($this->client->sendMultipart($route, $payload));
-    }
 
-    /**
-     * Envia os dados ao servidor
-     * @param string $method
-     * @param string $route
-     * @param array $payload
-     * @return \stdClass
-     */
     public function send($method, $route, $payload = [])
     {
-        return json_decode($this->client->request($method, $route, $payload));
+        $headers = [
+            "Authorization: {$this->token}",
+            "Content-Type: application/json",
+            "Accept: application/json"
+        ];
+
+        return $this->services->request($method, $route, $payload, $headers);
+    }
+
+    public function sendMultipart($route, $payload = [])
+    {
+        $headers = [
+            "Authorization: {$this->token}",
+            "Content-Type: multipart/form-data",
+            "Accept: application/json"
+        ];
+
+        return $this->services->request("POST", $route, $payload, $headers);
     }
 }

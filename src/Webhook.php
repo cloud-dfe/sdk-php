@@ -4,13 +4,11 @@ namespace CloudDfe\SdkPHP;
 
 class Webhook
 {
-    /**
-     * Verifica se a assinatura do payload do webhook enviado pela CloudDFe é valida e foi gerada a menos de 5 minutos
-     * @param string $token token da softwarehouse
-     * @param string $payload payload em json do webhook
-     * @return bool
-     * @throws \Exception
-     */
+    // @param string $token token da softwarehouse
+    // @param string $payload payload em json do webhook
+    // @return bool
+    // @throws \Exception
+
     public static function isValid($token, $payload)
     {
         $cipher = "AES-128-CBC";
