@@ -42,7 +42,7 @@ try {
 
     $payload = [
         "certificado" => base64_encode(file_get_contents("caminho_do_arquivo.pfx")),
-        "senha" => "associacao"
+        "senha" => "senha"
     ];
 
     // Chamada para o método atualiza na classe Certificado
