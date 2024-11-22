@@ -23,11 +23,12 @@ try {
     $token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOiJ0b2tlbl9leGVtcGxvIiwidXNyIjoidGsiLCJ0cCI6InRrIn0.Tva_viCMCeG3nkRYmi_RcJ6BtSzui60kdzIsuq5X-sQ";
 
     // Simulação de um retorno de payload por via api
-    // Webhook configurado na url https://exemplo.com/webhookIntegranotas
+    // Webhook configurado na url https://exemplo.com/webhookIntegraNotas
     // Retorna a variavel $payload com o conteúdo do corpo da requisição POST
     // transformando o JSON recebido em string
     // $payload = json_encode($body);
 
+    // Para saber mais sobre o corpo da requisição POST acesse a documentação do webhook em https://integranotas.com.br/doc/webhook
     // Simulação de um retorno de payload por via api
     $payload = '{
         "origem": "TESTE",
