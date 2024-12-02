@@ -148,9 +148,8 @@ try {
     } else if (in_array($resp->codigo, [5001, 5002])) {
         // erro nos campos
         var_dump($resp->erros);
-    } else if ($resp->codigo == 5008 or $resp->codigo >= 7000) {
+    } else if ($resp->codigo == 5008) {
         $chave = $resp->chave;
-        // >= 7000 erro de timout ou de conexão
         // 5008 documento já criado
         var_dump($resp);
         $payload = [
@@ -158,14 +157,21 @@ try {
         ];
         // recomendamos fazer a consulta pela chave para sincronizar o documento
         $resp = $nfcom->consulta($payload);
-        if ($resp->sucesso) {
-            if ($resp->codigo == 5023) {
+        if ($resp->codigo != 5023) {
+            if ($resp->sucesso) {
                 // autorizado
                 var_dump($resp);
+                return $resp;
+            } else {
+                // rejeição
+                var_dump($resp);
+                return $resp;
             }
-        } else {
-            // rejeição
+        }
+        else {
+            // em processamento
             var_dump($resp);
+            return $resp;
         }
     } else {
         // rejeição

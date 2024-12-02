@@ -133,14 +133,21 @@ try {
         ];
         // recomendamos fazer a consulta pela chave para sincronizar o documento
         $resp = $nfse->consulta($payload);
-        if ($resp->sucesso) {
-            if ($resp->codigo != 5023) {
+        if ($resp->codigo != 5023) {
+            if ($resp->sucesso) {
                 // autorizado
                 var_dump($resp);
+                return $resp;
+            } else {
+                // rejeição
+                var_dump($resp);
+                return $resp;
             }
-        } else {
-            // rejeição
+        }
+        else {
+            // em processamento
             var_dump($resp);
+            return $resp;
         }
     } else {
         // rejeição
