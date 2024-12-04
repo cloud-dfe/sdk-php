@@ -127,7 +127,7 @@ try {
     } else if (in_array($resp->codigo, [5001, 5002])) {
         // erro nos campos
         var_dump($resp->erros);
-    } else if ($resp->codigo == 5008 or $resp->codigo >= 7000) {
+    } else if ($resp->codigo == 5008) {
         $chave = $resp->chave;
         // >= 7000 erro de timout ou de conexão
         // 5008 documento já criado
