@@ -108,6 +108,44 @@ try {
     echo "<pre>";
     print_r($resp);
     echo "</pre>";
+
+    if ($resp->sucesso) {
+        if ($resp->codigo == 2) { // offline
+            // aguardar a chave e consultar/ou esperar o webhook notificar quando for processada pela sefaz
+        } else if ($resp->codigo == 5023) { // lote em processamento
+            // aguardar a chave e consultar/ou esperar o webhook notificar quando for processada pela sefaz
+        }
+    } else if (in_array($resp->codigo, [5001, 5002])) {
+        // erro nos campos
+        var_dump($resp->erros);
+    } else if ($resp->codigo == 5008 or $resp->codigo >= 7000) {
+        $chave = $resp->chave;
+        // >= 7000 indica problemas de comunicacao com a sefaz
+        var_dump($resp);
+        $payload = [
+            "chave" => $chave
+        ];
+        // recomendamos fazer a consulta pela chave para sincronizar o documento
+        $resp = $mdfe->consulta($payload);
+        if ($resp->codigo != 5023) {
+            if ($resp->sucesso) {
+                // autorizado
+                var_dump($resp);
+                return $resp;
+            } else {
+                // rejeição
+                var_dump($resp);
+                return $resp;
+            }
+        } else {
+            // em processamento
+            var_dump($resp);
+            return $resp;
+        }
+    } else {
+        // rejeição
+        var_dump($resp);
+    }
 } catch (\Exception $e) {
 
     // Em caso de erros será lançado uma exceção com a mensagem de erro

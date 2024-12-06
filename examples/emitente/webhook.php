@@ -2,8 +2,13 @@
 
 require_once(__DIR__ . "/../../bootstrap.php");
 
-use CloudDfe\SdkPHP\Nfce;
+use CloudDfe\SdkPHP\Emitente;
 
+/**
+ * Este exemplo de uma chamada a API usando este SDK
+ *
+ * Este método atualiza os dados do emitente e requer o TOKEN do próprio emitente para ser realizado.
+ */
 try {
 
     // Variaveis para definição de configurações iniciais para o uso da SDK
@@ -25,60 +30,21 @@ try {
             "http_version" => CURL_HTTP_VERSION_NONE
         ]
     ];
-
-    $nfce = new Nfce($params);
+    $emitente = new Emitente($params);
 
     // Payload: Informações que serão enviadas para a API da CloudDFe
 
     // OBS: Não utilize o payload de exemplo abaixo, ele é apenas um exemplo. Consulte a documentação para construir o payload para sua aplicação.
 
-    $resp = $nfce->consulta([
-        "chave" => "50000000000000000000000000000000000000000000"
-    ]);
+    $payload = [
+        "webhook" => "https://integranotas.com.br/webhook",
+    ];
+
+    $resp = $emitente->webhook($payload);
 
     echo "<pre>";
     print_r($resp);
     echo "</pre>";
-
-    if ($resp->sucesso) {
-        if ($resp->codigo == 5023) { // lote em processamento
-            // aguardar a chave e consultar/ou esperar o webhook notificar quando for processada pela sefaz
-        } else {
-            // autorizado
-            var_dump($resp);
-            return $resp;
-        }
-    } else if (in_array($resp->codigo, [5001, 5002])) {
-        // erro nos campos
-        var_dump($resp->erros);
-    } else if ($resp->codigo >= 7000) {
-        $chave = $resp->chave;
-        // >= 7000 indica problemas de comunicacao com a sefaz
-        var_dump($resp);
-        $payload = [
-            "chave" => $chave
-        ];
-        // recomendamos fazer a consulta pela chave para sincronizar o documento
-        $resp = $nfce->consulta($payload);
-        if ($resp->codigo != 5023) {
-            if ($resp->sucesso) {
-                // autorizado
-                var_dump($resp);
-                return $resp;
-            } else {
-                // rejeição
-                var_dump($resp);
-                return $resp;
-            }
-        } else {
-            // em processamento
-            var_dump($resp);
-            return $resp;
-        }
-    } else {
-        // rejeição
-        var_dump($resp);
-    }
 } catch (\Exception $e) {
 
     // Em caso de erros será lançado uma exceção com a mensagem de erro

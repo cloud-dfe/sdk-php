@@ -27,4 +27,12 @@ class Emitente extends Base
     {
         return $this->client->send("GET", "/emitente", []);
     }
+
+    // @param array $payload
+    // @return \stdClass
+    // @throws \Exception
+    public function webhook($payload)
+    {
+        return $this->client->send("POST", "/webhook", $payload);
+    }
 }
