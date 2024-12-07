@@ -45,6 +45,19 @@ try {
     echo "<pre>";
     print_r($resp);
     echo "</pre>";
+
+    if ($resp->sucesso) {
+        if ($resp->codigo == 5023) { // lote em processamento
+            // aguardar a chave e consultar/ou esperar o webhook notificar quando for processada pela sefaz
+        } else {
+            // autorizado
+            var_dump($resp);
+            return $resp;
+        }
+    } else {
+        // rejeição
+        var_dump($resp);
+    }
 } catch (\Exception $e) {
 
     // Caso ocorra algum erro na execução do código acima, será exibido uma mensagem de erro

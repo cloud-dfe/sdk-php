@@ -42,10 +42,25 @@ try {
     $payload = [
         "chave" => "50000000000000000000000000000000000000000000"
     ];
+
     $resp = $gnre->consulta($payload);
+
     echo "<pre>";
     print_r($resp);
     echo "</pre>";
+
+    if ($resp->sucesso) {
+        if ($resp->codigo == 5023) { // lote em processamento
+            // aguardar a chave e consultar/ou esperar o webhook notificar quando for processada pela sefaz
+        } else {
+            // autorizado
+            var_dump($resp);
+            return $resp;
+        }
+    } else {
+        // rejeição
+        var_dump($resp);
+    }
 } catch (\Exception $e) {
 
     // Em caso de erros será lançado uma exceção com a mensagem de erro

@@ -48,33 +48,6 @@ try {
             var_dump($resp);
             return $resp;
         }
-    } else if (in_array($resp->codigo, [5001, 5002])) {
-        // erro nos campos
-        var_dump($resp->erros);
-    } else if ($resp->codigo >= 7000) {
-        $chave = $resp->chave;
-        // >= 7000 indica problemas de comunicacao com a sefaz
-        var_dump($resp);
-        $payload = [
-            "chave" => $chave
-        ];
-        // recomendamos fazer a consulta pela chave para sincronizar o documento
-        $resp = $mdfe->consulta($payload);
-        if ($resp->codigo != 5023) {
-            if ($resp->sucesso) {
-                // autorizado
-                var_dump($resp);
-                return $resp;
-            } else {
-                // rejeição
-                var_dump($resp);
-                return $resp;
-            }
-        } else {
-            // em processamento
-            var_dump($resp);
-            return $resp;
-        }
     } else {
         // rejeição
         var_dump($resp);
