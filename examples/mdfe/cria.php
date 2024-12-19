@@ -112,8 +112,9 @@ try {
     if ($resp->sucesso) {
         if ($resp->codigo == 2) { // offline
             // aguardar a chave e consultar/ou esperar o webhook notificar quando for processada pela sefaz
-        } else if ($resp->codigo == 5023) { // lote em processamento
-            // aguardar a chave e consultar/ou esperar o webhook notificar quando for processada pela sefaz
+        } else {
+            // autorizado
+            var_dump($resp);
         }
     } else if (in_array($resp->codigo, [5001, 5002])) {
         // erro nos campos

@@ -201,7 +201,7 @@ try {
                     break;
                 }
             }
-            sleep(5);
+            sleep(30);
             $tentativa++;
         }
     } else if (in_array($resp->codigo, [5001, 5002])) {
@@ -226,8 +226,7 @@ try {
                 var_dump($resp);
                 return $resp;
             }
-        }
-        else {
+        } else {
             // em processamento
             var_dump($resp);
             return $resp;

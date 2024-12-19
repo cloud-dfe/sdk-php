@@ -33,7 +33,7 @@ try {
 
     // Criação de uma instância da classe CteOS
 
-    $cte = new CteOS($params);
+    $cteos = new CteOS($params);
 
     // Payload: Informações que serão enviadas para a API da CloudDFe
 
@@ -113,7 +113,7 @@ try {
 
     // Chamada para o método cria na classe CteOS
 
-    $resp = $cte->cria($payload);
+    $resp = $cteos->cria($payload);
 
     // Visualização do retorno
 
@@ -128,7 +128,7 @@ try {
             $payload = [
                 "chave" => $chave
             ];
-            $resp = $cte->consulta($payload);
+            $resp = $cteos->consulta($payload);
             if ($resp->codigo != 5023) {
                 if ($resp->sucesso) {
                     // autorizado
@@ -155,14 +155,17 @@ try {
             "chave" => $chave
         ];
         // recomendamos fazer a consulta pela chave para sincronizar o documento
-        $resp = $cte->consulta($payload);
-        if ($resp->sucesso) {
-            if ($resp->codigo == 5023) {
+        $resp = $cteos->consulta($payload);
+        if ($resp->codigo != 5023) {
+            if ($resp->sucesso) {
                 // autorizado
+                var_dump($resp);
+            } else {
+                // rejeição
                 var_dump($resp);
             }
         } else {
-            // rejeição
+            // em processamento
             var_dump($resp);
         }
     } else {
