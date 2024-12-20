@@ -40,7 +40,7 @@ try {
     // OBS: Não utilize o payload de exemplo abaixo, ele é apenas um exemplo. Consulte a documentação para construir o payload para sua aplicação.
 
     $payload = [
-        "uf_favoverida" => "RR",
+        "uf_favorecida" => "RR",
         "codigo_receita" => null,
         "curier" => null
     ];
