@@ -89,6 +89,15 @@ class Nfe extends Base
     // @param array $payload
     // @return \stdClass
     // @throws \Exception
+    public function simples($payload)
+    {
+        $key = self::checkKey($payload);
+        return $this->client->send("GET", "/nfe/pdf/simples/{$key}", []);
+    }
+
+    // @param array $payload
+    // @return \stdClass
+    // @throws \Exception
     public function manifesta($payload)
     {
         return $this->client->send("POST", "/nfe/manifesta", $payload);
