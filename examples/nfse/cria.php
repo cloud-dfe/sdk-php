@@ -100,25 +100,21 @@ try {
     if ($resp->sucesso) {
         $chave = $resp->chave;
         sleep(15);
-        $tentativa = 1;
-        while ($tentativa <= 5) {
-            $payload = [
-                "chave" => $chave
-            ];
-            $resp = $nfse->consulta($payload);
-            if ($resp->codigo != 5023) {
-                if ($resp->sucesso) {
-                    // autorizado
-                    var_dump($resp);
-                    break;
-                } else {
-                    // rejeição
-                    var_dump($resp);
-                    break;
-                }
+        $payload = [
+            "chave" => $chave
+        ];
+        $resp = $nfse->consulta($payload);
+        if ($resp->codigo != 5023) {
+            if ($resp->sucesso) {
+                // autorizado
+                var_dump($resp);
+            } else {
+                // rejeição
+                var_dump($resp);
             }
-            sleep(5);
-            $tentativa++;
+        } else {
+            // nota em processamento
+            // recomendamos que seja utilizado o metodo de consulta manual ou o webhook
         }
     } else if (in_array($resp->codigo, [5001, 5002])) {
         // erro nos campos
