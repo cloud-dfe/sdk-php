@@ -122,26 +122,22 @@ try {
     echo "</pre>";
     if ($resp->sucesso) {
         $chave = $resp->chave;
-        sleep(5);
-        $tentativa = 1;
-        while ($tentativa <= 5) {
-            $payload = [
-                "chave" => $chave
-            ];
-            $resp = $cteos->consulta($payload);
-            if ($resp->codigo != 5023) {
-                if ($resp->sucesso) {
-                    // autorizado
-                    var_dump($resp);
-                    break;
-                } else {
-                    // rejeição
-                    var_dump($resp);
-                    break;
-                }
+        sleep(15);
+        $payload = [
+            "chave" => $chave
+        ];
+        $resp = $cteos->consulta($payload);
+        if ($resp->codigo != 5023) {
+            if ($resp->sucesso) {
+                // autorizado
+                var_dump($resp);
+            } else {
+                // rejeição
+                var_dump($resp);
             }
-            sleep(5);
-            $tentativa++;
+        } else {
+            // nota em processamento
+            // recomendamos que seja utilizado o metodo de consulta manual ou o webhook
         }
     } else if (in_array($resp->codigo, [5001, 5002])) {
         // erro nos campos
