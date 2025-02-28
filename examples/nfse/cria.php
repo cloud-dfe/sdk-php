@@ -7,10 +7,7 @@ use CloudDfe\SdkPHP\Nfse;
 /**
  * Este exemplo de uma chamada a API usando este SDK
  *
- * Este método solicita a criação de uma NFSe, pode ser retornado sucesso com os dados da NFSe emitida ou erros
- * no caso de erros o registro dessa NFSe será deletado e assim que os erros forem corrigidos uma nova NFSe poderá ser criada
- *
- * NOTA: os dados necessários variam de acordo com o provedor de cada prefeitura
+ * Este método faz o envio de uma NFSe
  */
 try {
 
@@ -35,13 +32,10 @@ try {
     ];
 
     $nfse = new Nfse($params);
-    //dados do RPS para emissão da NFSe
-
-    // NOTA: os dados necessários variam de acordo com o provedor de cada prefeitura, Ver a documentação da cidade desejada
 
     // Payload: Informações que serão enviadas para a API da CloudDFe
 
-    // OBS: Não utilize o payload de exemplo abaixo, ele é apenas um exemplo. Consulte a documentação para construir o payload para sua aplicação.
+    // OBS: NÃO UTILIZE O PAYLOAD DE EXEMPLO, ELE É APENAS UM EXEMPLO. CONSULTE A DOCUMENTAÇÃO PARA CONSTRUIR O PAYLOAD PARA SUA APLICAÇÃO.
 
     $payload = [
         "numero" => "1",
@@ -93,65 +87,86 @@ try {
             "art" => "1111"
         ]
     ];
+
+    // Salvar as informações da NFSe em seu banco de dados
+    // Reservar a numeração da NFSe e alterar o status para (Não enviada)
+
+    // Enviar a NFSe para API
     $resp = $nfse->cria($payload);
-    echo "<pre>";
-    print_r($resp);
-    echo "</pre>";
+
     if ($resp->sucesso) {
+        // Essa condição verifica se a NFSe foi enviada para processamento
+        // Altere o status da NFSe para (Em processamento)
+
         $chave = $resp->chave;
-        sleep(15);
+        sleep(15); // O Ideal é aguardar de 10 a 15 segundos para consultar a NFSe ou utilizar o WEBHOOK
+        
         $payload = [
             "chave" => $chave
         ];
+    
+        // Consulta a NFSe
         $resp = $nfse->consulta($payload);
+        
+        // Verifica se a NFSe não está em processamento
         if ($resp->codigo != 5023) {
             if ($resp->sucesso) {
-                // autorizado
+                // se a nota foi autorizada ela será retornada aqui
+                // salvar as informações da NFSe em seu banco de dados e alterar o status para (Autorizada)
                 var_dump($resp);
             } else {
-                // rejeição
+                // se a nota foi rejeitada ela será retornada aqui
+                // salvar as informações de erro da NFSe em seu banco de dados e alterar o status para (Rejeitada)
                 var_dump($resp);
             }
         } else {
-            // nota em processamento
-            // recomendamos que seja utilizado o metodo de consulta manual ou o webhook
+            // se a nota estiver em processamento ela será retornada aqui
+            // salvar as informações da NFSe em seu banco de dados e alterar o status para (Em processamento)
+            // RECOMENDAMOS UTILIZAR O WEBHOOK POIS EVITA DE SEU CLIENTE FICAR FAZENDO CONSULTAS
+            var_dump($resp);
         }
+
     } else if (in_array($resp->codigo, [5001, 5002])) {
-        // erro nos campos
+        // se a nota estiver com dados faltando ou dando erro ao gerar o XML ela será retornada aqui
+        // salvar o status da NFSe como (Rejeitada/Erro) OBS: Não foi a prefeitura que rejeitou mas sim nossa API que existe campos obrigatórios que não foram preenchidos.
+        // Salvar as informações de erro da NFSe e apresentar ao usuário
         var_dump($resp->erros);
     } else if ($resp->codigo == 5008) {
+        // se a nota já foi criada ela será retornada aqui
+        // ATENÇÃO: SE UTILIZADO INCORRETAMENTE PODE SOBREESCREVER DOCUMENTOS.
+        
+        // O procedimento obtém a chave da NFSe e consulta para verificar se a NFSe foi autorizada, rejeitada ou se ainda está em processamento
+        // porém se no seu sistema tiver salvando os status da NFSe incorretamente pode sobreescrever documentos 
+
         $chave = $resp->chave;
-        // >= 7000 erro de timout ou de conexão
-        // 5008 documento já criado
-        var_dump($resp);
         $payload = [
             "chave" => $chave
-        ];
-        // recomendamos fazer a consulta pela chave para sincronizar o documento
+        ]; 
+
+        // Vai realizar a consulta da NFSe para verificar o status da NFSe
         $resp = $nfse->consulta($payload);
         if ($resp->codigo != 5023) {
             if ($resp->sucesso) {
-                // autorizado
+                // se a nota foi autorizada ela será retornada aqui
+                // salvar as informações da NFSe em seu banco de dados e alterar o status para (Autorizada)
                 var_dump($resp);
-                return $resp;
             } else {
-                // rejeição
+                // se a nota foi rejeitada ela será retornada aqui
+                // salvar as informações de erro da NFSe em seu banco de dados e alterar o status para (Rejeitada)
                 var_dump($resp);
-                return $resp;
             }
-        }
-        else {
-            // em processamento
+        } else {
+            // se a nota estiver em processamento ela será retornada aqui
+            // salvar as informações da NFSe em seu banco de dados e alterar o status para (Em processamento)
+            // RECOMENDAMOS UTILIZAR O WEBHOOK POIS EVITA DE SEU CLIENTE FICAR FAZENDO CONSULTAS
             var_dump($resp);
-            return $resp;
         }
     } else {
-        // rejeição
+        // Se ocorrer qualquer outro erro será retornado aqui
+        // salvar as informações de erro da NFSe em seu banco de dados e alterar o status para (Rejeitada)
         var_dump($resp);
     }
 } catch (\Exception $e) {
-
     // Em caso de erros será lançado uma exceção com a mensagem de erro
-
     echo $e->getMessage();
 }
