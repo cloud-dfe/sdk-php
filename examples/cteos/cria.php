@@ -7,18 +7,18 @@ use CloudDfe\SdkPHP\CteOS;
 /**
  * Este exemplo de uma chamada a API usando este SDK
  *
- * Este método cria uma cteos
+ * Este método faz o envio de um CTeOS
  */
 try {
 
-    // Variaveis para definição de configurações iniciais para o uso da SDK
+    // Variáveis para definição de configurações iniciais para o uso da SDK
     // Token: Token do emitente (distribuído pela CloudDFe se baseando no ambiente: homologação/produção)
     // Ambiente: Ambiente do qual o serviço vai ser executado (1- Produção / 2- Homologação)
     // Options: Opções para configuração da chamada da SDK
-    // Debug: Habilita ou desabilita mensagens de debug (Por enquando sem efeito)
+    // Debug: Habilita ou desabilita mensagens de debug (Por enquanto sem efeito)
     // Timeout: Tempo de espera para a execução da chamada
     // Port: Porta de comunicação
-    // Http_version: Versão do HTTP (Especifico para a comunicação utilizando PHP)
+    // Http_version: Versão do HTTP (Específico para a comunicação utilizando PHP)
 
     $params = [
         "token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOiJ0b2tlbl9leGVtcGxvIiwidXNyIjoidGsiLCJ0cCI6InRrIn0.Tva_viCMCeG3nkRYmi_RcJ6BtSzui60kdzIsuq5X-sQ",
@@ -31,13 +31,10 @@ try {
         ]
     ];
 
-    // Criação de uma instância da classe CteOS
-
     $cteos = new CteOS($params);
 
     // Payload: Informações que serão enviadas para a API da CloudDFe
-
-    // OBS: Não utilize o payload de exemplo abaixo, ele é apenas um exemplo. Consulte a documentação para construir o payload para sua aplicação.
+    // OBS: NÃO UTILIZE O PAYLOAD DE EXEMPLO, ELE É APENAS UM EXEMPLO. CONSULTE A DOCUMENTAÇÃO PARA CONSTRUIR O PAYLOAD PARA SUA APLICAÇÃO.
 
     $payload = [
         "cfop" => "5353",
@@ -111,63 +108,82 @@ try {
         "observacao" => ""
     ];
 
-    // Chamada para o método cria na classe CteOS
-
+    // Enviar o CTeOS para API
     $resp = $cteos->cria($payload);
 
-    // Visualização do retorno
-
-    echo "<pre>";
-    print_r($resp);
-    echo "</pre>";
     if ($resp->sucesso) {
+        // Essa condição verifica se o CTeOS foi enviado para processamento
+        // Altere o status do CTeOS para (Em processamento)
+
         $chave = $resp->chave;
-        sleep(15);
+        sleep(15); // O Ideal é aguardar de 10 a 15 segundos para consultar o CTeOS ou utilizar o WEBHOOK
+        
         $payload = [
             "chave" => $chave
         ];
+    
+        // Consulta o CTeOS
         $resp = $cteos->consulta($payload);
+        
+        // Verifica se o CTeOS não está em processamento
         if ($resp->codigo != 5023) {
             if ($resp->sucesso) {
-                // autorizado
+                // se o CTeOS foi autorizado ele será retornado aqui
+                // salvar as informações do CTeOS em seu banco de dados e alterar o status para (Autorizado)
                 var_dump($resp);
             } else {
-                // rejeição
+                // se o CTeOS foi rejeitado ele será retornado aqui
+                // salvar as informações de erro do CTeOS em seu banco de dados e alterar o status para (Rejeitado)
                 var_dump($resp);
             }
         } else {
-            // nota em processamento
-            // recomendamos que seja utilizado o metodo de consulta manual ou o webhook
+            // se o CTeOS estiver em processamento ele será retornado aqui
+            // salvar as informações do CTeOS em seu banco de dados e alterar o status para (Em processamento)
+            // RECOMENDAMOS UTILIZAR O WEBHOOK POIS EVITA DE SEU CLIENTE FICAR FAZENDO CONSULTAS
+            var_dump($resp);
         }
+
     } else if (in_array($resp->codigo, [5001, 5002])) {
-        // erro nos campos
+        // se o CTeOS estiver com dados faltando ou dando erro ao gerar o XML ele será retornado aqui
+        // salvar o status do CTeOS como (Rejeitado/Erro) OBS: Não foi a SEFAZ que rejeitou mas sim nossa API que existe campos obrigatórios que não foram preenchidos.
+        // Salvar as informações de erro do CTeOS e apresentar ao usuário
         var_dump($resp->erros);
     } else if ($resp->codigo == 5008) {
+        // se o CTeOS já foi criado ele será retornado aqui
+        // ATENÇÃO: SE UTILIZADO INCORRETAMENTE PODE SOBREESCREVER DOCUMENTOS.
+        
+        // O procedimento obtém a chave do CTeOS e consulta para verificar se o CTeOS foi autorizado, rejeitado ou se ainda está em processamento
+        // porém se no seu sistema tiver salvando os status do CTeOS incorretamente pode sobreescrever documentos 
+
         $chave = $resp->chave;
-        // >= 7000 erro de timout ou de conexão
-        // 5008 documento já criado
-        var_dump($resp);
         $payload = [
             "chave" => $chave
-        ];
-        // recomendamos fazer a consulta pela chave para sincronizar o documento
+        ]; 
+
+        // Vai realizar a consulta do CTeOS para verificar o status do CTeOS
         $resp = $cteos->consulta($payload);
         if ($resp->codigo != 5023) {
             if ($resp->sucesso) {
-                // autorizado
+                // se o CTeOS foi autorizado ele será retornado aqui
+                // salvar as informações do CTeOS em seu banco de dados e alterar o status para (Autorizado)
                 var_dump($resp);
             } else {
-                // rejeição
+                // se o CTeOS foi rejeitado ele será retornado aqui
+                // salvar as informações de erro do CTeOS em seu banco de dados e alterar o status para (Rejeitado)
                 var_dump($resp);
             }
         } else {
-            // em processamento
+            // se o CTeOS estiver em processamento ele será retornado aqui
+            // salvar as informações do CTeOS em seu banco de dados e alterar o status para (Em processamento)
+            // RECOMENDAMOS UTILIZAR O WEBHOOK POIS EVITA DE SEU CLIENTE FICAR FAZENDO CONSULTAS
             var_dump($resp);
         }
     } else {
-        // rejeição
+        // Se ocorrer qualquer outro erro será retornado aqui
+        // salvar as informações de erro do CTeOS em seu banco de dados e alterar o status para (Rejeitado)
         var_dump($resp);
     }
 } catch (\Exception $e) {
+    // Em caso de erros será lançado uma exceção com a mensagem de erro
     echo $e->getMessage();
 }
