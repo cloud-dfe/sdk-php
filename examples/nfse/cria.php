@@ -34,7 +34,8 @@ try {
     $nfse = new Nfse($params);
 
     // Payload: Informações que serão enviadas para a API da CloudDFe
-
+    // Payload abaixo contém um layout generico verifique em nossa documentação para construir um layout proprio do municipio que ira trabalhar.
+    
     // OBS: NÃO UTILIZE O PAYLOAD DE EXEMPLO, ELE É APENAS UM EXEMPLO. CONSULTE A DOCUMENTAÇÃO PARA CONSTRUIR O PAYLOAD PARA SUA APLICAÇÃO.
 
     $payload = [
@@ -43,7 +44,7 @@ try {
         "tipo" => "1",
         "status" => "1",
         "data_emissao" => "2017-12-27T17:43:14-03:00",
-        "tomador" => [
+        "tomador" => [ // OBS: NÃO UTILIZE O PAYLOAD DE EXEMPLO, ELE É APENAS UM EXEMPLO. CONSULTE A DOCUMENTAÇÃO PARA CONSTRUIR O PAYLOAD PARA SUA APLICAÇÃO.
             "cnpj" => "12345678901234",
             "cpf" => null,
             "im" => null,
@@ -61,7 +62,7 @@ try {
         "servico" => [
             "codigo_municipio" => "4119905",
             "itens" => [
-                [
+                [ // OBS: NÃO UTILIZE O PAYLOAD DE EXEMPLO, ELE É APENAS UM EXEMPLO. CONSULTE A DOCUMENTAÇÃO PARA CONSTRUIR O PAYLOAD PARA SUA APLICAÇÃO.
                     "codigo" => "10",
                     "codigo_tributacao_municipio" => "10500",
                     "discriminacao" => "Exemplo Serviço",
@@ -77,13 +78,13 @@ try {
                 ]
             ]
         ],
-        "intermediario" => [
+        "intermediario" => [ // OBS: NÃO UTILIZE O PAYLOAD DE EXEMPLO, ELE É APENAS UM EXEMPLO. CONSULTE A DOCUMENTAÇÃO PARA CONSTRUIR O PAYLOAD PARA SUA APLICAÇÃO.
             "cnpj" => "12345678901234",
             "cpf" => null,
             "im" => null,
             "razao_social" => "Fake Tecnologia Ltda"
         ],
-        "obra" => [
+        "obra" => [ // OBS: NÃO UTILIZE O PAYLOAD DE EXEMPLO, ELE É APENAS UM EXEMPLO. CONSULTE A DOCUMENTAÇÃO PARA CONSTRUIR O PAYLOAD PARA SUA APLICAÇÃO.
             "codigo" => "2222",
             "art" => "1111"
         ]
