@@ -62,6 +62,7 @@ try {
             "codigo_municipio" => "4119905",
             "itens" => [
                 [
+                    "codigo" => "10",
                     "codigo_tributacao_municipio" => "10500",
                     "discriminacao" => "Exemplo Serviço",
                     "valor_servicos" => "1.00",
