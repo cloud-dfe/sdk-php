@@ -8,29 +8,27 @@ use CloudDfe\SdkPHP\Averbacao;
 
 try {
 
-    // Variaveis para definição de configurações iniciais para o uso da SDK
-    // Token: Token do emitente (distribuído pela CloudDFe se baseando no ambiente: homologação/produção)
-    // Ambiente: Ambiente do qual o serviço vai ser executado (1- Produção / 2- Homologação)
-    // Options: Opções para configuração da chamada da SDK
-    // Debug: Habilita ou desabilita mensagens de debug (Por enquando sem efeito)
-    // Timeout: Tempo de espera para a execução da chamada
-    // Port: Porta de comunicação
-    // Http_version: Versão do HTTP (Especifico para a comunicação utilizando PHP)
+    // Variavel de configuração para definir parametros da requisição.
+    $configSDK = [
 
-    $params = [
-        "token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOiJ0b2tlbl9leGVtcGxvIiwidXNyIjoidGsiLCJ0cCI6InRrIn0.Tva_viCMCeG3nkRYmi_RcJ6BtSzui60kdzIsuq5X-sQ",
-        "ambiente" => 2, // IMPORTANTE: 1 - Produção / 2 - Homologação
+        // Token do emitente obtido no painel da IntegraNotas no cadastro do emitente.
+        // Para obter em Produção: https://gestao.integranotas.com.br/login e em Homologação: https://hom-gestao.integranotas.com.br/login
+        "token" => "",
+
+        // Em qual ambiente a requisição será feita.
+        "ambiente" => "", // 1- Produção / 2- Homologação
+        
+        // Opções complementares, vai depender da sua necessidade
         "options" => [
-            "debug" => false,
-            "timeout" => 60,
-            "port" => 443,
-            "http_version" => CURL_HTTP_VERSION_NONE
+            "debug" => "", // Ativa mensagem de depuração, Default: false
+            "timeout" => "", // Tempo máximo de espera para resposta da API, Default: 60
+            "port" => "", // Porta de conexão, Default: 443
+            "http_version" => "" // Versão do HTTP, Default: CURL_HTTP_VERSION_NONE
         ]
     ];
 
-    // Instanciamento da classe Averbacao
-
-    $averbacao = new Averbacao($params);
+    // Instancia a classe Nfe que possui métodos para realizar requisições a nossa API
+    $averbacao = new Averbacao($configSDK);
 
     // Payload: Informações que serão enviadas para a API da IntegraNotas
 

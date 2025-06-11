@@ -1,50 +1,46 @@
 <?php
-
 require_once(__DIR__ . "/../../bootstrap.php");
 
 use CloudDfe\SdkPHP\Nfe;
 
-/**
- * Este exemplo de uma chamada a API usando este SDK
- *
- * Este método faz o envio de uma NFe
- */
 try {
 
-    // Variaveis para definição de configurações iniciais para o uso da SDK
-    // Token: Token do emitente (distribuído pela CloudDFe se baseando no ambiente: homologação/produção)
-    // Ambiente: Ambiente do qual o serviço vai ser executado (1- Produção / 2- Homologação)
-    // Options: Opções para configuração da chamada da SDK
-    // Debug: Habilita ou desabilita mensagens de debug (Por enquando sem efeito)
-    // Timeout: Tempo de espera para a execução da chamada
-    // Port: Porta de comunicação
-    // Http_version: Versão do HTTP (Especifico para a comunicação utilizando PHP)
+    // Variavel de configuração para definir parametros da requisição.
+    $configSDK = [
 
-    $params = [
-        "token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOiJ0b2tlbl9leGVtcGxvIiwidXNyIjoidGsiLCJ0cCI6InRrIn0.Tva_viCMCeG3nkRYmi_RcJ6BtSzui60kdzIsuq5X-sQ",
-        "ambiente" => 2, // IMPORTANTE: 1 - Produção / 2 - Homologação
+        // Token do emitente obtido no painel da IntegraNotas no cadastro do emitente.
+        // Para obter em Produção: https://gestao.integranotas.com.br/login e em Homologação: https://hom-gestao.integranotas.com.br/login
+        "token" => "",
+
+        // Em qual ambiente a requisição será feita.
+        "ambiente" => "", // 1- Produção / 2- Homologação
+        
+        // Opções complementares, vai depender da sua necessidade
         "options" => [
-            "debug" => false,
-            "timeout" => 60,
-            "port" => 443,
-            "http_version" => CURL_HTTP_VERSION_NONE
+            "debug" => "", // Ativa mensagem de depuração, Default: false
+            "timeout" => "", // Tempo máximo de espera para resposta da API, Default: 60
+            "port" => "", // Porta de conexão, Default: 443
+            "http_version" => "" // Versão do HTTP, Default: CURL_HTTP_VERSION_NONE
         ]
     ];
 
-    $nfe = new Nfe($params);
+    // Instancia a classe Nfe que possui métodos para realizar requisições a nossa API
+    $nfe = new Nfe($configSDK);
 
-    // Payload: Informações que serão enviadas para a API da CloudDFe
+    // Conforme sua aplicação, você precisa ter salvo o ultimo número e série da NFe para fazer o incremento e reservar o número e série antes de enviar a NFe.
+    // Motivo: pois através deles você consegue corrigir uma NFe caso ocorra algum erro ou rejeição, e também para evitar concorrência de números.
+    // OBS: A série é um campo que não precisa ser alterado, pois ela é estática até que seja necessário alterar.
+    $numero = 1; // Obtém do banco o numero da NFe.
+    $serie = 1; // Série da NFe
 
-    // Reservar o numero e serie antes de enviar a NFe
-    // OBS: O numero e serie devem ser reservados antes de enviar a NFe, caso contrario pode haver problemas de sobrescrição de NFe.
-
-    // OBS: ESTE PAYLOAD CONTÉM APENAS OS CAMPOS OBRIGATORIOS. NO SEU PROJETO PODE HAVER CAMPOS ADICIONAIS PARA SEREM ADICIONADOS.
+    // Payload seria o layout com todos os dados necessários para emitir uma NFe.
     // A lista completa de campos pode ser encontrada na documentação da API da [https://integranotas.com.br/doc/nfe]
+    // OBS: ESTE PAYLOAD CONTÉM APENAS OS CAMPOS OBRIGATORIOS. NO SEU PROJETO PODE PRECISAR DE CAMPOS ADICIONAIS PARA SEREM ADICIONADOS.
     $payload = [
         "natureza_operacao" => "",
-        "numero" => "", // OBTER O ULTIMO NUMERO FAZER O INCREMENTO E SALVAR O REGISTRO NA TABELA ANTES DE ENVIAR A NFE
-        "serie" => "", // OBTER A ULTIMA SERIE NA TABELA (Não precisa alterar a serie, pois ela é estatica até que seja necessário alterar)
-        "data_emissao" => "", 
+        "numero" => $numero,
+        "serie" => $serie,
+        "data_emissao" => "",
         "tipo_operacao" => "",
         "finalidade_emissao" => "",
         "consumidor_final" => "",
@@ -83,41 +79,39 @@ try {
         ]
     ];
 
-    // Cria o array de itens
-    $listaItens[] = [
-        "numero_item" => "",
-        "codigo_produto" => "",
-        "origem" => "",
-        "descricao" => "",
-        "codigo_ncm" => "",
-        "cfop" => "",
-        "unidade_comercial" => "",
-        "valor_unitario_comercial" => "",
-        "valor_bruto" => "",
-        "incluir_no_total" => "",
-        "imposto" => [
-            "pis" => [
-                "situacao_tributaria" => ""
-            ],
-            "cofins" => [
-                "situacao_tributaria" => ""
+    $dados = []; // Aqui vai ser a chamada para buscar os dados dos itens que serão enviados na NFe.
+    $listaItens = []; // Está lista vai conter os itens e as informações necessárias para serem enviados na NFe.
+
+    foreach ($dados as $i => $produto) {
+        $listaItens[] = [
+            "numero_item" => $i + 1,
+            "codigo_produto" => "",
+            "origem" => "",
+            "descricao" => "",
+            "codigo_ncm" => "",
+            "cfop" => "",
+            "unidade_comercial" => "",
+            "valor_unitario_comercial" => "",
+            "valor_bruto" => "",
+            "incluir_no_total" => "",
+            "imposto" => [
+                "pis" => [ "situacao_tributaria" => "" ],
+                "cofins" => [ "situacao_tributaria" => "" ]
             ]
-        ]
-    ];
-    foreach ($listaItens as $item) {
-        $payload["itens"][] = $item;
+        ];
     }
 
     // Enviar a NFe para API
     $resp = $nfe->cria($payload);
 
     if ($resp->sucesso) {
+        // Ao entrar nesse bloco significa que a NFSe foi para o provedor e aguarda processamento.
+
         // Salva a chave no banco de dados para receber depois o resultado se a nota foi autorizada ou rejeitada
         // OBS: A chave é o identificador para consultas futuras da NFe
         $chave = $resp->chave;
         
-        /* Este é um exemplo de como consultar a NFe após o envio se caso você não quiser usar o Webhook
-            
+        /* Este é um exemplo de como consultar a NFe após o envio se caso você não poder usar o Webhook.
             sleep(15); // Aguarda 15 segundos para consultar a NFe, pois o processamento pode levar alguns segundos
             
             $payload = [
@@ -135,7 +129,6 @@ try {
                     var_dump($resp);
                 }
             }
-
         */
 
     } else if (in_array($resp->codigo, [5001, 5002])) {
@@ -148,5 +141,6 @@ try {
         var_dump($resp);
     }
 } catch (\Exception $e) {
+    // Em caso de erros será lançado uma exceção com a mensagem de erro
     echo $e->getMessage();
 }
