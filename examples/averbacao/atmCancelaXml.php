@@ -27,7 +27,7 @@ try {
         ]
     ];
 
-    // Instancia a classe Nfe que possui métodos para realizar requisições a nossa API
+    // Instancia a classe Averbacao que possui métodos para realizar requisições a nossa API
     $averbacao = new Averbacao($configSDK);
 
     // Payload: Informações que serão enviadas para a API da IntegraNotas

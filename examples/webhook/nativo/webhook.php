@@ -103,30 +103,3 @@ try {
 } catch (\Exception $e) {
     echo $e->getMessage();
 }
-
-// function webhook() {
-    
-//     $token_softhouse = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjAsInVzciI6NjIxLCJ0cCI6MSwiaWF0IjoxNzQ5MDY2MjQzfQ.vD2sCwaU9r5WQ9i_lsUhEeCtR90IxvGUdJ1GmPoCxhI";
-    
-//     $body = file_get_contents("php://input");
-    
-//     try {
-//         //isValid($token_softhouse, $body);
-
-//         http_response_code(200);
-//         echo "OK";
-
-//         return json_decode($body);
-
-//     } catch (\Exception $e) {
-//         http_response_code(200);
-//         echo $e->getMessage();
-//         return null;
-//     }
-// }
-
-// $result = webhook();
-
-// $jsonData = json_encode($result);
-
-// file_put_contents('webhook_data.json', $jsonData);
