@@ -1,5 +1,5 @@
 <?php
-class IClass
+class IClass // Nome do serviço aqui
 {
     protected $services;
 
