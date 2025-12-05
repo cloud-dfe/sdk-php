@@ -73,6 +73,6 @@ class Services
         if (!empty($this->error["message"])) {
             throw new \Exception("Falha de comunicação! [{$this->error["code"]}] {$this->error["message"]}", 500);
         }
-        return $response;
+        return json_decode($response);
     }
 }

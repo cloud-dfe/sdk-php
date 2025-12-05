@@ -4,24 +4,30 @@ namespace CloudDfe\SdkPHP;
 
 class Nfe extends Base
 {
-    // @param array $payload
-    // @return \stdClass
-    // @throws \Exception
+    /*
+        param array $payload
+        @return \stdClass
+        @throws \Exception
+    */
     public function cria($payload)
     {
         return $this->client->send("POST", "/nfe", $payload);
     }
 
-    // @param array $payload
-    // @return \stdClass
-    // @throws \Exception
+    /*
+        @param array $payload
+        @return \stdClass
+        @throws \Exception
+    */
     public function preview($payload)
     {
         return $this->client->send("POST", "/nfe/preview", $payload);
     }
 
-    // @return \stdClass
-    // @throws \Exception
+    /*
+        @return \stdClass
+        @throws \Exception
+    */
     public function status()
     {
         return $this->client->send("GET", "/nfe/status", []);
