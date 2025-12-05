@@ -4,11 +4,13 @@ namespace CloudDfe\SdkPHP;
 
 class Webhook
 {
-    // @param string $token token da softwarehouse
-    // @param string $payload payload em json do webhook
-    // @return bool
-    // @throws \Exception
-
+    /**
+     * @param string $token token da softwarehouse
+     * @param string $payload payload em json do webhook
+     * @return bool
+     * @throws \Exception
+     */
+    
     public static function isValid($token, $payload)
     {
         $cipher = "AES-128-CBC";

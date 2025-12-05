@@ -4,25 +4,31 @@ namespace CloudDfe\SdkPHP;
 
 class Softhouse extends Base
 {
-    // @param array $payload
-    // @return \stdClass
-    // @throws \Exception
+    /**
+     * @param array $payload
+     * @return \stdClass
+     * @throws \Exception
+     */
     public function criaEmitente($payload)
     {
         return $this->client->send("POST", "/soft/emitente", $payload);
     }
 
-    // @param array $payload
-    // @return \stdClass
-    // @throws \Exception
+    /**
+     * @param array $payload
+     * @return \stdClass
+     * @throws \Exception
+     */
     public function atualizaEmitente($payload)
     {
         return $this->client->send("PUT", "/soft/emitente", $payload);
     }
 
-    // @param array $payload
-    // @return \stdClass
-    // @throws \Exception
+    /**
+     * @param array $payload
+     * @return \stdClass
+     * @throws \Exception
+     */
     public function mostraEmitente($payload)
     {
         if (empty($payload) || empty($payload["doc"])) {
@@ -32,9 +38,11 @@ class Softhouse extends Base
         return $this->client->send("GET", "/soft/emitente/$doc");
     }
 
-    // @param array $payload
-    // @return \stdClass
-    // @throws \Exception
+    /**
+     * @param array $payload
+     * @return \stdClass
+     * @throws \Exception
+     */
     public function listaEmitentes($payload)
     {
         $status = !empty($payload["status"]) ? $payload["status"] : "";
@@ -45,9 +53,11 @@ class Softhouse extends Base
         return $this->client->send("GET", $rota, []);
     }
 
-    // @param array $payload
-    // @return \stdClass
-    // @throws \Exception
+    /**
+     * @param array $payload
+     * @return \stdClass
+     * @throws \Exception
+     */
     public function deletaEmitente($payload)
     {
         if (empty($payload) || empty($payload["doc"])) {
