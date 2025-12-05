@@ -13,13 +13,13 @@ class Base
     public function __construct($params)
     {
         $config = [
-            "token" => $params["token"],
-            "ambiente" => $params["ambiente"],
-            "timeout" => $params["timeout"],
-            "port" => $params["port"],
-            "http_version" => $params["http_version"],
-            "debug" => $params["debug"],
-            "options" => $params["options"]
+            "token" => $params["token"] ?? null,
+            "ambiente" => $params["ambiente"] ?? null,
+            "timeout" => $params["timeout"] ?? null,
+            "port" => $params["port"] ?? null,
+            "http_version" => $params["http_version"] ?? null,
+            "debug" => $params["debug"] ?? null,
+            "options" => $params["options"] ?? null
         ];
 
         $this->client = new Client($config);
