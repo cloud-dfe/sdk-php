@@ -1,6 +1,6 @@
 <?php
 
-class IServicesNFe
+class IServices
 {
 
     protected $base_uri = "";
@@ -73,7 +73,7 @@ class IServicesNFe
             throw new \Exception("Erro ao realizar a requisição: {$error["message"]}");
         }
 
-        return $response;
+        return json_decode($response);
     }
 
 }

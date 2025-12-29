@@ -1,11 +1,13 @@
 <?php
-class IClass // Nome do serviço aqui
+
+require_once ('services.php');
+class IClass // Renomeie para o nome do serviço que irá utilizar exemplo NF-e fica INfe
 {
     protected $services;
 
     public function __construct($ambiente, $token)
     {
-        $this->services = new IServicesNFe($ambiente, $token);
+        $this->services = new IServices($ambiente, $token);
     }
 
     public static function checkKey($payload)
@@ -23,15 +25,38 @@ class IClass // Nome do serviço aqui
         return $key;
     }
 
-    public function exemplo_post($payload)
+    public static function encode($data)
     {
-        return $this->services->request("POST", "/rota", $payload);
+        return base64_encode($data);
     }
 
-    public function exemple_consulta($payload)
+    public static function decode($data)
+    {
+        $decoded = @base64_decode($data);
+        $gz = @gzdecode($decoded);
+        if ($gz !== false) {
+            return $gz;
+        }
+        return $decoded;
+    }
+
+    // ENDPOINTS
+    // Mude apenas o servico para o servico que irá utilizar exemplo NF-e fica /nfe
+
+    public function cria($payload)
+    {
+        return $this->services->request("POST", "/servico", $payload);
+    }
+
+    public function cancela($payload)
+    {
+        return $this->services->request("POST", "/servico/cancela", $payload);
+    }
+
+    public function consulta($payload)
     {
         $key = self::checkKey($payload);
-        return $this->services->request("GET", "/rota/{$key}", []);
+        return $this->services->request("GET", "/servico/{$key}", []);
     }
     
 }
