@@ -87,4 +87,14 @@ class Dfe extends Base
     {
         return $this->client->send("POST", "/dfe/backup", $payload);
     }
+
+    /**
+     * @param array $payload
+     * @return \stdClass
+     * @throws \Exception
+     */
+    public function manifesta($payload)
+    {
+        return $this->client->send("POST", "/dfe/nfe/manifesta", $payload);
+    }
 }
