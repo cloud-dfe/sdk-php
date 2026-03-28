@@ -71,7 +71,7 @@ class Client
     }
 
 
-    public function send($method, $route, $payload = [], $version = '1')
+    public function send($method, $route, $payload = [])
     {
         $headers = [
             "Authorization: {$this->token}",
