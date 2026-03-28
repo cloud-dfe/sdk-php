@@ -6,8 +6,8 @@ class Client
 {
     const URLS = [
         'api' => [
-            '1' => 'https://api.integranotas.com.br/v1',
-            '2' => 'https://hom-api.integranotas.com.br/v1'
+            '1' => 'https://api.integranotas.com.br',
+            '2' => 'https://hom-api.integranotas.com.br'
         ]
     ];
 
@@ -19,19 +19,18 @@ class Client
     protected $ambiente;
     // @var string
     protected $token;
-
     // @var int
     protected $timeout;
     // @var int
     protected $port;
     // @var int
     protected $http_version;
-
     // @var bool
     protected $debug;
-
     // @var Service
     protected $services;
+    // @var int
+    protected $version = '1';
 
     public function __construct($params = [])
     {
@@ -58,9 +57,10 @@ class Client
         $this->port = $params["port"] ?? $this->port;
         $this->http_version = $params["http_version"] ?? $this->http_version;
         $this->debug = $params["debug"] ?? $this->debug;
+        $this->version = $params["version"] ?? $this->version;
 
         $config = [
-            "base_uri" => self::URLS["api"][$this->ambiente],
+            "base_uri" => self::URLS["api"][$this->ambiente] . "/v{$this->version}",
             "timeout" => $this->timeout,
             "port" => $this->port,
             "http_version" => $this->http_version,
@@ -71,7 +71,7 @@ class Client
     }
 
 
-    public function send($method, $route, $payload = [])
+    public function send($method, $route, $payload = [], $version = '1')
     {
         $headers = [
             "Authorization: {$this->token}",

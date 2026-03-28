@@ -19,7 +19,8 @@ class Base
             "port" => $params["port"] ?? null,
             "http_version" => $params["http_version"] ?? null,
             "debug" => $params["debug"] ?? null,
-            "options" => $params["options"] ?? null
+            "options" => $params["options"] ?? null,
+            "version" => $params["version"] ?? 1
         ];
 
         $this->client = new Client($config);

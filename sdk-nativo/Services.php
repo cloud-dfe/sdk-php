@@ -7,11 +7,12 @@ class IServices
     protected $timeout = 60;
     protected $port = 443;
     protected $token = "";
+    protected $version = '1';
 
     const URLS = [
         'api' => [
-            '1' => 'https://api.integranotas.com.br/v1',
-            '2' => 'https://hom-api.integranotas.com.br/v1'
+            '1' => 'https://api.integranotas.com.br',
+            '2' => 'https://hom-api.integranotas.com.br'
         ]
     ];
 
@@ -28,7 +29,7 @@ class IServices
             throw new \Exception("O token de emitente é obrigatório.");
         }
 
-        $this->base_uri = self::URLS["api"][$ambiente];
+        $this->base_uri = self::URLS["api"][$ambiente] . "/v{$this->version}";
         $this->token = $token;
     }
 
@@ -41,7 +42,7 @@ class IServices
         ];
 
         $data = json_encode($payload);
-        
+
         $oCurl = curl_init();
         curl_setopt_array($oCurl, [
             CURLOPT_URL => "{$this->base_uri}{$route}",
