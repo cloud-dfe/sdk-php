@@ -17,7 +17,7 @@ try {
         "ambiente" => 2, // IMPORTANTE: 1 - Produção / 2 - Homologação
 
         // Em qual versão da API será enviado
-        "version" => 2 // IMPORTANTE: 1 / 2 -> Padrão é 1 
+        "version" => 2, // IMPORTANTE: 1 / 2 -> Padrão é 1 
         // Alguns dos recursos ainda estão na v1
         
         // Opções complementares, vai depender da sua necessidade
