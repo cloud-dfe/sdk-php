@@ -16,6 +16,10 @@ try {
         // Em qual ambiente a requisição será feita.
         "ambiente" => 2, // IMPORTANTE: 1 - Produção / 2 - Homologação
 
+        // Em qual versão da API será enviado
+        "version" => 2 // IMPORTANTE: 1 / 2 -> Padrão é 1 
+        // Alguns dos recursos ainda estão na v1
+        
         // Opções complementares, vai depender da sua necessidade
         "options" => [
             "debug" => "", // Ativa mensagem de depuração, Default: false
@@ -23,7 +27,6 @@ try {
             "port" => "", // Porta de conexão, Default: 443
             "http_version" => ""// Versão do HTTP, Default: CURL_HTTP_VERSION_NONE
         ],
-        "version" => 2
     ];
 
     // Instancia a classe Nfse que possui métodos para realizar requisições a nossa API
