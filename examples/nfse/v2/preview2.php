@@ -12,9 +12,13 @@ try {
         // Token do emitente obtido no painel da IntegraNotas no cadastro do emitente.
         // Para obter em Produção: https://gestao.integranotas.com.br/login e em Homologação: https://hom-gestao.integranotas.com.br/login
         "token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOiJ0b2tlbl9leGVtcGxvIiwidXNyIjoidGsiLCJ0cCI6InRrIn0.Tva_viCMCeG3nkRYmi_RcJ6BtSzui60kdzIsuq5X-sQ",
-        
+
         // Em qual ambiente a requisição será feita.
         "ambiente" => 2, // IMPORTANTE: 1 - Produção / 2 - Homologação
+
+        // Em qual versão da API será enviado
+        "version" => 2, // IMPORTANTE: 1 / 2 -> Padrão é 1 
+        // Alguns dos recursos ainda estão na v1
 
         // Opções complementares, vai depender da sua necessidade
         "options" => [
@@ -22,7 +26,7 @@ try {
             "timeout" => "", // Tempo máximo de espera para resposta da API, Default: 60
             "port" => "", // Porta de conexão, Default: 443
             "http_version" => ""// Versão do HTTP, Default: CURL_HTTP_VERSION_NONE
-        ]
+        ],
     ];
 
     // Instancia a classe Nfse que possui métodos para realizar requisições a nossa API
@@ -58,66 +62,43 @@ try {
             ]
         ],
         "servico" => [ // AVISO: PAYLOAD EXEMPLO VERIFICA A DOCUMENTAÇÃO PARA CRIAR CONFORME O SEU MUNICÍPIO
-            "codigo_municipio" => "",
-            "itens" => [ // AVISO: PAYLOAD EXEMPLO VERIFICA A DOCUMENTAÇÃO PARA CRIAR CONFORME O SEU MUNICÍPIO
-                [ 
-                    "codigo" => "", // AVISO: PAYLOAD EXEMPLO VERIFICA A DOCUMENTAÇÃO PARA CRIAR CONFORME O SEU MUNICÍPIO
-                    "codigo_tributacao_municipio" => "",
-                    "discriminacao" => "",
-                    "valor_servicos" => "",
-                    "valor_pis" => "",
-                    "valor_cofins" => "", // AVISO: PAYLOAD EXEMPLO VERIFICA A DOCUMENTAÇÃO PARA CRIAR CONFORME O SEU MUNICÍPIO
-                    "valor_inss" => "",
-                    "valor_ir" => "",
-                    "valor_csll" => "",
-                    "valor_outras" => "",
-                    "valor_aliquota" => "",
-                    "valor_desconto_incondicionado" => "" // AVISO: PAYLOAD EXEMPLO VERIFICA A DOCUMENTAÇÃO PARA CRIAR CONFORME O SEU MUNICÍPIO
-                ]
+            "endereco_local_prestacao" => [
+                "codigo_municipio" => "",
+                "codigo_municipio_prestacao" => "",
+                "codigo_pais" => "",
+            ],
+            "codigo" => "", // AVISO: PAYLOAD EXEMPLO VERIFICA A DOCUMENTAÇÃO PARA CRIAR CONFORME O SEU MUNICÍPIO
+            "codigo_tributacao_municipio" => "",
+            "discriminacao" => "",
+            "valor_servicos" => "",
+            "valor_desconto_incondicionado" => "", // AVISO: PAYLOAD EXEMPLO VERIFICA A DOCUMENTAÇÃO PARA CRIAR CONFORME O SEU MUNICÍPIO
+            "tributos_municipais" => [
+                "iss_retido" => "",
+                "responsavel_retencao" => "",
+                "valor_base_calculo_iss" => "",
+                "aliquota_iss" => "",
+                "valor_iss" => "",
+            ],
+            "tributos_nacionais" => [
+                "valor_pis" => "",
+                "valor_cofins" => "", // AVISO: PAYLOAD EXEMPLO VERIFICA A DOCUMENTAÇÃO PARA CRIAR CONFORME O SEU MUNICÍPIO
+                "valor_inss" => "",
+                "valor_ir" => "",
+                "valor_csll" => "",
+                "valor_outras" => "",
             ]
         ]
     ];
 
-    // Envia a NFSe para a API
-    $resp = $nfse->cria($payload);
+    // Envia para fazer o preview a NFSe para a API
+    $resp = $nfse->preview($payload);
 
-    if ($resp->sucesso) {
-        // Ao entrar nesse bloco significa que a NFSe foi para o provedor e aguarda processamento.
-
-        // Salva a chave no banco de dados para receber depois o resultado se a nota foi autorizada ou rejeitada
-        // OBS: A chave é o identificador para consultas futuras da NFSe
-        $chave = $resp->chave;
-        
-        /* Este é um exemplo de como consultar a NFse após o envio se caso você não poder usar o Webhook. 
-        AVISO: RECOMENDAMOS UTILIZAR O WEBHOOK POIS ALGUMAS PREFEITURAS PODEM DEMORAR PARA PROCESSAR A NFSE.
-
-            sleep(15); // Aguarda 15 segundos para consultar a NFse, pois o processamento pode levar alguns segundos
-            
-            $payload = [
-                "chave" => $chave
-            ];
-        
-            $resp = $nfse->consulta($payload);
-
-            if ($resp->codigo != 5023) {
-                if ($resp->sucesso) {
-                    var_dump($resp);
-                } else {
-                    var_dump($resp);
-                }
-            }
-        */
-
-    } else if (in_array($resp->codigo, [5001, 5002])) {
-        // Aqui o retorno indica que houve um erro na validação dos dados enviados
-        // O código 5001 indica que falto campos obrigatórios ou opcionais obrigatórios referente ao emitente.
-        // O código 5002 indica que houve um erro na validação dos dados como CNPJ, CPF, Inscrição Estadual, etc.
-        var_dump($resp->erros);
-    } else {
-        // Aqui é retornado qualquer erro que não seja relacionado a validação dos dados como não foi informado certificado digital, entre outros.
-        var_dump($resp);
-    }
+    echo "<pre>";
+    print_r($resp);
+    echo "</pre>";
 } catch (\Exception $e) {
+
     // Em caso de erros será lançado uma exceção com a mensagem de erro
+
     echo $e->getMessage();
 }
