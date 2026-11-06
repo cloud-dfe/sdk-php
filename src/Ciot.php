@@ -11,7 +11,7 @@ class Ciot extends Base
      */
     public function cria($payload)
     {
-        return $this->client->send("POST", "/ciot", $payload);
+        return $this->client->send("POST", "/ciot/ailog", $payload);
     }
 
     /**
@@ -22,7 +22,7 @@ class Ciot extends Base
     public function consulta($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send("GET", "/ciot/{$key}", []);
+        return $this->client->send("GET", "/ciot/ailog/{$key}", []);
     }
 
     /**
@@ -32,7 +32,7 @@ class Ciot extends Base
      */
     public function busca($payload)
     {
-        return $this->client->send("POST", "/ciot/busca", $payload);
+        return $this->client->send("POST", "/ciot/ailog/busca", $payload);
     }
 
     /**
@@ -42,7 +42,7 @@ class Ciot extends Base
      */
     public function cancela($payload)
     {
-        return $this->client->send("POST", "/ciot/cancela", $payload);
+        return $this->client->send("POST", "/ciot/ailog/cancela", $payload);
     }
 
     /**
@@ -52,7 +52,7 @@ class Ciot extends Base
      */
     public function encerra($payload)
     {
-        return $this->client->send("POST", "/ciot/encerra", $payload);
+        return $this->client->send("POST", "/ciot/ailog/encerra", $payload);
     }
 
     /**
@@ -62,7 +62,7 @@ class Ciot extends Base
      */
     public function retifica($payload)
     {
-        return $this->client->send("POST", "/ciot/retifica", $payload);
+        return $this->client->send("POST", "/ciot/ailog/retifica", $payload);
     }
 
     /**
@@ -73,7 +73,7 @@ class Ciot extends Base
     public function pdf($payload)
     {
         $key = self::checkKey($payload);
-        return $this->client->send("GET", "/ciot/pdf/{$key}", []);
+        return $this->client->send("GET", "/ciot/ailog/pdf/{$key}", []);
     }
 
     /**
@@ -83,6 +83,6 @@ class Ciot extends Base
      */
     public function transportador($payload)
     {
-        return $this->client->send("POST", "/ciot/transportador", $payload);
+        return $this->client->send("POST", "/ciot/ailog/transportador", $payload);
     }
 }
