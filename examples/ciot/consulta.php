@@ -33,7 +33,7 @@ try {
     // OBS: Não utilize o payload de exemplo abaixo, ele é apenas um exemplo. Consulte a documentação para construir o payload para sua aplicação.
 
     $resp = $ciot->consulta([
-        "identificacao" => "VIAGEM-0001"
+        "chave" => "41261122333444000181927090000010011360347860"
     ]);
 
     echo "<pre>";
@@ -42,7 +42,7 @@ try {
 
     if ($resp->sucesso) {
         if ($resp->codigo == 5023) { // lote em processamento
-            // aguardar e consultar pela identificação ou esperar o webhook notificar quando a ANTT processar
+            // aguardar e consultar pela chave ou esperar o webhook notificar quando a ANTT processar
         } else {
             // CIOT declarado
             var_dump($resp);

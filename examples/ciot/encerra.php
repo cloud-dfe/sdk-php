@@ -33,7 +33,7 @@ try {
     // OBS: Não utilize o payload de exemplo abaixo, ele é apenas um exemplo. Consulte a documentação para construir o payload para sua aplicação.
 
     $resp = $ciot->encerra([
-        "identificacao" => "VIAGEM-0001",
+        "chave" => "41261122333444000181927090000010011360347860",
         "carga" => [
             "tipo" => "05",
             "natureza" => "8414",
